@@ -1,0 +1,1 @@
+# AI_in_TVET_I_WiSe_2026_2027
