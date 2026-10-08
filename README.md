@@ -4,7 +4,7 @@ Foundations and applications of Artificial Intelligence in Technical and Vocatio
 
 Otto von Guericke University Magdeburg · Professorship of Engineering Pedagogy and Didactics of Technical Education (Prof. Dr. Frank Bünning) · Winter term 2026/27
 
-**Course website: <https://ovgu-vet-teched.github.io/AI_in_TVET_I_WiSe_2026_2027/>**
+**Course website: <https://ovgu-vet-teched.github.io/AI_in_TVET_I_WiSe_2026_2027/>** · Thursdays, 09:00–11:00 · 15.10. – 19.11.2026
 
 | Material | Open |
 | --- | --- |

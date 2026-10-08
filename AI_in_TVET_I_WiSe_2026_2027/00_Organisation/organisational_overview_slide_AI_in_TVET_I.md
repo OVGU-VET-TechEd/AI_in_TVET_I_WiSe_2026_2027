@@ -54,7 +54,7 @@ This seminar introduces the **foundations and applications of Artificial Intelli
 {{3}}
 <section>
 
-**Compact format:** 6 sessions in 6 weeks. AI in TVET II follows directly from 26.11.2026.
+**Compact format:** 6 sessions in 6 weeks. AI in TVET II follows from 03.12.2026.
 
 </section>
 
@@ -72,7 +72,7 @@ This is a compact seminar of six weeks. Half of the sessions are self-learning s
 | 5   | 12.11.2026 | 🔵 Self-learning   | Open education with AI: OER, licensing, micro-credentials · develop your learning nuggets |
 | 6   | 19.11.2026 | 🟢 Live            | Hands-on LiaScript · **Pitch presentations**                              |
 
-<small>Term: 12.10.2026 – 27.01.2027. AI in TVET II: Thursdays 26.11.2026 – 21.01.2027.</small>
+<small>Term: 12.10.2026 – 27.01.2027. AI in TVET II: Thursdays 09:00–12:00, 03.12.2026 – 21.01.2027.</small>
 
 ## Live and Self-Learning Sessions
 
