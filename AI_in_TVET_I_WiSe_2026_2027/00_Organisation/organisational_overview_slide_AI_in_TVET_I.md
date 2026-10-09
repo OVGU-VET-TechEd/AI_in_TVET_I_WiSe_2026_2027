@@ -1,7 +1,7 @@
 <!--
 author:    Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   0.1.0
+version:   0.2.0
 language:  en
 narrator:  UK English Female
 mode:      Presentation
@@ -129,9 +129,65 @@ Every seminar starts with an introduction to Artificial Intelligence. **Part I i
 
 </section>
 
+## Human-Centred AI: Our Guiding Lens
+
+{{1}}
+<section>
+
+> Human-Centred AI (HCAI) focuses on understanding **purposes, human values, and desired AI properties** in the creation of AI systems by applying Human-Centred Design practices. HCAI seeks to **augment human capabilities while maintaining human control** over AI systems […].
+>
+> <small>Schmager, Pappas & Vassilakopoulou (2025, p. 3776)</small>
+
+</section>
+
+{{2}}
+<section>
+
+| Element        | What it covers                                    | Question for TVET                                          |
+| -------------- | ------------------------------------------------- | ---------------------------------------------------------- |
+| **Purpose**    | Augmentation · AI autonomy · automation           | Does the tool strengthen the learner's skills or replace them? |
+| **Values**     | Ethical · protection · performance values         | Is it fair, safe, privacy-preserving *and* useful?         |
+| **Properties** | Oversight · comprehension · integrity             | Can teachers control it, explain it and rely on it?        |
+
+</section>
+
+{{3}}
+<section>
+
+**Foundation:** iterative Human-Centred Design (understand → design & develop → evaluate) with constant **user involvement**.
+
+**For your AI tools log:** don't just accept AI output; examine it critically against your own knowledge and judgement (active vs. passive engagement).
+
+</section>
+
+                                  --{{1}}--
+This is the lens for the whole seminar. A recent systematic review defines human-centred AI by three elements: its purpose, the values it respects, and the properties it must have. The core idea is augmentation: AI should strengthen human capabilities while humans stay in control.
+
+                                  --{{3}}--
+Human-centred AI is not only a design question. It is also about how you use AI. Passive engagement means following AI suggestions without reflection. We aim for active engagement, and your AI tools log is where you practise it.
+
+## Reading for Session 1
+
+{{1}}
+<section>
+
+| Reading | Why read it |
+| ------- | ----------- |
+| Schmager, S., Pappas, I. O., & Vassilakopoulou, P. (2025). Understanding human-centred AI: A review of its defining elements and a research agenda. *Behaviour & Information Technology, 44*(15), 3771–3810. [doi:10.1080/0144929X.2024.2448719](https://doi.org/10.1080/0144929X.2024.2448719) | Definition and framework of human-centred AI (purpose, values, properties); prepares Session 2 on mindset and ethics |
+| Module overview *AI in TVET I – Foundations and Applications* (Moodle) | Frameworks, tools and objectives of the seminar |
+
+</section>
+
+{{2}}
+<section>
+
+**Focus while reading:** Section 4.3 (definition), Section 5 (elements) and Figure 6 (integrative HCAI framework). Note one question for the live session on 05.11.
+
+</section>
+
 ## Learning Objectives
 
-Aligned with the UNESCO 2025 AI Competency Frameworks (Students & Teachers), this seminar aims to:
+Aligned with the UNESCO 2024 AI Competency Frameworks (Students & Teachers), this seminar aims to:
 
 {{1}}
 <section>
@@ -294,3 +350,9 @@ How familiar are you with AI tools?
 ---
 
 **Next session:** Thursday, 22.10.2026: 🔵 self-learning, Introduction to AI & Prompting II. Hand-in by 28.10.2026.
+
+## References
+
+- Schmager, S., Pappas, I. O., & Vassilakopoulou, P. (2025). Understanding human-centred AI: A review of its defining elements and a research agenda. *Behaviour & Information Technology, 44*(15), 3771–3810. https://doi.org/10.1080/0144929X.2024.2448719
+- UNESCO. (2024). *AI competency framework for students*. UNESCO. https://doi.org/10.54675/JKJB9835
+- UNESCO. (2024). *AI competency framework for teachers*. UNESCO. https://doi.org/10.54675/ZJTE2084
