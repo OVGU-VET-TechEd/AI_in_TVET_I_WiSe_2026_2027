@@ -1,7 +1,7 @@
 <!--
 author:    Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.0.0
+version:   1.1.0
 language:  en
 narrator:  UK English Female
 mode:      Textbook
@@ -117,7 +117,38 @@ The UNESCO AI Competency Framework for Teachers starts with the **human-centred 
 | Personalised material for heterogeneous groups | Pedagogical decisions shaped by tool defaults and metrics |
 | Instant feedback for learners | Over-reliance; weaker critical thinking |
 
-Research on human-centred learning analytics shows that involving teachers and learners in the design of AI tools is still the exception (Alfredo et al., 2024).
+### Teacher–AI complementarity
+
+The UNESCO Teacher Task Force (2025) distinguishes three implications of AI for teachers: **teaching *with* AI**, **teaching *about* AI**, and **adapting teaching** for a world in which AI is everywhere. Its central argument: teachers are not replaceable. Their expertise, adaptability, ethical judgement and relationships with learners determine whether AI benefits learning at all.
+
+{{1}}
+<section>
+
+| Hand over to AI (with checks) | Keep under human control |
+| --- | --- |
+| Remembering facts, filtering information, first drafts | Value judgements, relational decisions |
+| Routine administration and formatting | Feedback that needs empathy and knowledge of the learner |
+| Generating practice variants | Decisions about a learner's path |
+
+Deciding *what* to offload is itself a skill: teachers need metacognitive awareness to keep their agency (Teacher Task Force, 2025).
+
+</section>
+
+### Human control and automation
+
+A systematic review of 108 studies on human-centred learning analytics and AI in education uses Shneiderman's two-dimensional framework: **human control** and **computer automation** are not opposites, and good systems can offer high levels of both (Alfredo et al., 2024).
+
+``` ascii
+          high automation
+                ▲
+   Q3: system   │   Q4: high control
+   decides      │   + high automation
+ ───────────────┼───────────────► high human control
+   Q1: show     │   Q2: user
+   information  │   configures
+```
+
+The review finds *some* attention to human control in system design, but **limited involvement of end-users – especially students – in the actual design process**. Its recommendation: involve teachers and learners in all design phases and treat safety, reliability and trustworthiness as design principles (Alfredo et al., 2024).
 
 **Reflection:** Where in your future teaching would you *never* hand a decision to an AI tool? Write 2–3 sentences in your log.
 
@@ -132,7 +163,21 @@ Research on human-centred learning analytics shows that involving teachers and l
        └──────────── data from the next cohort ◄──────┘
 ```
 
-Example: A model trained on past admission data in male-dominated trades may rate female applicants lower. Studies on student progress monitoring show that such models can produce systematically different error rates for groups of learners (Idowu et al., 2024).
+Example: A model trained on past admission data in male-dominated trades may rate female applicants lower.
+
+{{1}}
+<section>
+
+**What the research shows**
+
+- Bias enters through **several channels**: data collection, algorithm design, implementation practice and institutional policy. Biased systems in admissions, assessment and learning platforms can create new systemic barriers for marginalised learners (Boateng & Boateng, 2025).
+- In student progress monitoring (Open University dataset; bias by age, disability and gender), **institutional data** (e.g. demographic records) contributed most to discrimination, **assessment data** least. Mitigation across the model life cycle reached fairness *without* losing accuracy (Idowu et al., 2024).
+- "Fair" has no single definition: *individual fairness* (similar learners, similar predictions) and *group fairness* (equal outcomes across groups) can conflict (Idowu et al., 2024).
+- Speculative and **liberatory design** brings under-represented communities into the design of EdTech instead of designing *for* them (Gaskins, 2023).
+
+</section>
+
+**TVET transfer:** Which data in an apprenticeship context (school-leaving certificate, absences, migration history, company size) would you *exclude* from a prediction model – and why?
 
 ### 5.2 Privacy and the EU AI Act
 
@@ -145,9 +190,21 @@ Learning analytics collect large amounts of learner data. The EU AI Act classifi
 - **human oversight**,
 - accuracy, robustness and cybersecurity.
 
+{{1}}
+<section>
+
+**A critical view:** The AI Act frames possible harms of AI as risks to **fundamental rights**. Kusche (2024) shows that fundamental rights appear at the same time as legal rules, as values and as the basis of "trustworthy AI" – which makes the line between high and low risk partly a *political* decision and leaves much to later technical standards. Her conclusion: regulation alone is unlikely to guarantee trustworthy AI. **For schools this means:** compliance is the minimum; pedagogical judgement remains necessary.
+
+</section>
+
 ### 5.3 Accountability in grading
 
-Studies comparing human and LLM grading of the same exams find that AI grades can deviate considerably from teacher grades (Flodén, 2025). Students' acceptance of AI grading depends on whether they perceive it as fair (Jones-Jang et al., 2025). **The final grading decision remains with the teacher.**
+Studies comparing human and LLM grading of the same exams find that AI grades can deviate considerably from teacher grades (Flodén, 2025).
+
+- **Students:** In an experiment with 228 students, most preferred human graders. Students dissatisfied with the current system – especially those with low grades – were more open to AI grading. Acceptance follows perceived fairness *and* self-interest (Jones-Jang et al., 2025).
+- **Teachers:** Interviews with 33 university teachers show that grading GenAI-assisted work involves **value judgements** beyond the task itself: about who the student is, what they can do, how they relate to others, and whether the grade leads to a just outcome. Judgements varied considerably between teachers. The authors call for **transparency** about how students' GenAI use is counted in grading (Luo & Dawson, 2025).
+
+**The final grading decision remains with the teacher – and the rules must be known in advance.** That is why this seminar asks you to declare your AI use.
 
 ### 5.4 Inclusion and the digital divide
 
@@ -156,6 +213,12 @@ AI can help (translation, text simplification, assistive technologies) – or wi
 ### 5.5 Sustainability
 
 Training and using large models consumes energy and water. Ask: Is AI necessary for this task, or is a simpler tool enough?
+
+### 5.6 Human connection and well-being
+
+- A model built from 56 studies and validated with 260 university members confirms ten intertwined concerns: human connection, data privacy and security, algorithmic bias, transparency, critical thinking, access equity, ethics, teacher development, reliability and AI-generated content. Improving one area (e.g. transparency) can support others (Al-Zahrani, 2024).
+- Among 468 students, **teacher responsibility** was linked to higher well-being, both directly and through AI integration – and the effect was stronger where **peers collaborated** (Li et al., 2025). AI supports well-being when it is embedded in human relationships, not as their replacement.
+- Interviews with 29 educators at Finnish universities of applied sciences show the same tension in applied, practice-oriented education: benefits for efficiency, but concerns about academic integrity, institutional readiness and AI literacy. They call for training, institutional policies and ethical frameworks (Shahzad et al., 2025).
 
 **Check:** Which measures does the EU AI Act require for high-risk AI in education? (several answers)
 
@@ -200,11 +263,19 @@ Open questions are discussed at the start of the next live session on 05.11.2026
 
 ## References
 
+- Al-Zahrani, A. M. (2024). Unveiling the shadows: Beyond the hype of AI in education. *Heliyon, 10*, e30696. https://doi.org/10.1016/j.heliyon.2024.e30696
 - Alfredo, R., Echeverria, V., Jin, Y., Yan, L., Swiecki, Z., Gašević, D., & Martinez-Maldonado, R. (2024). Human-centred learning analytics and AI in education: A systematic literature review. *Computers and Education: Artificial Intelligence, 6*, 100215. https://doi.org/10.1016/j.caeai.2024.100215
+- Boateng, O., & Boateng, B. (2025). Algorithmic bias in educational systems: Examining the impact of AI-driven decision making in modern education. *World Journal of Advanced Research and Reviews, 25*(1), 2012–2017. https://doi.org/10.30574/wjarr.2025.25.1.0253
 - European Union. (2024). *Regulation (EU) 2024/1689 (Artificial Intelligence Act)*. https://eur-lex.europa.eu/eli/reg/2024/1689/oj
 - Flodén, J. (2025). Grading exams using large language models: A comparison between human and AI grading of exams in higher education using ChatGPT. *British Educational Research Journal, 51*(1), 201–224. https://doi.org/10.1002/berj.4069
+- Gaskins, N. (2023). Interrogating algorithmic bias: From speculative fiction to liberatory design. *TechTrends, 67*, 417–425. https://doi.org/10.1007/s11528-022-00783-0
 - Idowu, J. A., Koshiyama, A. S., & Treleaven, P. (2024). Investigating algorithmic bias in student progress monitoring. *Computers and Education: Artificial Intelligence, 7*, 100267. https://doi.org/10.1016/j.caeai.2024.100267
-- Jones-Jang, S. M., Chung, M., Choi, J., Kim, N., & Lee, S. (2025). Fairness perceptions of AI in grading systems. *Computers and Education: Artificial Intelligence, 8*, 100419. https://doi.org/10.1016/j.caeai.2025.100419
+- Jones-Jang, S. M., Chung, M., Choi, J., Kim, N., & Lee, S. (2025). Fairness perceptions of AI in grading systems: Examining how discontent with the status quo and outcome favorability reduce AI reluctance. *Computers and Education: Artificial Intelligence, 8*, 100419. https://doi.org/10.1016/j.caeai.2025.100419
+- Kusche, I. (2024). Possible harms of artificial intelligence and the EU AI act: Fundamental rights and risk. *Journal of Risk Research*. Advance online publication. https://doi.org/10.1080/13669877.2024.2350720
+- Li, H., Zhang, J., Khan, W. A., & Lamsali, H. (2025). Teacher responsibility, AI integration, and student well-being: The role of peer collaboration in higher education. *Acta Psychologica, 260*, 105532. https://doi.org/10.1016/j.actpsy.2025.105532
+- Luo, J., & Dawson, P. (2025). Exploring value judgements in grading: Will teachers mark down student work assisted by GenAI, and should they? *Studies in Higher Education*. Advance online publication. https://doi.org/10.1080/03075079.2025.2552825
+- Shahzad, F., Avunduk, Z. B., Ullah, Z., & Arslan, A. (2025). Understanding management educators' perspectives on AI adoption: A qualitative study. *The International Journal of Management Education, 23*, 101274. https://doi.org/10.1016/j.ijme.2025.101274
+- Teacher Task Force. (2025). *Promoting and protecting teacher agency in the age of artificial intelligence* [Position paper]. UNESCO, International Task Force on Teachers for Education 2030.
 - UNESCO. (2023). *Guidance for generative AI in education and research*. https://doi.org/10.54675/EWZM9535
 - UNESCO. (2024b). *AI competency framework for teachers*. https://doi.org/10.54675/ZJTE2084
 - White, J., Fu, Q., Hays, S., Sandborn, M., Olea, C., Gilbert, H., Elnashar, A., Spencer-Smith, J., & Schmidt, D. C. (2023). *A prompt pattern catalog to enhance prompt engineering with ChatGPT* (arXiv:2302.11382). https://arxiv.org/abs/2302.11382
