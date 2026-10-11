@@ -134,6 +134,8 @@ Deciding *what* to offload is itself a skill: teachers need metacognitive awaren
 
 </section>
 
+**Supplement (Moodle, seminar participants only):** *Teacher agency, well-being and ethical principles* – an additional reading summary in the Moodle course.
+
 ### Human control and automation
 
 A systematic review of 108 studies on human-centred learning analytics and AI in education uses Shneiderman's two-dimensional framework: **human control** and **computer automation** are not opposites, and good systems can offer high levels of both (Alfredo et al., 2024).
