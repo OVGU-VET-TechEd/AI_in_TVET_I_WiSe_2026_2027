@@ -202,9 +202,11 @@ An AI workflow describes the steps from input to usable output – including the
 
 | Source | Examples | TVET parallel |
 | --- | --- | --- |
-| **Data bias** | Unrepresentative training data, reporting bias | Data only from large companies |
-| **Development bias** | Algorithm and feature choices | Using "school-leaving grade" as predictor |
-| **Interaction bias** | Practice variation between institutions, **temporal bias** (practice and technology change) | Outdated training regulations, regional differences |
+| **Data bias** | Historical inequalities in the data, under-representation, missing or fragmented records | Historical data from male-dominated trades |
+| **Development bias** | Choices in data selection, validation and model development – e.g. training only with cases from large academic hospitals | Model developed only with data from large companies or urban schools |
+| **Interaction bias** | How people use the system – e.g. **automation bias**: users over-trust AI advice and accept wrong suggestions | Teachers accept AI grading suggestions without checking |
+
+Further types listed include *temporal bias* (criteria change over time) and *feedback-loop bias* (earlier decisions shape future data).
 
 **Why step 5 (human review) is essential:** Experts in obesity medicine rated ChatGPT diet plans about as good as standard patient materials and could rarely identify the AI plan (only 5 of 14 who believed they could). Yet they found conflicting recommendations, unaffordable suggestions and missing specifics such as portion sizes (Kim et al., 2024). The same applies to AI-generated teaching material: it can *look* professional and still be wrong or unsuitable.
 
