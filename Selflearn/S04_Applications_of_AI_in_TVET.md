@@ -1,7 +1,7 @@
 <!--
 author:    Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.0.0
+version:   1.1.0
 language:  en
 narrator:  UK English Female
 mode:      Textbook
@@ -48,29 +48,42 @@ comment:   AI in TVET I – Self-learning unit for session 4 (live, 05.11.2026):
 
 ### 2.1 Adaptive learning systems
 
-Adaptive systems use a learner model (what the learner knows) and a domain model (what there is to learn) to choose the next step. Reviews report positive effects on engagement and performance, but stress that teachers must orchestrate their use in class (du Plooy et al., 2024; Zhao & Ko, 2024).
+Adaptive systems use a learner model (what the learner knows) and a domain model (what there is to learn) to choose the next step.
+
+- **Evidence:** A scoping review of 69 studies in higher education found improved academic performance in 41 studies (59 %) and higher engagement in 25 (36 %). Pre-knowledge quizzes were the most common trigger for adaptive content; Moodle was among the most used platforms (du Plooy et al., 2024).
+- **Still few real systems:** A mapping of 147 studies (2014–2020) shows many prototypes but a low number of implemented systems that address learners' actual problems (Kabudi et al., 2021). Publications on AI-driven adaptive learning rose from 1 in 1990 to 636 in 2023 (Strielkowski et al., 2025).
+- **The teacher as conductor:** Observations in vocational classrooms show that good vocational teachers *orchestrate* lessons: small-group collaboration, tasks linked to real work situations, adaptive and structured instructions, flexible arrangements (Zhao & Ko, 2024). Adaptive software has to fit into this orchestration – not replace it.
 
 **Risks:** biased learner models, high costs, data protection, "learning in isolation".
 
 ### 2.2 Intelligent tutoring systems
 
-ITS give hints and feedback at each step of a task. A systematic review of ITS in real classrooms found mostly positive effects, but also high development effort (Wang et al., 2023). Conversational ITS based on LLMs make tutoring more flexible, including collaborative learning (Arnau-González et al., 2025).
+ITS give hints and feedback at each step of a task. A systematic review of 40 field studies (2011–2022) found a **complicated picture** rather than clear success: most studies come from a few countries ("intelligent regional gap"), they focus on test performance rather than motivation, learning processes or social outcomes, and some lack scientific rigour (Wang et al., 2023).
+
+Most ITS support individual learners only. Arnau-González et al. (2025) present an open-source framework that turns individual conversational tutors into **collaborative** ones without noticeable loss of speed.
 
 ### 2.3 Chatbots and AI assistants
 
-Chatbots support learners with frequently asked questions, practice dialogues and feedback (Okonkwo & Ade-Ibijola, 2021). Whether teachers adopt them depends strongly on **trust** and on colleagues' expectations (Celik et al., 2025).
+Chatbots support learners and staff with quick, personalised answers – a review of 53 studies summarises benefits, challenges and open research questions (Okonkwo & Ade-Ibijola, 2021). A design model for school chatbots shows that they can also connect learners with teachers, social workers and psychologists and help less tech-savvy users through a familiar chat environment (Mendoza et al., 2022).
+
+Whether teachers adopt chatbots depends on **innovativeness**, **trust** in the chatbot's privacy and pedagogical reliability, perceived ease of use – and on **social pressure from colleagues and school leaders** (survey of 482 teachers; Celik et al., 2025).
 
 ### 2.4 VR/AR and AI in skill training
 
-VR/AR welding simulators allow safe, material-saving practice with objective measurement of psychomotor skills (Chan et al., 2022; Lavrentieva et al., 2020). AI analyses movement data and gives feedback. **Limits:** costs, cybersickness, transfer to the real workshop must be checked.
+Conventional welding training is costly in material, time and infrastructure. VR/AR simulators (e.g. from Fronius, MIMBUS, Seabery) allow safe, material-saving practice and train concentration and accuracy (Lavrentieva et al., 2020). A review of 42 studies (2000–2021) classifies their functions, but finds that most studies target **entry-level** learners and there is little evidence on distance learning (Chan et al., 2022). **Limits:** costs, cybersickness, transfer to the real workshop must be checked.
 
 ### 2.5 Predictive analytics
 
-Models predict dropout risk from grades, attendance and online activity (Gonzalez-Nucamendi et al., 2023), also in vocational and technical schools (Korkmaz & Aydın, 2025). **Remember S02:** such systems can be high-risk under the EU AI Act and can reproduce bias.
+- **The imbalance problem:** With 14,495 students and a dropout rate of 8.5 %, a standard classifier recognised only **13 %** of the dropouts – while being 99 % right on those who stayed. Only after adjusting the decision threshold did dropout precision exceed 50 % (Gonzalez-Nucamendi et al., 2023). High "accuracy" can hide a useless early-warning system.
+- **In vocational schools:** At a large vocational and technical high school in Istanbul, a decision tree with oversampling identified at-risk students best; parental education, family structure and financial hardship were strong predictors (Korkmaz & Aydın, 2025).
+
+**Remember S02:** predictors such as family background are exactly where bias and stigmatisation start. Such systems can be high-risk under the EU AI Act.
 
 ### 2.6 Curriculum alignment with labour-market data
 
-AI can analyse job advertisements and skill taxonomies (e.g. ESCO) to show which skills are in demand and to adapt curricula faster (Ejjami, 2024; Liao & Zheng, 2025).
+AI can analyse labour-market data to identify emerging skills and help adapt curricula faster (Ejjami, 2024). The **3E model** links three pillars – *education* (AI curriculum design), *experience* (VR training) and *employment* (industry partnerships with AI-based labour-market scans) – and was tested with 10 vocational schools and 15 industry partners (Liao & Zheng, 2025).
+
+**But:** An integrative review warns that unequal access and biased algorithms can **widen inequalities** in vocational training. It calls for investment in infrastructure, continuous teacher training and new roles such as a *Vocational AI Curriculum Developer* or *AI Data Protection Specialist* (Ejjami, 2024).
 
 **Check:** Which application gives step-by-step hints while a learner solves a task?
 
@@ -146,10 +159,13 @@ Next session (12.11.2026, 🔵 self-learning) you learn how to describe your mic
 - Ejjami, R. (2024). AI’s impact on vocational training and employability: Innovation, challenges, and perspectives. *International Journal for Multidisciplinary Research, 6*(4). https://doi.org/10.36948/ijfmr.2024.v06i04.24967
 - Gonzalez-Nucamendi, A., Noguez, J., Neri, L., Robledo-Rella, V., & García-Castelán, R. M. G. (2023). Predictive analytics study to determine undergraduate students at risk of dropout. *Frontiers in Education, 8*, 1244686. https://doi.org/10.3389/feduc.2023.1244686
 - Korkmaz, Ö., & Aydın, M. N. (2025). Detection of early school drop out in vocational and technical high schools in Turkey. *SAGE Open, 15*(3). https://doi.org/10.1177/21582440251370443
+- Kabudi, T., Pappas, I., & Olsen, D. H. (2021). AI-enabled adaptive learning systems: A systematic mapping of the literature. *Computers and Education: Artificial Intelligence, 2*, 100017. https://doi.org/10.1016/j.caeai.2021.100017
 - Lavrentieva, O. O., Arkhypov, I. O., Kuchma, O. I., & Uchitel, A. D. (2020). Use of simulators together with virtual and augmented reality in the system of welders’ vocational training: Past, present, and future. *CEUR Workshop Proceedings, 2547*, 201–216. https://ceur-ws.org/Vol-2547/paper15.pdf
 - Liao, J., & Zheng, Y. (2025). Integrating artificial intelligence into vocational education: A technical application framework based on the 3E model. In *Proceedings of the 2nd Guangdong-Hong Kong-Macao Greater Bay Area International Conference on Digital Economy and Artificial Intelligence* (pp. 1489–1493). ACM. https://doi.org/10.1145/3745238.3745471
+- Mendoza, S., Sánchez-Adame, L. M., Urquiza-Yllescas, J. F., González-Beltrán, B. A., & Decouchant, D. (2022). A model to develop chatbots for assisting the teaching and learning process. *Sensors, 22*(15), 5532. https://doi.org/10.3390/s22155532
 - Ning, Y., Zhang, C., Xu, B., Zhou, Y., & Wijaya, T. T. (2024). Teachers’ AI-TPACK: Exploring the relationship between knowledge elements. *Sustainability, 16*(3), 978. https://doi.org/10.3390/su16030978
 - Okonkwo, C. W., & Ade-Ibijola, A. (2021). Chatbots applications in education: A systematic review. *Computers and Education: Artificial Intelligence, 2*, 100033. https://doi.org/10.1016/j.caeai.2021.100033
+- Strielkowski, W., Grebennikova, V., Lisovskiy, A., Rakhimova, G., & Vasileva, T. (2025). AI-driven adaptive learning for sustainable educational transformation. *Sustainable Development, 33*, 1921–1947. https://doi.org/10.1002/sd.3221
 - Wang, H., Tlili, A., Huang, R., Cai, Z., Li, M., Cheng, Z., Yang, D., Li, M., Zhu, X., & Fei, C. (2023). Examining the applications of intelligent tutoring systems in real educational contexts: A systematic literature review from the social experiment perspective. *Education and Information Technologies, 28*(7), 9113–9148. https://doi.org/10.1007/s10639-022-11555-x
 - Zhao, Y., & Ko, J. (2024). Orchestrating vocational education classrooms for adaptive instruction and collaborative learning. *Cogent Education, 11*(1). https://doi.org/10.1080/2331186X.2024.2351238
 
