@@ -1,7 +1,7 @@
 <!--
 author:    Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.0.0
+version:   1.1.0
 language:  en
 narrator:  UK English Female
 mode:      Textbook
@@ -202,6 +202,18 @@ Five dimensions, each on three levels **Acquire – Deepen – Create**:
 4. AI pedagogy
 5. AI for professional development
 
+### What does "human-centred" mean?
+
+Both UNESCO frameworks start with the **human-centred mindset**. A systematic review defines human-centred AI (HCAI) by three elements (Schmager et al., 2025):
+
+| Element | Covers |
+| --- | --- |
+| **Purpose** | Augmentation (strengthening human abilities) · AI autonomy · automation |
+| **Values** | Ethical · protection · performance values |
+| **Properties** | Oversight · comprehension (explainability, transparency) · integrity (reliability, robustness) |
+
+The core idea: AI should **augment human capabilities while humans stay in control**, developed through iterative human-centred design with user involvement. You will meet this lens again in S02.
+
 ### EU AI Act (Regulation (EU) 2024/1689)
 
 A **risk-based** law:
@@ -278,6 +290,7 @@ Throughout the seminar you document **every** relevant AI use. This log is part 
 
 - European Union. (2024). *Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)*. Official Journal of the European Union. https://eur-lex.europa.eu/eli/reg/2024/1689/oj
 - Lo, L. S. (2023). The CLEAR path: A framework for enhancing information literacy through prompt engineering. *The Journal of Academic Librarianship, 49*(4), 102720. https://doi.org/10.1016/j.acalib.2023.102720
+- Schmager, S., Pappas, I. O., & Vassilakopoulou, P. (2025). Understanding human-centred AI: A review of its defining elements and a research agenda. *Behaviour & Information Technology, 44*(15), 3771–3810. https://doi.org/10.1080/0144929X.2024.2448719
 - UNESCO. (2018). *UNESCO ICT competency framework for teachers* (Version 3). UNESCO. https://unesdoc.unesco.org/ark:/48223/pf0000265721
 - UNESCO. (2023). *Guidance for generative AI in education and research*. UNESCO. https://doi.org/10.54675/EWZM9535
 - UNESCO. (2024a). *AI competency framework for students*. UNESCO. https://doi.org/10.54675/JKJB9835
