@@ -124,9 +124,19 @@ AI changes not only tools but teaching itself.
 
 **5. Inclusion** – translation, simplified language and assistive features – if access is fair.
 
+**6. Self-determined learning (heutagogy)** – learners take control of their learning path, even of goals and assessment. Ng and Lai (2025) link three AI paradigms to rising autonomy and the SOLO levels of understanding:
+
+| AI paradigm | Role of AI | SOLO level | Learner autonomy |
+| --- | --- | --- | --- |
+| **AI-informed** | Provides information and progress data | Pre-/uni-structural | Low – teachers guide strongly |
+| **AI-supported** | Adaptive feedback, tailored content | Multi-structural, relational | Growing |
+| **AI-empowered** | Partner for open, complex problems | Extended abstract | Full autonomy and agency |
+
+For TVET this fits continuing education and master-craftsperson training, where adults steer their own learning. The authors stress that it needs deliberate changes to pedagogy and assessment, staff development and infrastructure.
+
 </section>
 
-**Discussion question for the session:** Which of these five changes is most relevant for your vocational field – and what would you need as a teacher to handle it?
+**Discussion question for the session:** Which of these six changes is most relevant for your vocational field – and what would you need as a teacher to handle it?
 
 ## 5. Micro-credential Idea Check (live)
 
@@ -163,6 +173,7 @@ Next session (12.11.2026, 🔵 self-learning) you learn how to describe your mic
 - Lavrentieva, O. O., Arkhypov, I. O., Kuchma, O. I., & Uchitel, A. D. (2020). Use of simulators together with virtual and augmented reality in the system of welders’ vocational training: Past, present, and future. *CEUR Workshop Proceedings, 2547*, 201–216. https://ceur-ws.org/Vol-2547/paper15.pdf
 - Liao, J., & Zheng, Y. (2025). Integrating artificial intelligence into vocational education: A technical application framework based on the 3E model. In *Proceedings of the 2nd Guangdong-Hong Kong-Macao Greater Bay Area International Conference on Digital Economy and Artificial Intelligence* (pp. 1489–1493). ACM. https://doi.org/10.1145/3745238.3745471
 - Mendoza, S., Sánchez-Adame, L. M., Urquiza-Yllescas, J. F., González-Beltrán, B. A., & Decouchant, D. (2022). A model to develop chatbots for assisting the teaching and learning process. *Sensors, 22*(15), 5532. https://doi.org/10.3390/s22155532
+- Ng, S. H. S., & Lai, J. W. (2025). AI-augmented heutagogy: A framework for fostering self-determined learning and agency in higher education. *Higher Education Research & Development*. Advance online publication. https://doi.org/10.1080/07294360.2025.2564977
 - Ning, Y., Zhang, C., Xu, B., Zhou, Y., & Wijaya, T. T. (2024). Teachers’ AI-TPACK: Exploring the relationship between knowledge elements. *Sustainability, 16*(3), 978. https://doi.org/10.3390/su16030978
 - Okonkwo, C. W., & Ade-Ibijola, A. (2021). Chatbots applications in education: A systematic review. *Computers and Education: Artificial Intelligence, 2*, 100033. https://doi.org/10.1016/j.caeai.2021.100033
 - Strielkowski, W., Grebennikova, V., Lisovskiy, A., Rakhimova, G., & Vasileva, T. (2025). AI-driven adaptive learning for sustainable educational transformation. *Sustainable Development, 33*, 1921–1947. https://doi.org/10.1002/sd.3221
