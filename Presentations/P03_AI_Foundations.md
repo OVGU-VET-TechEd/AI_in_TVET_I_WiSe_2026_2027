@@ -1,5 +1,5 @@
 <!--
-author:    Hannes Tegelbeckers
+author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
 version:   1.0.0
 language:  en
@@ -427,4 +427,4 @@ Four dimensions × three levels **Understand – Apply – Create** (UNESCO, 202
 
 **Interactive tools:** [TensorFlow Playground](https://playground.tensorflow.org) · [Teachable Machine](https://teachablemachine.withgoogle.com) · [MLU-Explain](https://mlu-explain.github.io) · [CNN Explainer](https://poloclub.github.io/cnn-explainer/) · [Quick, Draw!](https://quickdraw.withgoogle.com)
 
-<small>Licence: CC BY 4.0 · Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S03; checked by the author.</small>
+<small>Licence: CC BY 4.0 · Dr. Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S03; checked by the author.</small>

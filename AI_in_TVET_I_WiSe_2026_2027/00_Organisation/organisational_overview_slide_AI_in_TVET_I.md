@@ -1,5 +1,5 @@
 <!--
-author:    Hannes Tegelbeckers
+author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
 version:   0.2.0
 language:  en
@@ -18,7 +18,7 @@ Seminar · Winter term 2026/27 · Thursdays, 09:00–11:00 · 15.10. – 19.11.2
 
 | Contact         |                                                         |
 | --------------- | ------------------------------------------------------- |
-| Lecturer        | Hannes Tegelbeckers                                     |
+| Lecturer        | Dr. Hannes Tegelbeckers                                     |
 | Email           | hannes.tegelbeckers@ovgu.de                             |
 | Phone           | +49 (0)391 67-56373                                     |
 | Office          | Building 40, Room 032                                   |

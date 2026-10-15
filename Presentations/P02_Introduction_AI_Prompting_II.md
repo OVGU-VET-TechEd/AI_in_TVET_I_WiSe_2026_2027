@@ -1,5 +1,5 @@
 <!--
-author:    Hannes Tegelbeckers
+author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
 version:   1.0.0
 language:  en
@@ -457,4 +457,4 @@ Obligations include: risk management · data governance · technical documentati
 
 **Interactive tools:** [Which Face Is Real?](https://www.whichfaceisreal.com) · [Survival of the Best Fit](https://survivalofthebestfit.com) · [PAIR Explorables](https://pair.withgoogle.com/explorables/) · [Stable Bias Explorer](https://huggingface.co/spaces/society-ethics/DiffusionBiasExplorer) · [AI Incident Database](https://incidentdatabase.ai)
 
-<small>Licence: CC BY 4.0 · Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S02; checked by the author.</small>
+<small>Licence: CC BY 4.0 · Dr. Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S02; checked by the author.</small>

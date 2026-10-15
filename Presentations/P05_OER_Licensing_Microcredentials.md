@@ -1,5 +1,5 @@
 <!--
-author:    Hannes Tegelbeckers
+author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
 version:   1.0.0
 language:  en
@@ -427,4 +427,4 @@ Write your nugget plan here as a first draft, then copy it into your hand-in doc
 
 **Interactive tools:** [CC License Chooser](https://creativecommons.org/chooser/) · [Openverse](https://openverse.org) · [Open Badges](https://openbadges.org) · [European Digital Credentials](https://europass.europa.eu/en/stakeholders/european-digital-credentials)
 
-<small>Licence: CC BY 4.0 · Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S05; checked by the author.</small>
+<small>Licence: CC BY 4.0 · Dr. Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S05; checked by the author.</small>

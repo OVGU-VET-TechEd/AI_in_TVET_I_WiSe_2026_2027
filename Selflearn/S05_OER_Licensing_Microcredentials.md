@@ -1,5 +1,5 @@
 <!--
-author:    Hannes Tegelbeckers
+author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
 version:   1.1.0
 language:  en
@@ -209,4 +209,4 @@ In the live session on **19.11.2026** you pitch your micro-credential (10 minute
 - U.S. Copyright Office. (2025). *Copyright and artificial intelligence, Part 2: Copyrightability*. https://www.copyright.gov/ai/
 - Wiley, D. (n.d.). *Defining the "open" in open content and open educational resources*. https://opencontent.org/definition/
 
-<small>Licence: CC BY 4.0 · Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), checked and revised by the author.</small>
+<small>Licence: CC BY 4.0 · Dr. Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), checked and revised by the author.</small>

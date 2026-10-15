@@ -1,5 +1,5 @@
 <!--
-author:    Hannes Tegelbeckers
+author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
 version:   1.0.0
 language:  en
@@ -362,4 +362,4 @@ Each idea gets **one "What works"** and **one "What if …?"**
 
 **Interactive tools:** [PAIR: Measuring Fairness](https://pair.withgoogle.com/explorables/measuring-fairness/) · [PAIR: Hidden Bias](https://pair.withgoogle.com/explorables/hidden-bias/)
 
-<small>Licence: CC BY 4.0 · Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S04; checked by the author.</small>
+<small>Licence: CC BY 4.0 · Dr. Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S04; checked by the author.</small>

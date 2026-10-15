@@ -1,5 +1,5 @@
 <!--
-author:    Hannes Tegelbeckers
+author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
 version:   1.0.0
 language:  en
@@ -183,4 +183,4 @@ Document the prompt, the output and your changes in your **AI tools log** (compo
 - 1EdTech. (2024). *Open Badges specification v3.0*. https://www.imsglobal.org/spec/ob/v3p0/
 - UNESCO. (2024b). *AI competency framework for teachers*. https://doi.org/10.54675/ZJTE2084
 
-<small>Licence: CC BY 4.0 · Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), checked and revised by the author.</small>
+<small>Licence: CC BY 4.0 · Dr. Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), checked and revised by the author.</small>

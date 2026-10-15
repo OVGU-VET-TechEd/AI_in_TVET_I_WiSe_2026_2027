@@ -1,5 +1,5 @@
 <!--
-author:    Hannes Tegelbeckers
+author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
 version:   1.1.0
 language:  en
@@ -268,4 +268,4 @@ Upload one PDF with:
 - Verma, R., Maheshwari, R., Manore, D., Rane, P. S., & Raikwar, M. (2025). Supervised vs. unsupervised learning: A comparative study in modern AI system. *Communications on Applied Nonlinear Analysis, 32*(9s), 860–872.
 - Zeng, B., Yin, Y., & Liu, Z. (2024). Understanding bias in large-scale visual datasets. In *Advances in Neural Information Processing Systems 37 (NeurIPS 2024)*. https://arxiv.org/abs/2412.01876
 
-<small>Licence: CC BY 4.0 · Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), checked and revised by the author.</small>
+<small>Licence: CC BY 4.0 · Dr. Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), checked and revised by the author.</small>

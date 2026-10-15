@@ -1,5 +1,5 @@
 <!--
-author:    Hannes Tegelbeckers
+author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
 version:   1.0.0
 language:  en
@@ -523,4 +523,4 @@ Two minutes alone, three minutes with your neighbour, then we collect answers in
 
 **Interactive tools:** [Tiktokenizer](https://tiktokenizer.vercel.app) · [Transformer Explainer](https://poloclub.github.io/transformer-explainer/) · [LLM Visualization](https://bbycroft.net/llm) · [Gandalf (Lakera)](https://gandalf.lakera.ai) · [EU AI Act Compliance Checker](https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/)
 
-<small>Licence: CC BY 4.0 · Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S01; checked by the author.</small>
+<small>Licence: CC BY 4.0 · Dr. Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S01; checked by the author.</small>
