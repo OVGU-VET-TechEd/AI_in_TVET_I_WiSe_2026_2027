@@ -16,7 +16,7 @@ comment:   AI in TVET I – Self-learning unit for session 2 (22.10.2026): AI to
 >
 > **Time needed:** about 2.5–3 hours
 >
-> **Do the exercise in Moodle by 28.10.2026, 23:59** – see the last chapter: [Open the exercise in Moodle](https://elearning.ovgu.de/course/view.php?id=21948)
+> **Do the exercise in Moodle by 28.10.2026, 23:59** – see the last chapter: [Open the exercise in Moodle](https://elearning.ovgu.de/mod/scorm/view.php?id=702179)
 
 **After this unit you will be able to …**
 
@@ -253,7 +253,7 @@ Answer in your log:
 
 ## 7. Exercise in Moodle for Session 2
 
-**Do the exercise in Moodle by 28.10.2026, 23:59:** [Open the exercise in Moodle](https://elearning.ovgu.de/course/view.php?id=21948)
+**Do the exercise in Moodle by 28.10.2026, 23:59:** [Open the exercise in Moodle](https://elearning.ovgu.de/mod/scorm/view.php?id=702179)
 
 Upload one PDF with:
 
