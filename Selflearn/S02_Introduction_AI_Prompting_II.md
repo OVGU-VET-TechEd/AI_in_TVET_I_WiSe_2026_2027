@@ -255,11 +255,19 @@ Answer in your log:
 
 **Do the exercise in Moodle by 28.10.2026, 23:59:** [Open the exercise in Moodle](https://elearning.ovgu.de/mod/scorm/view.php?id=702179)
 
-Upload one PDF with:
+Enter your results in the fields below and submit each field. Moodle saves your progress. The exercise counts as done when you have completed this unit in Moodle by the deadline – no file upload is needed.
 
-1. **AI tools log** with at least **3 entries** from this unit (e.g. tool choice, prompt pattern, reference check).
-2. **Reference check result** (section 3): number of correct / incorrect references and what you learned.
-3. **Case discussion** (section 6): answers to the four questions (max. 1 page).
+**1 · AI tools log** – at least **3 entries** from this unit (e.g. tool choice, prompt pattern, reference check):
+
+[[___ ___ ___ ___ ___]]
+
+**2 · Reference check result** (section 3): number of correct / incorrect references and what you learned:
+
+[[___ ___ ___]]
+
+**3 · Case discussion** (section 6): your answers to the four questions:
+
+[[___ ___ ___ ___ ___ ___]]
 
 Open questions are discussed at the start of the next live session on 05.11.2026.
 
