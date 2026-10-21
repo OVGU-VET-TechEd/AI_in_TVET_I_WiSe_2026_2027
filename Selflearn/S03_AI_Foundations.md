@@ -1,7 +1,7 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.1.0
+version:   1.2.0
 language:  en
 narrator:  UK English Female
 mode:      Textbook
@@ -16,7 +16,7 @@ comment:   AI in TVET I – Self-learning unit for session 3 (29.10.2026): data,
 >
 > **Time needed:** about 3 hours (incl. reading and hands-on)
 >
-> **Hand-in (Moodle): 04.11.2026, 23:59** – see the last chapter.
+> **Do the exercise in Moodle by 04.11.2026, 23:59** – see the last chapter: [Open the course in Moodle](https://elearning.ovgu.de/course/view.php?id=21948)
 
 **After this unit you will be able to …**
 
@@ -67,7 +67,25 @@ A model "knows" nothing in the human sense. What it has learned is stored in **w
  attendance     ──(w3 = 0.1)──┘
 ```
 
-During training, the algorithm changes `w1`, `w2`, `w3` until the predictions match the real results as well as possible.
+**Worked example:** All inputs are scaled to values between 0 and 1. Apprentice A has practice hours = 0.8, theory score = 0.5, attendance = 1.0.
+
+```text
+weighted sum = 0.6 · 0.8 + 0.3 · 0.5 + 0.1 · 1.0
+             = 0.48 + 0.15 + 0.10
+             = 0.73
+```
+
+The activation function turns this sum into a probability. The weights show what the model has "learned": in this (invented) example practice hours count six times as much as attendance.
+
+During training, the algorithm changes `w1`, `w2`, `w3` until the predictions match the real results as well as possible. If apprentices with many practice hours fail the exam more often than predicted, training lowers `w1` a little – and repeats this for thousands of examples.
+
+**Your turn:** Apprentice B has practice hours = 0.5, theory score = 1.0, attendance = 0.5. Calculate the weighted sum.
+
+[[0.65]]
+[[?]] 0.6 · 0.5 + 0.3 · 1.0 + 0.1 · 0.5
+***
+0.30 + 0.30 + 0.05 = 0.65. Although B has the best theory score, the sum is lower than A's – because the model weights practice hours most.
+***
 
 **How are good weights found?** Usually with *backpropagation* (section 5) – but not only:
 
@@ -79,6 +97,12 @@ During training, the algorithm changes `w1`, `w2`, `w3` until the predictions ma
 - Large language models have billions of weights. When companies publish them (**open-weight models**), anyone can run, study or fine-tune the model – good for research and independence, but the safety measures can also be removed (NTIA, 2024).
 - Fine-tuning changes weights for a new purpose – e.g. a model adapted to the terminology of a trade.
 - Manipulating training data (data poisoning) changes the weights and thus the behaviour of a model.
+
+**Check:** A company adapts an open-weight LLM to the vocabulary of the electrical trades with its own training documents. What changes?
+
+- [( )] Only the prompt – the model stays the same.
+- [(X)] The weights of the model (fine-tuning).
+- [( )] The training data of the original provider.
 
 ## 3. Data – Size, Quality, Representativeness
 
@@ -106,19 +130,25 @@ During training, the algorithm changes `w1`, `w2`, `w3` until the predictions ma
 
 ## 4. Learning Paradigms
 
+Machine learning is not one method but a family of approaches. They differ in **what kind of data** is available and **what the system should learn**. The three main paradigms are explained on the next pages – each with an example from the workshop. The key question for choosing one is always: *Do I have examples with the correct answer (labels) – or not?*
+
 ### Supervised learning – learning with a "teacher"
 
-The data contains labels. The model learns the relation between input and correct output.
+The data contains labels. The model learns the relation between input and correct output – like an apprentice who practises with tasks *and* the model solutions.
 
 - **Classification:** "defect / no defect", "spam / no spam"
 - **Regression:** predicting a number, e.g. remaining lifetime of a tool
 
+**Example:** A camera system for weld seams is trained with 10,000 photos that experienced welders have labelled "OK" or "defect". After training it classifies new seams. Its quality depends on the labels: if the experts disagreed or made mistakes, the model learns these mistakes too. Labelling is therefore expensive expert work – often the largest cost of a supervised project.
+
 ### Unsupervised learning – discovering structure
 
-No labels. The model finds groups or patterns itself.
+No labels. The model finds groups or patterns itself – nobody tells it what the "right" groups are.
 
 - **Clustering:** grouping learners by learning behaviour
 - **Anomaly detection:** unusual vibration patterns in a machine
+
+**Example:** A CNC machine records vibration data every second. Nobody has labelled which values are "normal". An unsupervised model learns what typical patterns look like and reports values that do not fit – a possible sign of tool wear. Humans must then *interpret* the result: a cluster or an anomaly has no meaning until an expert explains it.
 
 ### Reinforcement learning – learning by reward
 
@@ -161,6 +191,20 @@ Neural networks are loosely inspired by the brain. They consist of **layers** of
 
 Why training works at all with millions or billions of weights was long a theoretical puzzle. One explanation: the layers of a network are strongly correlated, so the space the training has to search is far smaller than the number of weights suggests (Hodas & Stinis, 2018).
 
+**Overfitting in plain words:** A network with many weights can "memorise" the training data – like an apprentice who learns the answers of last year's exam by heart. It is perfect on the known data and fails on new tasks. That is why data is split into a **training set** and a **test set**, and the model is judged only on the test set.
+
+**Check:** What happens during backpropagation?
+
+- [( )] New training data is collected automatically.
+- [(X)] The error is passed backwards and each weight is adjusted slightly to reduce it.
+- [( )] The network removes layers that are not needed.
+
+**Check:** A model reaches 99 % accuracy on the training data but only 60 % on new data. What is the most likely problem?
+
+- [( )] Underfitting
+- [(X)] Overfitting
+- [( )] Too few weights
+
 **Try it yourself (15 min):** Open the [TensorFlow Playground](https://playground.tensorflow.org). Train a network on the "spiral" dataset. Add hidden layers and neurons. What changes? Note your observation in your log.
 
 **More interactive explainers:** see the list [Interactive websites for learning about AI](https://github.com/OVGU-VET-TechEd/AI_in_TVET_I_WiSe_2026_2027/blob/main/interactive-ai-learning-websites.md) (e.g. Transformer Explainer, CNN Explainer).
@@ -176,6 +220,16 @@ Why training works at all with millions or billions of weights was long a theore
 5. Add **unbalanced** data: 60 images for one class, 10 for the other. What happens?
 
 **Reflection for your log:** What does this experiment tell you about data quality and bias?
+
+<details>
+<summary>What you will probably observe</summary>
+
+- With balanced, varied images the model usually works well – as long as the test images look like the training images (same light, background, distance).
+- With new lighting or a different background, it often fails: the model may have learned the *background* instead of the safety glasses.
+- With unbalanced data (60 : 10), the model tends to predict the larger class more often, even when it is wrong.
+- Transfer: The same happens with real systems. If one group (e.g. women in a trade, learners from rural schools) is under-represented in the data, the model works worse for them – this is how *data bias* arises (section 3).
+
+</details>
 
 ## 7. AI Workflows in Education
 
@@ -212,6 +266,12 @@ Further types listed include *temporal bias* (criteria change over time) and *fe
 
 **Example (TVET):** Generating a quiz for apprentices: goal (learning outcome) → own course text as data → LLM with template prompt → 10 questions → teacher checks correctness and difficulty → quiz in LiaScript → item analysis after the lesson → revise.
 
+**Check:** A teacher accepts all grading suggestions of an AI tool without checking them, because "the AI is usually right". Which source of bias is this?
+
+- [( )] Data bias
+- [( )] Development bias
+- [(X)] Interaction bias (automation bias)
+
 ## 8. Algorithms, Models and Agents
 
 | | Simple algorithm | AI model | AI agent |
@@ -230,10 +290,29 @@ An **AI agent** typically combines an LLM ("reasoning") with **tools** (web sear
 
 ## 9. Reading: UNESCO AI Competency Framework for Students
 
-Read in the **UNESCO AI Competency Framework for Students** (UNESCO, 2024a):
+The framework (UNESCO, 2024a) describes what learners need to know and be able to do to use AI safely, critically and creatively. It has **four dimensions** and **three progression levels** – together 12 competencies:
+
+| Dimension | Understand | Apply | Create |
+| --- | --- | --- | --- |
+| Human-centred mindset | Human agency | Human accountability | Citizenship in the era of AI |
+| Ethics of AI | Embodied ethics | Safe and responsible use | Ethics by design |
+| **AI techniques and applications** | AI foundations | Application skills | Creating AI tools |
+| AI system design | Problem scoping | Architecture design | Iteration and feedback loops |
+
+The levels build on each other: *Understand* means knowing basic concepts and risks; *Apply* means using AI tools purposefully for tasks; *Create* means adapting or building AI solutions. This unit (vocabulary, paradigms, neural networks, workflows) corresponds to **AI foundations** – the *Understand* level of "AI techniques and applications". The Teachable Machine experiment is a first step towards *Create*.
+
+**For TVET** the framework is a starting point, not a curriculum: an apprentice in automotive mechatronics needs other "application skills" than a nursing trainee. Your micro-credential translates one competency into a concrete vocational context.
+
+Read in the framework (UNESCO, 2024a):
 
 - the overview of the four dimensions and three progression levels,
 - the competency blocks for **"AI techniques and applications"**.
+
+**Check:** An apprentice uses an AI tool to create a maintenance checklist and checks it against the manufacturer's manual. Which level of "AI techniques and applications" is this mainly?
+
+- [( )] Understand
+- [(X)] Apply
+- [( )] Create
 
 **Guiding questions**
 
@@ -241,16 +320,29 @@ Read in the **UNESCO AI Competency Framework for Students** (UNESCO, 2024a):
 2. Which competencies at level *Create* fit a specific vocational field?
 3. Which competency could become the core of your micro-credential?
 
-## 10. Hand-in for Session 3
+## 10. Exercise in Moodle for Session 3
 
-**Deadline: 04.11.2026, 23:59 · Moodle**
+**Do the exercise in Moodle by 04.11.2026, 23:59:** [Open the course in Moodle](https://elearning.ovgu.de/course/view.php?id=21948)
 
-Upload one PDF with:
+Enter your results in the fields below and submit each field. Moodle saves your progress. The exercise counts as done when you have completed this unit in Moodle by the deadline – no file upload is needed.
 
-1. **Glossary:** the 8 terms from section 1 in your own words, each with an example from **your** vocational field.
-2. **Hands-on:** screenshots and 5–8 sentences of reflection on the Teachable Machine experiment (incl. the unbalanced data).
-3. **Reading:** answers to the three guiding questions (max. 1 page) – question 3 is your first micro-credential idea, which we check together on 05.11.2026.
-4. **AI tools log:** updated with all AI use in this unit.
+**1 · Glossary** – the 8 terms from section 1 (data, feature, label, algorithm, model, weights, training, inference) in your own words, each with an example from **your** vocational field:
+
+[[___ ___ ___ ___ ___ ___ ___ ___]]
+
+**2 · Hands-on** (section 6) – 5–8 sentences on your Teachable Machine experiment: classes, number of images, what worked, when the model failed, and what happened with the unbalanced data:
+
+[[___ ___ ___ ___ ___]]
+
+**3 · Reading** (section 9) – your answers to the three guiding questions. Question 3 is your first micro-credential idea, which we check together on 05.11.2026:
+
+[[___ ___ ___ ___ ___ ___]]
+
+**4 · AI tools log** – at least **3 entries** from this unit (tool, purpose, prompt, what you checked or changed):
+
+[[___ ___ ___ ___ ___]]
+
+Open questions are discussed at the start of the live session on 05.11.2026.
 
 ## References
 

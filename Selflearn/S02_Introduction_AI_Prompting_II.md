@@ -1,7 +1,7 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.1.0
+version:   1.2.0
 language:  en
 narrator:  UK English Female
 mode:      Textbook
@@ -60,6 +60,21 @@ Prompt patterns are reusable solutions for frequent prompting problems (White et
 | **Cognitive verifier** | "Split the question into sub-questions, answer them, then combine." | Troubleshooting a hydraulic system step by step |
 | **Reflection / fact check** | "List the facts in your answer that I should verify." | Before using an answer in teaching material |
 
+**How to combine patterns:** Patterns are building blocks, not alternatives. A typical TVET prompt uses a *persona* ("Act as a trainer for industrial mechanics"), an *audience persona* ("for second-year apprentices") and a *template* ("table: step · tool · safety note"). If the answer is still too generic, switch to *flipped interaction* so the tool asks you for the missing context. Before you use the result in class, finish with a *fact check*.
+
+**Check:** You want an AI tool to help you plan a lesson, but you are not sure which information it needs from you. Which pattern fits?
+
+- [( )] Template
+- [(X)] Flipped interaction
+- [( )] Persona
+[[?]] Who asks the questions in this pattern?
+
+**Check:** Which pattern helps you to find the statements in an AI answer that you still have to verify?
+
+- [( )] Audience persona
+- [( )] Question refinement
+- [(X)] Reflection / fact check
+
 **Practice (15 min):** Use the *flipped interaction* pattern to let an AI tool interview you about a lesson you want to plan. Then use the *fact check* pattern on its final suggestion. Document both in your log.
 
 ## 3. Limitations of Generative AI
@@ -111,11 +126,21 @@ The UNESCO AI Competency Framework for Teachers starts with the **human-centred 
 
 ### Human agency: enabler or threat?
 
+AI can strengthen or weaken the agency of teachers. The same tool can do both – it depends on *who* decides how it is used.
+
 | AI as enabler | AI as threat |
 | --- | --- |
 | Less administrative work, more time for mentoring | De-professionalisation: teacher becomes a "tool operator" |
 | Personalised material for heterogeneous groups | Pedagogical decisions shaped by tool defaults and metrics |
 | Instant feedback for learners | Over-reliance; weaker critical thinking |
+
+**Example:** A learning platform recommends the next exercise for each apprentice. If the teacher can see *why* an exercise is recommended and can override it, the tool supports the teacher's agency. If the recommendations are a black box and the teacher's only role is to "keep learners on track", the tool has taken over a pedagogical decision.
+
+**Check:** Which situation shows that human agency is kept?
+
+- [( )] The platform automatically moves learners who score below 50 % into a remedial group.
+- [(X)] The platform suggests a remedial group; the teacher reviews the suggestion with the learner and decides.
+- [( )] The teacher follows the AI ranking because it is "more objective" than professional judgement.
 
 ### Teacher–AI complementarity
 
@@ -156,6 +181,19 @@ The review finds *some* attention to human control in system design, but **limit
 
 ## 5. Ethics of AI in Education
 
+The human-centred mindset becomes concrete in six ethical fields. Each of the following pages explains one field, shows what research says and asks you to transfer it to TVET:
+
+| Field | Key question |
+| --- | --- |
+| 5.1 Algorithmic bias | Does the system treat all learners fairly? |
+| 5.2 Privacy and the EU AI Act | Which learner data is used – and which rules apply? |
+| 5.3 Accountability in grading | Who is responsible for a grade? |
+| 5.4 Inclusion and the digital divide | Who benefits – and who is left behind? |
+| 5.5 Sustainability | Is the use of AI worth its resources? |
+| 5.6 Human connection and well-being | Does AI strengthen or replace relationships? |
+
+The fields overlap: a biased dropout prediction (5.1) is also a privacy issue (5.2) and an accountability issue (5.3).
+
 ### 5.1 Algorithmic bias
 
 ``` ascii
@@ -179,6 +217,12 @@ Example: A model trained on past admission data in male-dominated trades may rat
 
 </section>
 
+**Check:** In Idowu et al. (2024), which type of data contributed *most* to discrimination in student progress monitoring?
+
+- [( )] Assessment data
+- [(X)] Institutional data such as demographic records
+- [( )] Data on the use of the learning platform
+
 **TVET transfer:** Which data in an apprenticeship context (school-leaving certificate, absences, migration history, company size) would you *exclude* from a prediction model – and why?
 
 ### 5.2 Privacy and the EU AI Act
@@ -191,6 +235,18 @@ Learning analytics collect large amounts of learner data. The EU AI Act classifi
 - transparency towards users,
 - **human oversight**,
 - accuracy, robustness and cybersecurity.
+
+Some practices are **prohibited** altogether – in education, for example, AI systems that infer the **emotions** of learners (Art. 5(1)(f), except for medical or safety reasons). And since February 2025, providers and deployers must ensure sufficient **AI literacy** of their staff (Art. 4) – this concerns schools and training companies that use AI.
+
+**Data protection in everyday teaching:** The GDPR applies regardless of the AI Act. Do not enter names, grades, health information or other personal data of learners into AI tools that your institution has not approved. Anonymise examples (e.g. "Apprentice A, 2nd year") before you ask an AI tool for feedback suggestions.
+
+**Check:** Which measures does the EU AI Act require for high-risk AI in education? (several answers)
+
+- [[X]] Human oversight
+- [[X]] Data governance for training data
+- [[ ]] Free access for all learners
+- [[X]] Technical documentation
+- [[ ]] Use of open-source models only
 
 {{1}}
 <section>
@@ -208,13 +264,49 @@ Studies comparing human and LLM grading of the same exams find that AI grades ca
 
 **The final grading decision remains with the teacher – and the rules must be known in advance.** That is why this seminar asks you to declare your AI use.
 
+**Check:** A teacher uses an LLM to pre-grade 60 written reports. What is a responsible way to do this?
+
+- [( )] Publish the AI grades directly – the model is consistent.
+- [(X)] Use the AI suggestions as a draft, check each grade personally and tell learners in advance how AI is used.
+- [( )] Use AI grades only for learners who agree – without telling the others.
+
 ### 5.4 Inclusion and the digital divide
 
-AI can help (translation, text simplification, assistive technologies) – or widen gaps (paid tools, missing devices, low AI literacy, languages that models handle poorly).
+TVET classes are heterogeneous: apprentices with different school-leaving qualifications, learners who are still learning the language of instruction, learners with dyslexia or other disabilities, adults returning to education. AI can make learning more accessible for them – or widen existing gaps.
+
+| AI can help … | … but AI can also widen gaps |
+| --- | --- |
+| **Translation** of instructions and safety rules into a learner's first language | Paid "pro" versions give better results to those who can afford them |
+| **Simplified language** (e.g. a text rewritten for level B1) | Missing devices or unstable internet at home or in the company |
+| **Text-to-speech and speech-to-text** for learners with reading or writing difficulties | Low **AI literacy**: some learners use AI critically, others copy answers |
+| **Individual practice** and explanations at any time | Models work worse in less common **languages and dialects** and with technical terms of small trades |
+| Captions and image descriptions for learners with sensory impairments | Learners whose data was under-represented in training get less accurate results (see 5.1) |
+
+**Example:** A teacher uses an AI tool to translate the safety instructions for a lathe into Arabic and Ukrainian. This saves time – but a translation error in a safety rule can be dangerous. Responsible use: have the translation checked by a colleague or a learner who speaks the language, and keep the original version visible.
+
+**Inclusion therefore needs more than a tool:** equal access (school licences, devices in the classroom), teaching *about* AI so that all learners can judge its output, and teachers who check that the adapted material is still correct.
+
+**Check:** Which measure reduces the digital divide in a vocational class most directly?
+
+- [( )] Recommending that learners buy a premium AI subscription
+- [(X)] Providing school licences and devices and practising critical AI use in class
+- [( )] Banning AI tools so that nobody has an advantage
+[[?]] Think about access *and* competence.
 
 ### 5.5 Sustainability
 
-Training and using large models consumes energy and water. Ask: Is AI necessary for this task, or is a simpler tool enough?
+AI is not "virtual" – it runs on hardware in data centres. **Training** a large model takes a lot of computing power once; **using** it (inference) takes energy with every request, and because millions of people send requests every day, the use phase adds up. Data centres also need **water** for cooling, and the hardware needs raw materials. Exact numbers per prompt vary widely between models and studies, and providers publish little data – but larger models and generated images or videos need clearly more resources than a short text answer.
+
+**Rules of thumb for teachers**
+
+1. **Is AI necessary?** A dictionary, a search engine or your own course notes are often enough.
+2. **Prompt well instead of regenerating many times** – a clear prompt (S01) saves repeated attempts.
+3. **Use smaller or specialised models** where they are good enough (e.g. for spelling or translation).
+4. **Reuse and share** good outputs as OER (S05) instead of generating the same material again and again.
+
+**TVET link:** Sustainability is part of most vocational curricula (e.g. energy efficiency in building services or electrical engineering). Discussing the resource use of AI with apprentices connects AI literacy with these vocational topics.
+
+**Reflection:** For which of your planned uses of AI in this seminar is a simpler tool enough? Note one example in your log.
 
 ### 5.6 Human connection and well-being
 
@@ -222,13 +314,11 @@ Training and using large models consumes energy and water. Ask: Is AI necessary 
 - Among 468 students, **teacher responsibility** was linked to higher well-being, both directly and through AI integration – and the effect was stronger where **peers collaborated** (Li et al., 2025). AI supports well-being when it is embedded in human relationships, not as their replacement.
 - Interviews with 29 educators at Finnish universities of applied sciences show the same tension in applied, practice-oriented education: benefits for efficiency, but concerns about academic integrity, institutional readiness and AI literacy. They call for training, institutional policies and ethical frameworks (Shahzad et al., 2025).
 
-**Check:** Which measures does the EU AI Act require for high-risk AI in education? (several answers)
+**Check:** According to Li et al. (2025), when does AI integration support student well-being most?
 
-- [[X]] Human oversight
-- [[X]] Data governance for training data
-- [[ ]] Free access for all learners
-- [[X]] Technical documentation
-- [[ ]] Use of open-source models only
+- [( )] When AI replaces contact with teachers to save time
+- [(X)] When teachers take responsibility and peers collaborate
+- [( )] When students use AI tools alone, without guidance
 
 ## 6. Case Discussion
 

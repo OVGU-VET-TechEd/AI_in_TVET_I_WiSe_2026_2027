@@ -183,6 +183,8 @@ Example of the tone: "Imagine a camera that learns what a good weld looks like �
 
 This seminar is anchored in international frameworks. You will use them for your micro-credential.
 
+Frameworks describe *what* learners and teachers should be able to do with AI – independent of a specific tool. This is important because tools change every few months, while competencies such as judging AI output or protecting learner data remain. The next pages introduce the two UNESCO competency frameworks, the idea of human-centred AI and the EU AI Act as the legal frame in Europe.
+
 ### UNESCO AI Competency Framework for Students (2024)
 
 Four dimensions, each on three progression levels **Understand – Apply – Create**:

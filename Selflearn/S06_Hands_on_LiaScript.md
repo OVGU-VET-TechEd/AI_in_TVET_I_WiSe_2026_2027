@@ -34,6 +34,8 @@ LiaScript is an extension of **Markdown** that turns a plain text file into an i
 
 ## 2. The Basic Syntax
 
+You only need a handful of elements to build a complete nugget. The following pages show each element as code – copy it into the [LiaScript LiveEditor](https://liascript.github.io/LiveEditor/), change it and see the result immediately. Learning by trying is faster than reading the documentation from start to finish.
+
 ### Header
 
 ```markdown

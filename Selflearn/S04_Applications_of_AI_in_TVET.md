@@ -46,6 +46,8 @@ comment:   AI in TVET I – Self-learning unit for session 4 (live, 05.11.2026):
 
 ## 2. The Applications in Detail
 
+The following pages look at the six application areas one by one. For each, ask yourself three questions while reading: *What does the system decide or suggest? Which data does it need? What remains the task of the teacher or trainer?* You will use these questions again in section 3 to evaluate an application.
+
 ### 2.1 Adaptive learning systems
 
 Adaptive systems use a learner model (what the learner knows) and a domain model (what there is to learn) to choose the next step.
