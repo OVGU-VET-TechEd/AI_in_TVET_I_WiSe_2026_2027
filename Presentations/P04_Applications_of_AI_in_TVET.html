@@ -1,0 +1,1914 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Applications of AI in TVET</title>
+<meta name="description" content="AI in TVET I – Session 4 slides (05.11.2026, 150 min): applications of AI in TVET, AI agents, AI in pedagogy and the micro-credential idea check. OVGU Magdeburg.">
+<link rel="icon" href="../assets/ovgu_logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --main: #7a003f; --main-dark: #5c002f; --second: #bc7f9f; --third: #f5ebf0;
+  --ink: #111; --ink-2: #3e3f40; --ink-3: #5f6163; --line: #cfd3d6; --soft: #e7e9ea; --bg: #fff; --bg-2: #f8f8f8;
+  --live: #2e7d32; --self: #1565c0;
+  --s1: #2a78d6; --s1-soft: #cde2fb; --s2: #eb6834;
+  --good: #0ca30c; --good-bg: #e2f4e2; --warn: #fab219; --warn-bg: #fff3d4; --serious: #ec835a; --crit: #d03b3b; --crit-bg: #fbe3e3; --neutral-bg: #eceeef;
+  --hb: 3.1rem; --fb: 3rem;
+}
+* { box-sizing: border-box; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body.present { font-size: 1rem; }
+html.present-root { font-size: clamp(13px, min(1.1vw, 2.05vh), 30px); }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Barlow", "Helvetica Neue", Arial, sans-serif; line-height: 1.45; overflow-wrap: anywhere; }
+a { color: var(--main); }
+a:hover { color: var(--main-dark); }
+h1, h2, h3 { font-family: "Barlow Semi Condensed", "Barlow", sans-serif; font-weight: 600; line-height: 1.12; }
+button, input, textarea { font: inherit; }
+:focus-visible { outline: 3px solid var(--s1); outline-offset: 2px; }
+small, .small { font-size: .82em; }
+.muted { color: var(--ink-3); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.cbtn:disabled { opacity: .4; cursor: default; }
+.kicker .timer { text-transform: none; letter-spacing: 0; font-family: "Barlow", sans-serif; font-weight: 400; }
+.rate-cue:not(.on) + .objs .seg { visibility: hidden; }
+body.scroll .objs .seg { visibility: visible; }
+
+/* ---------- chrome ---------- */
+.topbar { position: fixed; top: 0; left: 0; right: 0; height: var(--hb); z-index: 30; display: flex; align-items: center; gap: .9rem; padding: 0 1.1rem; background: #fff; border-bottom: 1px solid var(--line); }
+.topbar img { height: 2.1rem; width: auto; display: block; }
+.topbar .deck-title { font-family: "Barlow Semi Condensed", sans-serif; font-weight: 600; color: var(--main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.topbar .block { margin-left: auto; display: flex; align-items: center; gap: .45rem; font-size: .85rem; color: var(--ink-2); white-space: nowrap; overflow: hidden; }
+.topbar .block .time { color: var(--ink-3); }
+.botbar { position: fixed; left: 0; right: 0; bottom: 0; height: var(--fb); z-index: 30; display: flex; align-items: center; gap: .5rem; padding: 0 1rem; background: #fff; border-top: 1px solid var(--line); }
+.progress { position: absolute; top: -1px; left: 0; height: 3px; background: var(--main); transition: width .3s; }
+.botbar .counter { font-variant-numeric: tabular-nums; font-size: .9rem; color: var(--ink-2); min-width: 4.2rem; text-align: center; }
+.botbar .steps { display: flex; gap: .25rem; margin-left: .3rem; }
+.botbar .steps i { width: .45rem; height: .45rem; border-radius: 50%; background: var(--soft); display: block; }
+.botbar .steps i.on { background: var(--main); }
+.botbar .spacer { flex: 1; }
+.cbtn { border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: .35rem; padding: .25rem .6rem; font-size: .85rem; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-flex; align-items: center; gap: .3rem; }
+.cbtn:hover { border-color: var(--main); color: var(--main); }
+.cbtn.nav { font-size: 1.05rem; padding: .15rem .7rem; }
+.cbtn[aria-pressed="true"] { background: var(--main); color: #fff; border-color: var(--main); }
+.lo { display: inline-block; background: var(--main); color: #fff; border-radius: 1rem; padding: .05rem .55rem; font-size: .78em; font-weight: 600; letter-spacing: .02em; white-space: nowrap; }
+.lo.out { background: transparent; color: var(--main); border: 1px solid var(--main); }
+
+#deck { position: fixed; top: var(--hb); bottom: var(--fb); left: 0; right: 0; }
+.slide { position: absolute; inset: 0; display: none; }
+.slide.active { display: block; }
+.slide > .inner { height: 100%; overflow-y: auto; max-width: 80rem; margin: 0 auto; padding: 1.3rem 2.6rem 1.8rem; }
+.slide .notes { display: none; }
+
+.notes-panel { position: fixed; left: 0; right: 0; bottom: var(--fb); z-index: 25; max-height: 32vh; overflow: auto; background: #fffdf2; border-top: 3px solid var(--warn); padding: .7rem 1.4rem; font-size: .95rem; display: none; }
+.notes-panel.open { display: block; }
+.notes-panel h4 { margin: 0 0 .3rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+
+.overview { position: fixed; inset: 0; z-index: 60; background: rgba(255,255,255,.98); overflow: auto; padding: 1.4rem 2rem 2rem; display: none; }
+.overview.open { display: block; }
+.overview .ov-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.overview h2 { margin: 0; color: var(--main); }
+.ov-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); gap: .7rem; }
+.ov-item { text-align: left; border: 1px solid var(--line); border-top: 4px solid var(--second); background: #fff; border-radius: .3rem; padding: .55rem .7rem; cursor: pointer; font-size: .9rem; }
+.ov-item:hover, .ov-item.cur { border-top-color: var(--main); box-shadow: 0 2px 8px rgba(122,0,63,.15); }
+.ov-item b { display: block; color: var(--ink-3); font-size: .75rem; font-weight: 500; }
+
+dialog#help { border: 1px solid var(--line); border-radius: .5rem; padding: 1.2rem 1.5rem; max-width: 30rem; }
+dialog#help::backdrop { background: rgba(0,0,0,.35); }
+dialog#help table { border-collapse: collapse; width: 100%; }
+dialog#help td { padding: .25rem .4rem; border-bottom: 1px solid var(--soft); }
+kbd { font-family: inherit; font-size: .85em; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: .25rem; padding: 0 .35rem; background: var(--bg-2); }
+
+#tip { position: fixed; z-index: 90; pointer-events: none; background: #1d1d1f; color: #fff; font-size: .8rem; padding: .3rem .55rem; border-radius: .3rem; max-width: 18rem; opacity: 0; transition: opacity .12s; }
+#tip.show { opacity: 1; }
+
+/* ---------- fragments ---------- */
+.frag { opacity: 0; visibility: hidden; transform: translateY(.35rem); transition: opacity .35s, transform .35s, visibility .35s; }
+.frag.on { opacity: 1; visibility: visible; transform: none; }
+@media (prefers-reduced-motion: reduce) { .frag, .progress { transition: none; } }
+
+/* ---------- scroll (document) mode ---------- */
+body.scroll .topbar { position: sticky; }
+body.scroll .topbar .deck-title { font-size: .95rem; }
+body.scroll #deck { position: static; }
+body.scroll .slide { position: static; display: block; border-bottom: 8px solid var(--third); }
+body.scroll .slide > .inner { height: auto; overflow: visible; padding: 1.4rem 16px 2.2rem; }
+body.scroll .frag { opacity: 1; visibility: visible; transform: none; }
+body.scroll .botbar { display: none; }
+body.scroll .notes-panel { display: none; }
+body.scroll .slide .notes { display: block; margin-top: 1.2rem; font-size: .9rem; color: var(--ink-3); border-left: 3px solid var(--warn); padding: .3rem .8rem; background: #fffdf2; }
+body.scroll .slide .notes::before { content: "Speaker notes · "; font-weight: 600; }
+body.scroll .hide-scroll { display: none; }
+
+/* ---------- slide typography ---------- */
+.kicker { font-family: "Barlow Semi Condensed", sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: .82rem; color: var(--main); margin: 0 0 .25rem; display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; }
+.slide h2 { margin: 0 0 .8rem; font-size: 2.05rem; color: var(--main); }
+.slide h3 { margin: 0 0 .4rem; font-size: 1.25rem; }
+.lead { font-size: 1.18rem; margin: 0 0 .9rem; max-width: 60rem; }
+.slide p { margin: 0 0 .7rem; }
+.slide ul, .slide ol { margin: 0 0 .7rem; padding-left: 1.3rem; }
+.slide li { margin: .2rem 0; }
+.cite { color: var(--ink-3); font-size: .8em; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr)); gap: 1.1rem; align-items: start; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); gap: .9rem; align-items: start; }
+.grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr)); gap: .8rem; align-items: stretch; }
+.stack > * + * { margin-top: .9rem; }
+.card { border: 1px solid var(--line); background: #fff; border-radius: .4rem; padding: .85rem 1rem; }
+.card > :last-child { margin-bottom: 0; }
+.card.tint { background: var(--third); border-color: var(--third); }
+.card.accent { border-left: 5px solid var(--main); }
+.card.warn { border-left: 5px solid var(--crit); background: #fff8f8; }
+.card h3 { font-size: 1.1rem; }
+.callout { border-left: 5px solid var(--s1); background: #f1f6fd; padding: .7rem .95rem; border-radius: 0 .4rem .4rem 0; }
+.callout.main { border-left-color: var(--main); background: var(--third); }
+.callout.crit { border-left-color: var(--crit); background: #fdf1f1; }
+.callout > :last-child { margin-bottom: 0; }
+.callout .lab { font-weight: 600; display: block; margin-bottom: .2rem; }
+.icon-big { font-size: 1.6rem; line-height: 1; }
+blockquote.def { margin: 0 0 1rem; padding: .8rem 1rem; border-left: 5px solid var(--main); background: var(--bg-2); font-size: 1.05rem; }
+.table-scroll { overflow-x: auto; }
+table.t { width: 100%; border-collapse: collapse; font-size: .95rem; }
+table.t th { text-align: left; background: var(--soft); padding: .4rem .6rem; font-weight: 600; }
+table.t td { padding: .45rem .6rem; border-bottom: 1px solid var(--soft); vertical-align: top; }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.chip { display: inline-block; border: 1px solid var(--line); border-radius: 1rem; padding: .1rem .65rem; font-size: .85rem; background: #fff; }
+.chip.crit { border-color: var(--crit); color: var(--crit); }
+.row-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-top: .6rem; }
+.btn { border: 1px solid var(--main); background: #fff; color: var(--main); border-radius: .35rem; padding: .35rem .85rem; cursor: pointer; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: .35rem; }
+.btn:hover { background: var(--third); }
+.btn.primary { background: var(--main); color: #fff; }
+.btn.primary:hover { background: var(--main-dark); }
+.btn.small { padding: .2rem .6rem; font-size: .85rem; }
+.btn:disabled { opacity: .45; cursor: default; }
+input[type=range] { accent-color: var(--main); width: 100%; }
+input[type=text], textarea { width: 100%; border: 1px solid var(--line); border-radius: .35rem; padding: .45rem .6rem; background: #fff; color: var(--ink); }
+textarea { min-height: 4.2rem; resize: vertical; }
+input[type=text]:focus, textarea:focus { border-color: var(--main); outline: none; box-shadow: 0 0 0 3px rgba(122,0,63,.15); }
+label.f { display: block; font-weight: 600; margin: .5rem 0 .2rem; }
+
+/* timers */
+.timer { display: inline-flex; align-items: center; gap: .2rem; border: 1px solid var(--line); border-radius: 2rem; padding: .1rem .2rem .1rem .7rem; background: #fff; font-size: .9rem; white-space: nowrap; }
+.timer .t-lab { color: var(--ink-3); margin-right: .2rem; }
+.timer button { border: 0; background: transparent; cursor: pointer; padding: .15rem .45rem; border-radius: 1rem; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); }
+.timer button:hover { background: var(--soft); }
+.timer.run { border-color: var(--main); }
+.timer.run .t-go { color: var(--main); }
+.timer.done { border-color: var(--crit); background: var(--crit-bg); animation: pulse 1s 3; }
+@keyframes pulse { 50% { transform: scale(1.06); } }
+.timer.big { font-size: 2.4rem; padding: .2rem .4rem .2rem 1.2rem; }
+
+/* video + embed placeholders */
+.video, .embed { position: relative; width: 100%; border-radius: .5rem; overflow: hidden; background: #f3f3f4; border: 1px solid var(--line); }
+.video.loaded { aspect-ratio: 16 / 9; }
+.video iframe, .embed iframe { width: 100%; height: 100%; border: 0; display: block; }
+.embed iframe { height: var(--h, 480px); }
+.v-ph { position: relative; display: flex; flex-direction: column; justify-content: center; min-height: 5.4rem; background: linear-gradient(135deg, var(--main) 0%, #4a0026 100%); color: #fff; padding: .7rem 1rem; }
+.embed .v-ph { background: linear-gradient(135deg, #1c5cab 0%, #0d366b 100%); }
+.v-load { all: unset; cursor: pointer; display: flex; align-items: center; gap: .8rem; }
+.v-load:focus-visible { outline: 3px solid #fff; outline-offset: 3px; border-radius: .3rem; }
+.v-play { flex: none; width: 3.2rem; height: 3.2rem; border-radius: 50%; background: rgba(255,255,255,.95); color: var(--main); display: grid; place-items: center; font-size: 1.25rem; padding-left: .2rem; transition: transform .15s; }
+.embed .v-play { color: #1c5cab; }
+.v-load:hover .v-play { transform: scale(1.08); }
+.v-txt b { display: block; font-size: 1.05rem; line-height: 1.2; }
+.v-txt span { font-size: .85rem; opacity: .9; }
+.v-ph small { display: block; margin-top: .55rem; opacity: .85; font-size: .72rem; }
+.v-ph small a { color: #fff; }
+.v-badge { position: absolute; top: .55rem; right: .7rem; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.4); border-radius: 1rem; padding: .05rem .6rem; font-size: .75rem; }
+figure { margin: 0; }
+figcaption { font-size: .8rem; color: var(--ink-3); margin-top: .3rem; }
+
+/* quizzes and polls */
+.quiz { margin: .3rem 0 .8rem; }
+.quiz .q { font-weight: 600; margin: 0 0 .4rem; }
+.opts { display: flex; flex-direction: column; gap: .35rem; }
+.opts.row { flex-direction: row; flex-wrap: wrap; }
+.opt { text-align: left; border: 1px solid var(--line); background: #fff; border-radius: .4rem; padding: .4rem .7rem; cursor: pointer; color: var(--ink); }
+.opt:hover { border-color: var(--main); }
+.opt[aria-pressed="true"] { border-color: var(--main); background: var(--third); font-weight: 600; }
+.opt.right { border-color: var(--good); background: var(--good-bg); }
+.opt.wrong { border-color: var(--crit); background: var(--crit-bg); }
+.opt.right::before { content: "✓ "; color: var(--good); font-weight: 700; }
+.opt.wrong::before { content: "✗ "; color: var(--crit); font-weight: 700; }
+.opt:disabled { cursor: default; }
+.fb { margin: .35rem 0 0; font-size: .92rem; min-height: 1.2em; }
+.fb.ok { color: #1b6e1b; }
+.fb.no { color: #a32020; }
+
+/* self rating */
+.rate-row { display: grid; grid-template-columns: 3.4rem 1fr auto; gap: .6rem; align-items: center; padding: .25rem 0; border-bottom: 1px solid var(--soft); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: .4rem; overflow: hidden; }
+.seg button { border: 0; background: #fff; padding: .2rem .6rem; cursor: pointer; font-size: .85rem; color: var(--ink-2); }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--main); color: #fff; }
+
+/* ---------- title slide ---------- */
+.slide.hero { background: var(--main); color: #fff; }
+.slide.hero a { color: #fff; }
+.hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 2rem; align-items: center; min-height: 100%; }
+.hero h1 { font-size: 3.3rem; margin: .2rem 0 .6rem; }
+.hero .sub { font-size: 1.35rem; margin: 0 0 1rem; opacity: .95; }
+.hero .chip { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.4); color: #fff; }
+.hero .kicker { color: #fff; opacity: .85; }
+.hero .btn { border-color: #fff; color: #fff; background: transparent; }
+.hero .btn:hover { background: rgba(255,255,255,.14); }
+.hero .btn.primary { background: #fff; color: var(--main); }
+.hero .keys { margin-top: 1.4rem; font-size: .85rem; opacity: .85; }
+.hero kbd { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.4); color: #fff; }
+
+/* hub svg */
+svg { max-width: 100%; height: auto; display: block; }
+svg text { font-family: "Barlow", sans-serif; }
+.hub svg { width: 100%; max-height: 62vh; }
+body.scroll .hub svg { max-height: none; }
+.hub .ring { fill: none; stroke: var(--second); stroke-width: 2; stroke-dasharray: 6 6; }
+.hub .spoke { stroke: var(--second); stroke-width: 2; }
+.hub .node circle { fill: #fff; stroke: var(--main); stroke-width: 2.5; }
+.hub .node text { fill: var(--ink); font-size: 13px; font-weight: 600; text-anchor: middle; }
+.hub .node .emo { font-size: 22px; }
+.hub a.node:hover circle, .hub a.node:focus circle { fill: var(--third); }
+.hub .center circle { fill: var(--main); }
+.hub .center text { fill: #fff; font-size: 16px; font-weight: 600; text-anchor: middle; }
+.hub .pill rect { fill: #fff; stroke: var(--second); stroke-width: 1.5; }
+.hub .pill text { fill: var(--main); font-size: 13px; font-weight: 600; text-anchor: middle; }
+.hub.light .ring { stroke: rgba(255,255,255,.55); }
+.hub.light .spoke { stroke: rgba(255,255,255,.45); }
+.hub.light .node circle { stroke: none; }
+.hub.light .center circle { fill: var(--third); }
+.hub.light .center text { fill: var(--main); }
+.hub.light .pill rect { fill: var(--main); stroke: rgba(255,255,255,.7); }
+.hub.light .pill text { fill: #fff; }
+
+/* diagrams */
+.dia text { font-size: 14px; fill: var(--ink); }
+.dia .box { fill: #fff; stroke: var(--main); stroke-width: 2; }
+.dia .box.alt { fill: var(--third); stroke: var(--second); }
+.dia .box.focus { fill: var(--main); stroke: var(--main); }
+.dia .t1 { font-weight: 600; font-size: 16px; text-anchor: middle; }
+.dia .t2 { font-size: 13px; fill: var(--ink-3); text-anchor: middle; }
+.dia .focus-t { fill: #fff !important; }
+.dia .flow { stroke: var(--ink-2); stroke-width: 2; fill: none; marker-end: url(#arr); }
+.dia .flow.soft { stroke: var(--second); stroke-dasharray: 5 4; }
+.dia .lab { font-size: 12.5px; fill: var(--ink-3); text-anchor: middle; }
+
+.chain { display: flex; flex-wrap: wrap; align-items: stretch; gap: .35rem; margin: .3rem 0 1rem; }
+.chain .lk { flex: 1 1 8.5rem; border: 1px solid var(--line); border-top: 4px solid var(--second); border-radius: .35rem; padding: .5rem .65rem; background: #fff; position: relative; }
+.chain .lk b { display: block; font-size: .98rem; }
+.chain .lk span { font-size: .84rem; color: var(--ink-3); }
+.chain .lk.hl { border-top-color: var(--main); background: var(--third); }
+.chain .ar { align-self: center; color: var(--second); font-size: 1.3rem; font-weight: 700; }
+
+.loops { display: grid; gap: .6rem; margin: .4rem 0 .6rem; }
+.loop-row { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; padding: .55rem .7rem; border-radius: .45rem; background: var(--bg-2); border: 1px solid var(--soft); }
+.loop-row.inner { background: var(--third); border-color: var(--second); }
+.loop-lab { font-weight: 600; min-width: 9rem; margin-right: .4rem; line-height: 1.15; }
+.loop-lab small { font-weight: 400; color: var(--ink-3); }
+.loop-row .tk, .loop-row .st { border: 1px solid var(--line); background: #fff; border-radius: .35rem; padding: .2rem .55rem; font-size: .92rem; }
+.loop-row .tk.cur { border-color: var(--main); background: var(--main); color: #fff; font-weight: 600; }
+.loop-row .st.ok { border-color: var(--good); }
+.loop-row .st.hint { border-color: var(--warn); background: var(--warn-bg); }
+.loop-row .ar { color: var(--ink-3); }
+
+.timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; position: relative; margin: .3rem 0 1rem; }
+.timeline::before { content: ""; position: absolute; left: 4%; right: 4%; top: 1.05rem; height: 3px; background: var(--second); }
+.tl { position: relative; padding-top: 2.3rem; }
+.tl .yr { position: absolute; top: 0; left: 0; background: var(--main); color: #fff; font-weight: 600; border-radius: 1rem; padding: .1rem .7rem; font-size: .9rem; }
+.tl b { display: block; }
+.tl span { font-size: .9rem; color: var(--ink-3); }
+
+.stat { border: 1px solid var(--line); border-radius: .4rem; padding: .75rem .9rem; background: #fff; }
+.stat .big { font-family: "Barlow Semi Condensed", sans-serif; font-weight: 600; font-size: 2.5rem; line-height: 1; color: var(--ink); }
+.stat .lab { font-size: .9rem; color: var(--ink-2); margin-top: .25rem; }
+.meter { height: .55rem; background: var(--s1-soft); border-radius: .3rem; margin-top: .5rem; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--s1); border-radius: .3rem; }
+
+/* horizontal bars (charts) */
+.hbars { display: grid; gap: .45rem; }
+.hbar { display: grid; grid-template-columns: 9.5rem 1fr 3.4rem; gap: .5rem; align-items: center; font-size: .92rem; }
+.hbar .track { position: relative; height: 1.05rem; background: transparent; border-left: 1px solid var(--ink-3); }
+.hbar .bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--s1); border-radius: 0 4px 4px 0; transition: width .25s; }
+.hbar .bar.ref { background: #a6a9ac; }
+.hbar .val { font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+.axis { display: grid; grid-template-columns: 9.5rem 1fr 3.4rem; gap: .5rem; font-size: .72rem; color: var(--ink-3); }
+.axis .ticks { display: flex; justify-content: space-between; }
+
+/* ---------- widgets ---------- */
+/* match game */
+table.match { border-collapse: collapse; width: 100%; font-size: .92rem; }
+table.match th { font-weight: 600; font-size: .8rem; padding: .3rem .25rem; text-align: center; vertical-align: bottom; color: var(--ink-2); }
+table.match th:first-child { text-align: left; }
+table.match td { border-top: 1px solid var(--soft); padding: .35rem .25rem; text-align: center; }
+table.match td:first-child { text-align: left; padding-right: .6rem; }
+table.match input { width: 1.15rem; height: 1.15rem; accent-color: var(--main); cursor: pointer; }
+table.match tr.ok td { background: var(--good-bg); }
+table.match tr.no td { background: var(--crit-bg); }
+table.match td.sol { outline: 2px solid var(--good); outline-offset: -3px; border-radius: .3rem; }
+.score { font-weight: 600; }
+
+/* adaptive sim */
+.sim { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1rem; }
+.sim .skill { margin-bottom: .55rem; }
+.sim .skill .nm { display: flex; justify-content: space-between; font-size: .92rem; }
+.sim .skill .nm b { font-variant-numeric: tabular-nums; }
+.sim .skill.cur .sn::after { content: "  ← current task"; color: var(--main); font-weight: 600; }
+.sim .task { border: 2px solid var(--main); border-radius: .5rem; padding: .7rem .9rem; }
+.sim .task .lvl { display: inline-block; font-size: .8rem; font-weight: 600; border-radius: 1rem; padding: .05rem .55rem; background: var(--soft); }
+.sim .log { font-size: .84rem; color: var(--ink-2); max-height: 7.5rem; overflow: auto; margin: .3rem 0 0; padding-left: 1.1rem; }
+.flagbox { border-left: 4px solid var(--crit); background: #fdf1f1; padding: .4rem .7rem; border-radius: 0 .35rem .35rem 0; margin-top: .6rem; font-size: .92rem; }
+
+/* order (ITS) */
+.pool, .seq { display: flex; flex-wrap: wrap; gap: .45rem; min-height: 2.6rem; }
+.seq { flex-direction: column; }
+.card-btn { border: 1px solid var(--line); background: #fff; border-radius: .4rem; padding: .45rem .75rem; cursor: pointer; text-align: left; }
+.card-btn:hover { border-color: var(--main); }
+.slot { display: grid; grid-template-columns: 2.2rem 1fr; align-items: center; gap: .4rem; }
+.slot .n { width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: var(--soft); font-weight: 600; }
+.slot .c { min-height: 2.2rem; border: 1px dashed var(--line); border-radius: .4rem; padding: .35rem .65rem; display: flex; align-items: center; }
+.slot .c.filled { border-style: solid; cursor: pointer; }
+.slot.ok .n { background: var(--good); color: #fff; }
+.slot.ok .c { border-color: var(--good); background: var(--good-bg); }
+.slot.no .n { background: var(--crit); color: #fff; }
+.slot.no .c { border-color: var(--crit); background: var(--crit-bg); }
+.hintbox { border-left: 4px solid var(--warn); background: var(--warn-bg); padding: .45rem .75rem; border-radius: 0 .35rem .35rem 0; margin-top: .6rem; }
+
+/* chatbot */
+.chat { border: 1px solid var(--line); border-radius: .5rem; display: flex; flex-direction: column; height: 17.5rem; background: var(--bg-2); }
+.chat .msgs { flex: 1; overflow-y: auto; padding: .7rem; display: flex; flex-direction: column; gap: .45rem; }
+.msg { max-width: 85%; padding: .45rem .7rem; border-radius: .7rem; font-size: .95rem; }
+.msg.me { align-self: flex-end; background: var(--main); color: #fff; border-bottom-right-radius: .15rem; }
+.msg.bot { align-self: flex-start; background: #fff; border: 1px solid var(--line); border-bottom-left-radius: .15rem; }
+.msg.bot small { display: block; color: var(--ink-3); margin-top: .2rem; }
+.chat form { display: flex; gap: .4rem; padding: .5rem; border-top: 1px solid var(--line); background: #fff; border-radius: 0 0 .5rem .5rem; }
+.chat form input { flex: 1; }
+.suggest { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem; }
+.suggest button { border: 1px dashed var(--main); background: #fff; color: var(--main); border-radius: 1rem; padding: .15rem .6rem; font-size: .85rem; cursor: pointer; }
+
+/* accuracy trap */
+.acc { display: grid; grid-template-columns: minmax(15rem, .8fr) 1.2fr; gap: 1.2rem; }
+.ctl { margin-bottom: .55rem; }
+.ctl .row { display: flex; justify-content: space-between; font-size: .92rem; }
+.ctl output { font-weight: 600; font-variant-numeric: tabular-nums; }
+.cm { display: grid; grid-template-columns: 7.5rem 1fr 1fr; gap: 3px; font-size: .9rem; margin-bottom: .8rem; }
+.cm .h { font-weight: 600; font-size: .82rem; color: var(--ink-2); padding: .2rem .3rem; align-self: end; }
+.cm .rh { font-weight: 600; font-size: .82rem; color: var(--ink-2); padding: .3rem; align-self: center; }
+.cm .cell { border-radius: .35rem; padding: .5rem .55rem; border: 1px solid transparent; }
+.cm .cell b { display: block; font-size: 1.45rem; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.cm .cell span { font-size: .82rem; }
+.cm .tp { background: var(--good-bg); border-color: var(--good); }
+.cm .fn { background: var(--crit-bg); border-color: var(--crit); }
+.cm .fp { background: var(--warn-bg); border-color: var(--warn); }
+.cm .tn { background: var(--neutral-bg); border-color: #b9bdc0; }
+.verdict { margin-top: .7rem; padding: .55rem .8rem; border-radius: .35rem; background: var(--bg-2); border: 1px solid var(--line); }
+.presets { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .4rem; }
+
+/* agent stepper */
+.stepper { display: flex; gap: .3rem; flex-wrap: wrap; margin-bottom: .7rem; }
+.stepper button { border: 1px solid var(--line); background: #fff; border-radius: 1.2rem; padding: .25rem .7rem; cursor: pointer; font-size: .85rem; }
+.stepper button.cp { border-color: var(--crit); }
+.stepper button.done-ok { background: var(--good-bg); }
+.stepper button.done-skip { background: var(--crit-bg); }
+.stepper button[aria-current="step"] { background: var(--main); color: #fff; border-color: var(--main); }
+.agent-card { border: 2px solid var(--main); border-radius: .5rem; padding: .8rem 1rem; }
+.agent-card.cp { border-color: var(--crit); }
+.agent-card dl { display: grid; grid-template-columns: 7rem 1fr; gap: .25rem .7rem; margin: .5rem 0; }
+.agent-card dt { font-weight: 600; color: var(--ink-2); }
+.agent-card dd { margin: 0; }
+.outcome { margin-top: .5rem; padding: .45rem .7rem; border-radius: .35rem; }
+.outcome.ok { background: var(--good-bg); border-left: 4px solid var(--good); }
+.outcome.no { background: var(--crit-bg); border-left: 4px solid var(--crit); }
+
+/* evaluation grid */
+.eval { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.crit-row { display: grid; grid-template-columns: 1fr 7rem 1.6rem; gap: .5rem; align-items: center; padding: .2rem 0; border-bottom: 1px solid var(--soft); }
+.crit-row .cq { display: block; font-size: .76rem; color: var(--ink-3); line-height: 1.2; }
+.crit-row output { font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+.echart .erow { display: grid; grid-template-columns: 7.2rem 1fr; gap: .5rem; align-items: center; margin: .3rem 0; font-size: .9rem; }
+.echart .etrack { position: relative; height: 1.25rem; background: repeating-linear-gradient(90deg, transparent 0, transparent calc(20% - 1px), var(--soft) calc(20% - 1px), var(--soft) 20%); border-left: 1px solid var(--ink-3); }
+.echart .ebar { position: absolute; left: 0; top: .2rem; bottom: .2rem; background: var(--s1); border-radius: 0 4px 4px 0; transition: width .2s; }
+.echart .ebar.low { background: var(--crit); }
+.echart .edot { position: absolute; top: 50%; width: .95rem; height: .95rem; margin: -.475rem 0 0 -.475rem; border-radius: 50%; background: var(--s2); border: 2px solid #fff; box-shadow: 0 0 0 1px var(--s2); transition: left .2s; }
+.legend { display: flex; flex-wrap: wrap; gap: .9rem; font-size: .82rem; color: var(--ink-2); margin: .3rem 0; }
+.legend i { display: inline-block; width: .9rem; height: .6rem; margin-right: .3rem; vertical-align: middle; border-radius: 2px; }
+.legend i.dot { width: .7rem; height: .7rem; border-radius: 50%; }
+
+/* shifts */
+.shift { text-align: left; border: 1px solid var(--line); border-radius: .45rem; background: #fff; padding: .7rem .8rem; cursor: pointer; display: flex; flex-direction: column; gap: .2rem; height: 100%; }
+.shift:hover { border-color: var(--main); }
+.shift[aria-pressed="true"] { border: 2px solid var(--main); background: var(--third); }
+.shift .ttl { font-weight: 600; font-size: 1.02rem; }
+.shift .ex { font-size: .82rem; color: var(--ink-3); border-top: 1px dashed var(--line); padding-top: .3rem; margin-top: auto; }
+.shift .vote { font-size: .78rem; font-weight: 600; color: var(--main); display: none; }
+.shift[aria-pressed="true"] .vote { display: block; }
+
+/* heutagogy */
+.pah { display: flex; align-items: stretch; gap: .35rem; flex-wrap: wrap; margin-bottom: .8rem; }
+.pah div { flex: 1 1 10rem; border-radius: .4rem; padding: .45rem .7rem; background: var(--bg-2); border: 1px solid var(--soft); font-size: .92rem; }
+.pah div b { display: block; }
+.pah .ar { flex: 0 0 auto; align-self: center; background: none; border: 0; padding: 0; color: var(--second); font-weight: 700; }
+.stair rect { fill: var(--third); stroke: var(--second); stroke-width: 1.5; transition: fill .2s; }
+.stair text { fill: var(--ink); text-anchor: middle; }
+.stair .nm { font-weight: 600; font-size: 17px; }
+.stair .sl { font-size: 13px; fill: var(--ink-3); }
+.stair g.on rect { fill: var(--main); stroke: var(--main); }
+.stair g.on text { fill: #fff; }
+.stair .axisl { stroke: var(--ink-3); stroke-width: 1.5; marker-end: url(#arr2); fill: none; }
+.stair .axt { font-size: 13px; fill: var(--ink-3); text-anchor: start; }
+
+/* idea canvas */
+.canvas-out { border: 3px solid var(--main); border-radius: .8rem; padding: .9rem 1.1rem; background: linear-gradient(135deg, rgba(122,0,63,.06), rgba(42,120,214,.06)); }
+.canvas-out .tag { font-size: .72rem; letter-spacing: .14em; color: var(--main); font-weight: 600; }
+.canvas-out h3 { margin: .2rem 0 .5rem; font-size: 1.3rem; }
+.canvas-out p { margin: .15rem 0; }
+.boxes { letter-spacing: .1em; }
+
+/* route */
+.route { display: grid; gap: .3rem; }
+.route .r { display: grid; grid-template-columns: 3.2rem minmax(10rem, 1.4fr) 10rem 1fr; gap: .7rem; align-items: center; padding: .3rem .4rem; border-bottom: 1px solid var(--soft); font-size: .95rem; }
+.route .r .tm { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink-2); }
+.route .r .how { font-size: .82rem; color: var(--ink-3); }
+.route .r .dur { display: grid; grid-template-columns: 1fr 3.4rem; align-items: center; gap: .4rem; font-size: .8rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.route .r .dur .trk { display: block; border-left: 1px solid var(--ink-3); }
+.route .r .dur i { display: block; height: .7rem; background: var(--main); border-radius: 0 3px 3px 0; }
+.route .r.brk { background: var(--bg-2); }
+.route .r.brk .dur i { background: #a6a9ac; }
+
+/* objectives */
+.objs { display: grid; gap: .45rem; }
+.obj { display: grid; grid-template-columns: 3.4rem 1fr auto; gap: .8rem; align-items: center; border: 1px solid var(--line); border-left: 5px solid var(--main); border-radius: .4rem; padding: .5rem .8rem; background: #fff; }
+.obj .verb { font-family: "Barlow Semi Condensed", sans-serif; font-weight: 600; font-size: 1.25rem; color: var(--main); }
+.obj .where { font-size: .78rem; color: var(--ink-3); display: block; }
+.cmp { display: grid; gap: .35rem; margin-top: .4rem; }
+.cmp .cr { display: grid; grid-template-columns: 3.4rem 1fr; gap: .6rem; align-items: center; font-size: .9rem; }
+.cmp .scale { position: relative; height: 1.4rem; margin: 0 .7rem; }
+.cmp .scale::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: var(--soft); }
+.cmp .pt { position: absolute; top: 50%; width: 1rem; height: 1rem; margin: -.5rem 0 0 -.5rem; border-radius: 50%; }
+.cmp .pt.a { background: #fff; border: 2px solid #86b6ef; }
+.cmp .pt.b { background: var(--s1); border: 2px solid #fff; box-shadow: 0 0 0 1px var(--s1); }
+.cmp .lnk { position: absolute; top: calc(50% - 2px); height: 4px; background: #86b6ef; }
+.cmp .lbls { display: flex; justify-content: space-between; font-size: .75rem; color: var(--ink-3); margin: 0 .2rem; }
+
+.qr { background: #fff; padding: .5rem; display: inline-block; border-radius: .3rem; }
+.qr img, .qr canvas { width: 9rem !important; height: 9rem !important; }
+
+.refs { columns: 3 17rem; column-gap: 1.6rem; font-size: .74rem; line-height: 1.35; }
+.refs p { break-inside: avoid; margin: 0 0 .45rem; padding-left: 1.2rem; text-indent: -1.2rem; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 820px) {
+  .hero-grid, .sim, .acc, .eval { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.3rem; }
+  .slide h2 { font-size: 1.65rem; }
+  .route .r { grid-template-columns: 3rem 1fr; }
+  .route .r .how, .route .r .dur { grid-column: 2; }
+  .obj { grid-template-columns: 3rem 1fr; }
+  .obj .seg { grid-column: 1 / -1; justify-self: start; }
+  .timeline { grid-template-columns: 1fr; }
+  .timeline::before { display: none; }
+  .hbar, .axis { grid-template-columns: 6.5rem 1fr 3rem; }
+  .topbar .block { display: none; }
+  .cm { grid-template-columns: 5.6rem 1fr 1fr; }
+}
+@media print {
+  html.present-root { font-size: 12px; }
+  .topbar, .botbar, .notes-panel, .overview, #tip { display: none !important; }
+  #deck { position: static; }
+  .slide { position: static !important; display: block !important; page-break-after: always; break-after: page; }
+  .slide > .inner { height: auto; overflow: visible; }
+  .frag { opacity: 1 !important; visibility: visible !important; transform: none !important; }
+  .slide.hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body class="present">
+<header class="topbar">
+  <a href="../index.html" title="Course website"><img src="../assets/ovgu_logo.svg" alt="Otto von Guericke University Magdeburg – back to the course website"></a>
+  <span class="deck-title">AI in TVET I · P04 Applications of AI in TVET</span>
+  <span class="block" id="blk"></span>
+  <span class="sr-only" id="live" aria-live="polite"></span>
+</header>
+
+<main id="deck" aria-roledescription="slide deck">
+
+<!-- ===================== 1 TITLE ===================== -->
+<section class="slide hero" data-block="start" data-title="Applications of AI in TVET">
+<div class="inner">
+  <div class="hero-grid">
+    <div>
+      <p class="kicker">AI in TVET I · Session 4 · OVGU Magdeburg</p>
+      <h1>Applications of AI in TVET</h1>
+      <p class="sub">Tools · agents · AI in pedagogy · micro-credential idea check</p>
+      <div class="chips"><span class="chip">05.11.2026</span><span class="chip">🟢 Live</span><span class="chip">150 min</span><span class="chip">5 learning objectives</span></div>
+      <div class="row-actions" style="margin-top:1.2rem">
+        <a class="btn primary" href="https://liascript.github.io/course/?https://raw.githubusercontent.com/OVGU-VET-TechEd/AI_in_TVET_I_WiSe_2026_2027/main/Presentations/P04_Applications_of_AI_in_TVET.md" target="_blank" rel="noopener">LiaScript version · classroom polls ↗</a>
+        <a class="btn" href="https://liascript.github.io/course/?https://raw.githubusercontent.com/OVGU-VET-TechEd/AI_in_TVET_I_WiSe_2026_2027/main/Selflearn/S04_Applications_of_AI_in_TVET.md" target="_blank" rel="noopener">Self-learning unit S04 ↗</a>
+      </div>
+      <p class="keys hide-scroll"><kbd>←</kbd> <kbd>→</kbd> or <kbd>Space</kbd> navigate · <kbd>O</kbd> overview · <kbd>N</kbd> speaker notes · <kbd>F</kbd> full screen · <kbd>?</kbd> help</p>
+    </div>
+    <div class="hub light" data-hub="plain"></div>
+  </div>
+</div>
+<aside class="notes">Welcome back to our second live session. Before we start: your open questions from the two self-learning sessions. Then we tour the application landscape of AI in vocational education, look at AI agents as the newest development, and in the second half we check your micro-credential ideas together.</aside>
+</section>
+
+<!-- ===================== 2 QUESTIONS ===================== -->
+<section class="slide" data-block="q" data-title="Welcome back! Your questions first">
+<div class="inner">
+  <p class="kicker">Warm-up · 15 min</p>
+  <h2>Welcome Back! Your Questions First 💬</h2>
+  <div class="grid2">
+    <div class="grid2" style="gap:.8rem">
+      <div class="card"><div class="icon-big">😮</div><h3>Most surprising?</h3><p>What was the most surprising thing in S02 or S03?</p></div>
+      <div class="card"><div class="icon-big">❓</div><h3>Still unclear?</h3><p>What is still unclear for you?</p></div>
+      <div class="card"><div class="icon-big">🔎</div><h3>Reference check</h3>
+        <div class="quiz" data-survey><p class="q">How many of the AI's references were correct?</p>
+          <div class="opts row"><button class="opt">None</button><button class="opt">One</button><button class="opt">Two</button><button class="opt">All three</button></div><p class="fb"></p></div></div>
+      <div class="card"><div class="icon-big">📖</div><h3>Reading</h3><p>Your question on the reading on human-centred AI <span class="cite">(Schmager et al., 2025)</span></p></div>
+    </div>
+    <div class="card tint">
+      <h3>Answer anonymously</h3>
+      <p>Open the <b>LiaScript version</b> of these slides and join the classroom – your answers appear for everyone without your name.</p>
+      <div class="qr" id="qr" aria-label="QR code for the LiaScript version of these slides"></div>
+      <p class="small" style="margin-top:.5rem"><a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/OVGU-VET-TechEd/AI_in_TVET_I_WiSe_2026_2027/main/Presentations/P04_Applications_of_AI_in_TVET.md" target="_blank" rel="noopener">Open the LiaScript slides ↗</a></p>
+      <span class="timer" data-sec="900" data-label="Q&amp;A"></span>
+    </div>
+  </div>
+</div>
+<aside class="notes">Answer anonymously in the classroom. We take fifteen minutes for the most frequent questions before we move on. If you noted a question on the human-centred AI reading from session one, add it here as well.</aside>
+</section>
+
+<!-- ===================== 3 OBJECTIVES ===================== -->
+<section class="slide" data-block="lo" data-title="Today's objectives">
+<div class="inner">
+  <p class="kicker">Learning objectives</p>
+  <h2>Today's Objectives 🎯</h2>
+  <p class="lead">By the end of today you can …</p>
+  <p class="frag rate-cue small" style="margin:0 0 .4rem;text-align:right"><b>Rate yourself:</b> where do you start? → none · basic · solid</p>
+  <div class="objs rate" data-key="start">
+    <div class="obj" data-lo="LO1"><span class="lo">LO1</span><div><span class="verb">describe</span> six application areas of AI in TVET – what the system decides, which data it needs, what stays with the teacher – with a vocational example each<span class="where">Sections 1–2.6</span></div><span class="seg"></span></div>
+    <div class="obj" data-lo="LO2"><span class="lo">LO2</span><div><span class="verb">explain</span> how AI agents differ from chatbots and where humans must stay in the loop<span class="where">Section 2.7</span></div><span class="seg"></span></div>
+    <div class="obj" data-lo="LO3"><span class="lo">LO3</span><div><span class="verb">evaluate</span> an AI tool for your vocational field – and see through misleading evidence such as "99 % accuracy"<span class="where">Sections 2.5 and 3</span></div><span class="seg"></span></div>
+    <div class="obj" data-lo="LO4"><span class="lo">LO4</span><div><span class="verb">explain</span> how AI shifts teaching, assessment and the teacher's role<span class="where">Section 4</span></div><span class="seg"></span></div>
+    <div class="obj" data-lo="LO5"><span class="lo">LO5</span><div><span class="verb">refine</span> your micro-credential idea with a structured idea check and peer feedback<span class="where">Section 5</span></div><span class="seg"></span></div>
+  </div>
+  <p class="small muted" style="margin-top:.6rem">Self-rating (none · basic · solid) is saved only in this browser. You rate again at the end and see what changed.</p>
+</div>
+<aside class="notes">These five objectives frame today's session. They follow the objectives of the self-learning unit S04 and add one new objective on AI agents. At the end of the session, the exit ticket has one question per objective. Next step: rate yourself now. At the end of the session, you rate yourself again and can see what changed.</aside>
+</section>
+
+<!-- ===================== 4 ROUTE ===================== -->
+<section class="slide" data-block="lo" data-title="Today's route">
+<div class="inner">
+  <p class="kicker">150 minutes</p>
+  <h2>Today's Route 🗺️</h2>
+  <div class="route" id="route"></div>
+</div>
+<aside class="notes">Here is our route for the next one hundred and fifty minutes. The first half is about applications and agents, the second half is about you: your evaluation of a tool, your view on pedagogy and your micro-credential idea.</aside>
+</section>
+
+<!-- ===================== 5 LANDSCAPE ===================== -->
+<section class="slide" data-block="apps" data-title="1. Where AI is used in TVET">
+<div class="inner">
+  <p class="kicker">Section 1 <span class="lo">LO1</span></p>
+  <h2>1. Where AI Is Used in TVET 🏭</h2>
+  <div class="grid2" style="grid-template-columns: 1.1fr 1fr">
+    <div>
+      <div class="hub" data-hub="links"></div>
+      <p class="small muted">Click a node to jump to the application.</p>
+    </div>
+    <div class="stack">
+      <div class="card frag"><h3>Often combined</h3><p>Six families of applications – in practice they are often <b>combined</b>, e.g. a welding simulator with automatic feedback that also stores learning data for the trainer.</p></div>
+      <div class="callout main frag"><span class="lab">Three questions for every application (S04)</span>
+        <ol style="margin:.3rem 0 0"><li>What does the system <b>decide or suggest</b>?</li><li>Which <b>data</b> does it need?</li><li>What remains the task of the <b>teacher or trainer</b>?</li></ol></div>
+    </div>
+  </div>
+</div>
+<aside class="notes">AI in vocational education is not one tool but a family of applications. We look at six of them, from adaptive learning systems to tools that align curricula with the labour market. Keep the three questions in mind for every application today. They are the core of your evaluation later in section three.</aside>
+</section>
+
+<!-- ===================== 6 MATCH ===================== -->
+<section class="slide" data-block="apps" data-title="Game: match the application">
+<div class="inner">
+  <p class="kicker">Game <span class="lo">LO1</span> <span class="timer" data-sec="60" data-label="Game"></span></p>
+  <h2>Game: Match the Application 🃏</h2>
+  <div class="table-scroll"><table class="match" id="match"></table></div>
+  <div class="row-actions"><button class="btn primary" id="m-check" type="button">Check</button><button class="btn" id="m-sol" type="button">Show solution</button><button class="btn" id="m-reset" type="button">Reset</button><span class="score" id="m-score" aria-live="polite"></span></div>
+</div>
+<aside class="notes">Six applications, six examples. You have one minute.</aside>
+</section>
+
+<!-- ===================== 7 ADAPTIVE ===================== -->
+<section class="slide" data-block="apps" data-title="2.1 Adaptive learning systems">
+<div class="inner">
+  <p class="kicker">Section 2.1 <span class="lo">LO1</span></p>
+  <h2>2.1 Adaptive Learning Systems 🧭</h2>
+  <p class="lead">Learner model + domain model → next step.</p>
+  <div class="grid2" style="grid-template-columns: 1fr 1.05fr">
+  <svg class="dia" viewBox="0 0 520 395" role="img" aria-label="Loop: the learner works on a task; answers, errors and time update the learner model; adaptation rules combine the learner model with the domain model and choose the next task, hint or pace.">
+    <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3e3f40"/></marker></defs>
+    <rect class="box" x="10" y="20" width="190" height="84" rx="10"/><text class="t1" x="105" y="56">🧑‍🔧 Learner</text><text class="t2" x="105" y="80">works on a task</text>
+    <rect class="box" x="310" y="20" width="200" height="84" rx="10"/><text class="t1" x="410" y="50">📊 Learner model</text><text class="t2" x="410" y="74">what the learner</text><text class="t2" x="410" y="91">already knows</text>
+    <rect class="box focus" x="310" y="170" width="200" height="80" rx="10"/><text class="t1 focus-t" x="410" y="204">⚙️ Adaptation rules</text><text class="t2 focus-t" x="410" y="228">what comes next?</text>
+    <rect class="box alt" x="310" y="305" width="200" height="76" rx="10"/><text class="t1" x="410" y="337">📚 Domain model</text><text class="t2" x="410" y="360">what there is to learn</text>
+    <path class="flow" d="M202,62 L306,62"/><text class="lab" x="254" y="38">answers,</text><text class="lab" x="254" y="53">errors, time</text>
+    <path class="flow" d="M410,106 L410,166"/><text class="lab" x="452" y="140">estimate</text>
+    <path class="flow" d="M410,303 L410,254"/><text class="lab" x="468" y="284">content, order</text>
+    <path class="flow" d="M308,210 L105,210 L105,108"/><text class="lab" x="205" y="200">next task · hint · pace</text>
+  </svg>
+  <div class="stack">
+    <div class="frag stack">
+      <div class="card accent"><p>🔧 <b>In TVET:</b> an online hydraulics module notices repeated errors with valve symbols and offers extra exercises before moving on.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem">
+        <div class="card"><b>🎯 Decides</b><br><span class="small">next task, difficulty, pace</span></div>
+        <div class="card"><b>📊 Data</b><br><span class="small">answers, errors, time on task</span></div>
+        <div class="card"><b>👩‍🏫 Teacher</b><br><span class="small">sets goals, reads the flags, talks to the learner</span></div>
+      </div>
+    </div>
+    <div class="frag">
+      <div class="callout"><span class="lab">Watch for (3 min)</span>How does the video define adaptive learning? Which questions should you ask before choosing a platform?</div>
+      <figure style="margin-top:.5rem"><div class="video" data-yt="e3kIBxIJ7zs" data-title="Is adaptive learning what you think it is?" data-meta="SparkLearn · 3:00 · chapters: definition, results, demo"></div></figure>
+    </div>
+  </div>
+  </div>
+</div>
+<aside class="notes">An adaptive learning system has two models. The learner model estimates what the learner already knows. The domain model describes what there is to learn and in which order. Adaptation rules combine both and choose the next step. For the hydraulics example: the system decides about the next task, but the goals and the conversation with the learner stay with the teacher.</aside>
+</section>
+
+<!-- ===================== 8 ADAPTIVE SIM ===================== -->
+<section class="slide" data-block="apps" data-title="Playground: be the adaptive engine">
+<div class="inner">
+  <p class="kicker">Playground <span class="lo">LO1</span> <span class="timer" data-sec="180" data-label="Try"></span></p>
+  <h2>Playground: Be the Adaptive Engine 🎛️</h2>
+  <p><b>Try it:</b> You are an apprentice in an online hydraulics module. Answer tasks right or wrong – and watch what the engine decides.</p>
+  <div class="sim" id="sim">
+    <div>
+      <h3>📊 Learner model <span class="small muted">(mastery estimate)</span></h3>
+      <div id="sim-skills"></div>
+      <h3 style="margin-top:.8rem">📝 What the engine logged</h3>
+      <ol class="log" id="sim-log" reversed></ol>
+    </div>
+    <div>
+      <div class="task" id="sim-task"></div>
+      <div class="row-actions"><button class="btn primary" id="sim-ok" type="button">✅ Answer correct</button><button class="btn" id="sim-no" type="button">❌ Answer wrong</button><button class="btn small" id="sim-reset" type="button">Reset</button></div>
+      <div id="sim-flag"></div>
+      <p class="small muted" style="margin-top:.8rem">Simplified, illustrative rules: 2 wrong in a row → hint and easier task; 3 wrong → worked example and a flag for the trainer. Real systems estimate mastery statistically from many answers – the logic "estimate → rule → next step" is the same.</p>
+    </div>
+  </div>
+</div>
+<aside class="notes">Answer a few tasks wrong in a row. With two wrong answers the system gives a hint and an easier task. With three, a good system stops and asks a human for help. Where would you set these thresholds for your apprentices?</aside>
+</section>
+
+<!-- ===================== 9 EVIDENCE ===================== -->
+<section class="slide" data-block="apps" data-title="2.1 What the evidence says">
+<div class="inner">
+  <p class="kicker">Section 2.1 <span class="lo">LO1</span> <span class="lo out">LO3</span></p>
+  <h2>2.1 What the Evidence Says 📈</h2>
+  <div class="frag">
+    <div class="grid4">
+      <div class="stat"><div class="big">41 / 69</div><div class="lab">studies: better academic performance (59 %)</div><div class="meter"><i style="width:59%"></i></div></div>
+      <div class="stat"><div class="big">25 / 69</div><div class="lab">studies: higher engagement (36 %)</div><div class="meter"><i style="width:36%"></i></div></div>
+      <div class="stat"><div class="big">1 → 636</div><div class="lab">publications on AI-driven adaptive learning, 1990 → 2023</div></div>
+      <div class="stat"><div class="big" style="font-size:1.5rem;line-height:1.15">many prototypes,<br>few real systems</div><div class="lab">that address real learner problems</div></div>
+    </div>
+    <p class="cite" style="margin-top:.4rem">Scoping review of 69 studies; pre-knowledge quizzes were the most common trigger, Moodle among the top platforms (du Plooy et al., 2024) · Kabudi et al. (2021) · Strielkowski et al. (2025)</p>
+  </div>
+  <div class="grid2 frag" style="margin-top:.6rem">
+    <div class="card tint"><h3>🎼 The teacher as conductor</h3><p>Good vocational teachers <i>orchestrate</i> – small groups, real work tasks, adaptive instructions, flexible arrangements <span class="cite">(Zhao &amp; Ko, 2024)</span>. Software must fit into this orchestration, not replace it.</p></div>
+    <div class="card warn"><h3>⚠️ Risks</h3><div class="chips"><span class="chip crit">biased learner models</span><span class="chip crit">costs</span><span class="chip crit">data protection</span><span class="chip crit">"learning in isolation"</span></div></div>
+  </div>
+</div>
+<aside class="notes">The evidence is promising but mostly from higher education, and many systems never leave the prototype stage. In vocational classrooms, the teacher orchestrates group work, real work tasks and instructions. Adaptive software is one instrument in this orchestra, not the conductor.</aside>
+</section>
+
+<!-- ===================== 10 ITS ===================== -->
+<section class="slide" data-block="apps" data-title="2.2 Intelligent tutoring systems">
+<div class="inner">
+  <p class="kicker">Section 2.2 <span class="lo">LO1</span></p>
+  <h2>2.2 Intelligent Tutoring Systems 🧑‍🏫</h2>
+  <p class="lead">An ITS guides the learner <b>step by step</b> through a task: it checks every step and gives hints – not only a score at the end.</p>
+  <div class="loops">
+    <div class="loop-row"><span class="loop-lab">Outer loop<br><small>which task next?</small></span><span class="tk">Task 1</span><span class="ar">→</span><span class="tk cur">Task 2</span><span class="ar">→</span><span class="tk">Task 3</span></div>
+    <div class="loop-row inner"><span class="loop-lab">Inner loop<br><small>within Task 2</small></span><span class="st">Step 1</span><span class="ar">→</span><span class="st ok">✔ feedback</span><span class="ar">→</span><span class="st">Step 2</span><span class="ar">→</span><span class="st hint">💡 hint</span><span class="ar">→</span><span class="st">Step 2 again</span><span class="ar">→</span><span class="st ok">✔ done</span></div>
+  </div>
+  <p class="cite">Inner and outer loop (VanLehn, 2006)</p>
+  <div class="grid2 frag">
+    <div class="card"><h3>🧪 In the lab</h3>
+      <p class="small">One-to-one tutoring was reported to be about <b>2 standard deviations</b> better than classroom teaching – Bloom's "2 sigma problem" <span class="cite">(Bloom, 1984)</span>. A review found step-based ITS almost as effective as human tutors <span class="cite">(VanLehn, 2011)</span>:</p>
+      <div class="hbars" role="img" aria-label="Effect size d compared with no tutoring: human tutoring 0.79, step-based ITS 0.76">
+        <div class="hbar"><span>Human tutoring</span><span class="track"><span class="bar ref" style="width:79%" data-tip="Human tutoring: d = 0.79"></span></span><span class="val">0.79</span></div>
+        <div class="hbar"><span>Step-based ITS</span><span class="track"><span class="bar" style="width:76%" data-tip="Step-based ITS: d = 0.76"></span></span><span class="val">0.76</span></div>
+        <div class="axis"><span></span><span class="ticks"><span>d = 0</span><span>0.5</span><span>1.0</span></span><span></span></div>
+      </div></div>
+    <div class="card"><h3>🏫 In the field</h3>
+      <p class="small">40 field studies show a <b>complicated picture</b> – few countries ("intelligent regional gap"), focus on test scores, some lack rigour <span class="cite">(Wang et al., 2023)</span>.</p>
+      <p class="small">An open-source framework turns individual tutors into <b>collaborative</b> ones <span class="cite">(Arnau-González et al., 2025)</span>.</p></div>
+  </div>
+  <div class="grid2 frag" style="margin-top:.8rem">
+    <div class="callout"><span class="lab">🏠 At home – watch for</span>What does the AI tutor do differently from a search engine? Which of our three questions (decides · data · teacher) does the video answer – and which not?<p class="small" style="margin-top:.4rem">Critical report on the same tutor in schools: <a href="https://www.youtube.com/watch?v=Ia3CPhVkUtg" target="_blank" rel="noopener">Meet Khanmigo – 60 Minutes (13 min) ↗</a></p></div>
+    <figure><div class="video" data-yt="hJP5GqnTrNo" data-title="How AI could save (not destroy) education – Sal Khan" data-meta="TED 2023 · 15:37 · demo of the AI tutor Khanmigo" data-badge="🏠 at home"></div></figure>
+  </div>
+</div>
+<aside class="notes">An intelligent tutoring system works on two loops. The outer loop selects the next task, like an adaptive system. The inner loop is special: it follows every single step and gives a hint exactly where the learner is stuck. In the lab, step-based tutors come close to human tutors. In real schools the picture is more complicated. This gap between lab evidence and field evidence is something you will meet again and again.</aside>
+</section>
+
+<!-- ===================== 11 ITS TRY ===================== -->
+<section class="slide" data-block="apps" data-title="Try it: step-by-step hints">
+<div class="inner">
+  <p class="kicker">Try it <span class="lo">LO1</span> <span class="timer" data-sec="180" data-label="Try"></span></p>
+  <h2>Try It: Step-by-Step Hints 💡</h2>
+  <p>A trainee electronics technician has to replace a faulty ceiling lamp. Before opening the housing, the circuit must be made safe. <b>Order:</b> click the five safety rules (EN 50110-1) in the right order – the tutor checks <i>each step</i>.</p>
+  <div class="grid2">
+    <div><h3>Your sequence</h3><div class="seq" id="ord-seq"></div></div>
+    <div><h3>Rules</h3><div class="pool" id="ord-pool"></div>
+      <div class="row-actions"><button class="btn primary" id="ord-check" type="button">Check</button><button class="btn" id="ord-sol" type="button">Show solution</button><button class="btn small" id="ord-reset" type="button">Reset</button></div>
+      <div id="ord-fb" aria-live="polite"></div>
+      <p class="small muted" style="margin-top:.5rem">📝 Hints used (the tutor logs them): <b id="ord-hints">0</b></p>
+    </div>
+  </div>
+  <div class="callout main frag" style="margin-top:.6rem"><span class="lab">Reflect</span>This is how an ITS works – graded hints at the step where you are stuck: general first, specific second, solution last. It also <b>logs</b> every hint you open. That is valuable for adaptation – and it is personal learning data.</div>
+</div>
+<aside class="notes">Try it yourself. If you are unsure, press Check – the tutor marks the first wrong step and gives a general hint, then a more specific one. Intelligent tutoring systems work exactly like this. They store which hints you needed. Remember this when we evaluate tools.</aside>
+</section>
+
+<!-- ===================== 12 CHATBOTS ===================== -->
+<section class="slide" data-block="apps" data-title="2.3 Chatbots and AI assistants">
+<div class="inner">
+  <p class="kicker">Section 2.3 <span class="lo">LO1</span></p>
+  <h2>2.3 Chatbots and AI Assistants 💬</h2>
+  <div class="timeline">
+    <div class="tl"><span class="yr">1966</span><b>ELIZA</b><span>rule-based keyword matching <span class="cite">(Weizenbaum, 1966)</span></span></div>
+    <div class="tl"><span class="yr">2016</span><b>Jill Watson</b><span>AI teaching assistant answers course forum questions</span></div>
+    <div class="tl"><span class="yr">since 2022</span><b>LLM chatbots</b><span>generate free answers – and can hallucinate</span></div>
+  </div>
+  <div class="grid3 frag">
+    <div class="card"><b>⚡ Quick, personalised support</b><p class="cite">Okonkwo &amp; Ade-Ibijola (2021)</p></div>
+    <div class="card"><b>🤝 Connects learners</b> with teachers, social workers, psychologists<p class="cite">Mendoza et al. (2022)</p></div>
+    <div class="card"><b>🧑‍🏫 Teachers adopt them</b> depending on innovativeness, trust, ease of use – <b>and social pressure</b> from colleagues and leaders<p class="cite">482 teachers; Celik et al. (2025)</p></div>
+  </div>
+  <div class="grid2 frag" style="margin-top:.8rem">
+    <div class="callout"><span class="lab">Watch for (4.5 min)</span>Which tasks does the AI teaching assistant take over – and which stay with the instructor?</div>
+    <figure><div class="video" data-yt="9mbTkmC9_s4" data-title="Meet Jill Watson – the AI teaching assistant" data-meta="AI-ALOE (NSF AI Institute) · 4:31"></div></figure>
+  </div>
+</div>
+<aside class="notes">Chatbots are older than you might think. ELIZA, built by Joseph Weizenbaum in 1966, matched keywords with prepared answers. Today's chatbots are based on large language models and generate their answers freely – which makes them flexible, but also lets them invent facts. Jill Watson is an AI teaching assistant from Georgia Tech. While you watch, note which tasks it takes over and which remain with the human instructor.</aside>
+</section>
+
+<!-- ===================== 13 BOT ===================== -->
+<section class="slide" data-block="apps" data-title="Try it: a rule-based chatbot">
+<div class="inner">
+  <p class="kicker">Try it <span class="lo">LO1</span> <span class="timer" data-sec="180" data-label="Try"></span></p>
+  <h2>Try It: A Rule-Based Chatbot 🤖</h2>
+  <div class="grid2">
+    <div>
+      <p><b>Try it:</b> Ask the workshop safety bot a question. Then ask the <i>same</i> question in other words.</p>
+      <div class="chat"><div class="msgs" id="bot-msgs" aria-live="polite"></div>
+        <form id="bot-form"><input type="text" id="bot-in" aria-label="Your question to SafetyBot" placeholder="Ask SafetyBot …" autocomplete="off"><button class="btn primary" type="submit">Send</button></form></div>
+      <div class="suggest" id="bot-sug"></div>
+    </div>
+    <div class="frag stack">
+      <div class="card"><b>Test:</b> Try <i>"My eyes hurt after welding"</i> and <i>"Can I wear mittens at the lathe?"</i> – what goes wrong?</div>
+      <div class="quiz"><p class="q">Compare: talk to the original <a href="https://www.masswerk.at/elizabot/eliza.html" target="_blank" rel="noopener">ELIZA (1966) ↗</a>, then think of an LLM chatbot. What does an LLM do better – and which new risk does it bring?</p>
+        <div class="opts"><button class="opt" data-ok>It understands paraphrases – but can invent wrong answers (hallucination)</button><button class="opt">It is always correct because it learned from more data</button><button class="opt">There is no real difference</button></div>
+        <p class="fb"></p>
+        <div class="explain" hidden>"My eyes hurt after welding" matches the keyword <i>eye</i> and returns the rule on safety glasses – but the learner needs first aid. "Mittens" is not on the keyword list at all. An LLM understands such paraphrases, but it can also produce answers that sound right and are wrong.</div></div>
+    </div>
+  </div>
+</div>
+<aside class="notes">This bot works like the early chatbots: it looks for keywords and returns a prepared answer. Ask it about gloves, goggles or welding. "My eyes hurt after welding" matches the keyword "eye" and returns the rule on safety glasses – but the learner needs first aid. And "mittens" is not on the keyword list at all. A language model understands such paraphrases, but it can also produce answers that sound right and are wrong.</aside>
+</section>
+
+<!-- ===================== 14 VR/AR ===================== -->
+<section class="slide" data-block="apps" data-title="2.4 VR/AR and AI in skill training">
+<div class="inner">
+  <p class="kicker">Section 2.4 <span class="lo">LO1</span></p>
+  <h2>2.4 VR/AR and AI in Skill Training 🥽</h2>
+  <p class="lead">Conventional welding training is costly in material, time and infrastructure <span class="cite">(Lavrentieva et al., 2020)</span>.</p>
+  <div class="grid3">
+    <div class="card"><h3>🕶️ VR</h3><p class="small">a <b>fully virtual</b> workshop · controller or torch replica</p></div>
+    <div class="card"><h3>👓 AR</h3><p class="small">virtual workpiece, arc and seam <b>in the real room</b> · a real torch on a real workpiece holder</p></div>
+    <div class="card tint"><h3>🤖 Software / AI</h3><p class="small">tracks <b>torch angle</b>, <b>travel speed</b> and <b>distance</b>, scores every seam in real time · trainers can replay each exercise</p></div>
+  </div>
+  <div class="card frag" style="margin-top:.7rem"><p>🥽 <b>VR/AR welding:</b> safe, material-saving practice <span class="cite">(Lavrentieva et al., 2020)</span> · review of 42 studies: mostly <b>entry-level</b>, little evidence for distance learning <span class="cite">(Chan et al., 2022)</span></p><div class="chips"><span class="chip crit">costs</span><span class="chip crit">cybersickness</span><span class="chip crit">transfer to the real workshop</span></div></div>
+  <div class="grid2 frag" style="margin-top:.7rem">
+    <div class="callout"><span class="lab">Watch for (3 min · vendor video – watch critically)</span>Which data does the simulator collect? What can it <b>not</b> train that a real workshop does?<p class="small" style="margin-top:.4rem">Example from Germany: <a href="https://www.youtube.com/watch?v=loSmsC6ivuo" target="_blank" rel="noopener">AR welding lab at GSI SLV Nord, Hamburg (Seabery, 1.5 min) ↗</a></p></div>
+    <figure><div class="video" data-yt="wYRymhZrFmk" data-title="AugmentedArc augmented reality welding simulator" data-meta="Miller Welders · vendor video · 3:13"></div></figure>
+  </div>
+</div>
+<aside class="notes">Welding simulators are the best-known example of AI-supported skill training. Virtual reality puts you into a completely virtual workshop. Augmented reality shows virtual seams on top of the real environment, so you work with a real torch. The video is a vendor video, so watch it with a critical eye. Ask yourself what a simulator cannot train: heat, noise, smell, real material faults – and the transfer to the real workshop.</aside>
+</section>
+
+<!-- ===================== 15 PIPELINE ===================== -->
+<section class="slide" data-block="apps" data-title="2.5 How an early-warning system works">
+<div class="inner">
+  <p class="kicker">Section 2.5 <span class="lo">LO1</span> <span class="lo out">LO3</span></p>
+  <h2>2.5 Predictive Analytics: How an Early-Warning System Works 🚦</h2>
+  <div class="chain">
+    <div class="lk"><b>📁 Data</b><span>grades, attendance, background</span></div><span class="ar">→</span>
+    <div class="lk"><b>🧠 Model</b><span>learns from past cohorts</span></div><span class="ar">→</span>
+    <div class="lk"><b>📈 Risk score</b><span>0.0 … 1.0 per learner</span></div><span class="ar">→</span>
+    <div class="lk hl"><b>⚖️ Threshold</b><span>e.g. 0.5 – set by humans</span></div><span class="ar">→</span>
+    <div class="lk"><b>🚩 Action</b><span>conversation, support offer</span></div>
+  </div>
+  <div class="grid4 frag">
+    <div class="card"><h3>Recall</h3><p class="small">Of all learners who <b>really</b> drop out – how many does the system flag?</p></div>
+    <div class="card"><h3>Specificity</h3><p class="small">Of all learners who stay – how many does it correctly <b>leave alone</b>?</p></div>
+    <div class="card"><h3>Precision</h3><p class="small">Of all <b>flagged</b> learners – how many are really at risk?</p></div>
+    <div class="card"><h3>Accuracy</h3><p class="small">Of <b>all</b> decisions – how many are correct?</p></div>
+  </div>
+  <div class="callout main frag" style="margin-top:.8rem">⚖️ The <b>threshold</b> is a human decision: lower → more dropouts caught, but more false alarms.</div>
+</div>
+<aside class="notes">An early-warning system turns data into a risk score. Humans decide on a threshold above which a learner is flagged. And then humans act: a conversation, a support offer. Four terms help you to read the numbers. Recall asks how many real dropouts are found. Precision asks how many flagged learners are really at risk. Accuracy mixes everything – and that is the trap on the next slide.</aside>
+</section>
+
+<!-- ===================== 16 ACCURACY TRAP ===================== -->
+<section class="slide" data-block="apps" data-title="2.5 The accuracy trap">
+<div class="inner">
+  <p class="kicker">Section 2.5 · Playground <span class="lo">LO3</span></p>
+  <h2>2.5 Predictive Analytics: The Accuracy Trap 🪤</h2>
+  <blockquote class="def">14,495 students, dropout rate 8.5 %: a standard classifier recognised only <b>13 %</b> of dropouts – while being <b>99 %</b> right on those who stayed <span class="cite">(Gonzalez-Nucamendi et al., 2023)</span>.</blockquote>
+  <div class="acc" id="acc">
+    <div>
+      <div class="ctl"><div class="row"><label for="a-rate">Dropout rate</label><output id="o-rate"></output></div><input type="range" id="a-rate" min="1" max="30" step="0.5" value="8.5"></div>
+      <div class="ctl"><div class="row"><label for="a-rec">Recall – dropouts detected</label><output id="o-rec"></output></div><input type="range" id="a-rec" min="0" max="100" step="1" value="13"></div>
+      <div class="ctl"><div class="row"><label for="a-spec">Specificity – stayers left alone</label><output id="o-spec"></output></div><input type="range" id="a-spec" min="0" max="100" step="0.5" value="99"></div>
+      <p class="small" style="margin:.3rem 0 0"><b>Presets:</b></p>
+      <div class="presets"><button class="btn small" type="button" data-p="8.5,13,99">Study values</button><button class="btn small" type="button" data-p="8.5,0,100">Flag nobody</button><button class="btn small" type="button" data-p="8.5,100,0">Flag everybody</button><button class="btn small" type="button" data-p="8.5,60,85">Lower threshold</button></div>
+      <p class="small muted" style="margin-top:.7rem">Calculator for illustration, using the study's sample size and dropout rate. In the study, adjusting the decision threshold raised dropout precision above 50 %. "Lower threshold" uses illustrative values.</p>
+    </div>
+    <div>
+      <div class="cm" id="cm"></div>
+      <div class="hbars" id="acc-bars"></div>
+      <div class="verdict" id="acc-verdict" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+<aside class="notes">With the original values, accuracy looks great at over ninety percent. But a system that flags nobody at all is almost as accurate. Move the recall slider up and watch what happens to false alarms – and try the presets "flag nobody" and "flag everybody". This is why accuracy alone tells you very little about an early-warning system.</aside>
+</section>
+
+<!-- ===================== 17 PRECISION RECALL ===================== -->
+<section class="slide" data-block="apps" data-title="Explore: precision and recall">
+<div class="inner">
+  <p class="kicker">Explorable <span class="lo">LO3</span></p>
+  <h2>Explore: Precision &amp; Recall 🔍</h2>
+  <p><b>Try it:</b> Scroll through the explorable and move the decision threshold. Find the point where you would set it for a dropout early-warning system – and say why.</p>
+  <div class="grid2" style="grid-template-columns:1.5fr 1fr">
+    <figure><div class="embed" data-src="https://mlu-explain.github.io/precision-recall/" data-h="460" data-title="MLU-Explain: Precision &amp; Recall" data-meta="Amazon Machine Learning University · interactive article"></div></figure>
+    <div class="quiz" data-survey><p class="q">Decide: what matters more for a dropout early-warning system?</p>
+      <div class="opts">
+        <button class="opt" data-fb="Fewer missed learners – but more false alarms. Acceptable if a flag only triggers a friendly support offer.">High recall – miss as few at-risk learners as possible</button>
+        <button class="opt" data-fb="Fewer false alarms – important if a flag labels or stigmatises learners. The price: more learners at risk are missed.">High precision – avoid false alarms and stigmatisation</button>
+        <button class="opt" data-fb="Exactly: the right threshold depends on what happens to flagged learners – and that is a pedagogical decision, not a technical one.">It depends on what happens to flagged learners</button>
+      </div><p class="fb"></p></div>
+  </div>
+</div>
+<aside class="notes">This explorable shows the same trade-off with a moving threshold. There is no right answer to the vote. If a flag only leads to a friendly support offer, false alarms cost little. If a flag leads to labelling a learner, precision becomes much more important.</aside>
+</section>
+
+<!-- ===================== 18 VOCATIONAL SCHOOLS ===================== -->
+<section class="slide" data-block="apps" data-title="Predictive analytics in vocational schools">
+<div class="inner">
+  <p class="kicker">Section 2.5 <span class="lo">LO1</span> <span class="lo out">LO3</span></p>
+  <h2>Predictive Analytics in Vocational Schools</h2>
+  <div class="grid2">
+    <div class="stack">
+      <div class="card frag"><h3>🏫 Istanbul, large vocational and technical high school</h3><p>A decision tree with oversampling identified at-risk students best; <b>parental education, family structure, financial hardship</b> were strong predictors <span class="cite">(Korkmaz &amp; Aydın, 2025)</span>.</p></div>
+      <div class="callout crit frag"><span class="lab">🚨 Remember S02</span>Predictors like family background are exactly where <b>bias and stigmatisation</b> start – and such systems can be <b>high-risk</b> under the EU AI Act.</div>
+    </div>
+    <div class="frag">
+      <p><b>Explore fairness trade-offs interactively:</b></p>
+      <figure><div class="embed" data-src="https://pair.withgoogle.com/explorables/measuring-fairness/" data-h="420" data-title="PAIR Explorable: Measuring Fairness" data-meta="Google People + AI Research"></div></figure>
+      <p class="small" style="margin-top:.4rem">Also: <a href="https://pair.withgoogle.com/explorables/hidden-bias/" target="_blank" rel="noopener">PAIR: Hidden Bias ↗</a></p>
+    </div>
+  </div>
+</div>
+<aside class="notes">A study from a large vocational and technical high school shows which data such systems use. Family background predicts dropout – and exactly here bias and stigmatisation begin. Explore the fairness explorable: it shows that you cannot make a model fair on all measures at the same time.</aside>
+</section>
+
+<!-- ===================== 19 CURRICULUM ===================== -->
+<section class="slide" data-block="apps" data-title="2.6 Curriculum alignment">
+<div class="inner">
+  <p class="kicker">Section 2.6 <span class="lo">LO1</span></p>
+  <h2>2.6 Curriculum Alignment 📊</h2>
+  <div class="chain">
+    <div class="lk"><b>📰 Job ads</b><span>millions of online vacancies</span></div><span class="ar">→</span>
+    <div class="lk hl"><b>🤖 AI text classification</b><span>occupations &amp; skills</span></div><span class="ar">→</span>
+    <div class="lk"><b>🗂️ ESCO skills</b><span>common EU vocabulary</span></div><span class="ar">→</span>
+    <div class="lk"><b>🔍 Compare</b><span>with the training regulation</span></div><span class="ar">→</span>
+    <div class="lk"><b>📘 Update</b><span>the curriculum</span></div>
+  </div>
+  <div class="frag">
+    <p>AI analyses labour-market data to spot emerging skills and update curricula faster <span class="cite">(Ejjami, 2024)</span>. <b>3E model</b> – tested with 10 vocational schools and 15 industry partners <span class="cite">(Liao &amp; Zheng, 2025)</span>:</p>
+    <div class="grid3" style="gap:.6rem">
+      <div class="card tint"><h3>E · Education</h3><p class="small">AI curriculum design</p></div>
+      <div class="card tint"><h3>E · Experience</h3><p class="small">VR training</p></div>
+      <div class="card tint"><h3>E · Employment</h3><p class="small">industry partnerships, AI labour-market scans</p></div>
+    </div>
+  </div>
+  <div class="grid2" style="margin-top:.7rem">
+    <div class="card warn frag"><p>⚠️ Unequal access and biased algorithms can <b>widen inequalities</b>. Needed: infrastructure, continuous teacher training, new roles such as <i>Vocational AI Curriculum Developer</i> or <i>AI Data Protection Specialist</i> <span class="cite">(Ejjami, 2024)</span>.</p></div>
+    <div class="frag">
+      <p class="small">🇪🇺 <b>Real example:</b> Cedefop's <i>Skills-OVATE</i> analyses millions of online job advertisements from European countries and shows which occupations and skills employers ask for <span class="cite">(Cedefop, n.d.)</span>.</p>
+      <figure><div class="video" data-yt="QLpoxIgfWTY" data-title="Skills-OVATE: online vacancy analysis tool for Europe" data-meta="Cedefop · 1:07"></div></figure>
+    </div>
+  </div>
+</div>
+<aside class="notes">Curriculum alignment uses AI on the other side of education: not on the learner, but on the labour market. Text classification sorts job advertisements into occupations and skills, and these can be compared with what the training regulations cover. A real example from the European Centre for the Development of Vocational Training: Skills-OVATE analyses online job ads across Europe. The data are a complement to other sources, not a replacement.</aside>
+</section>
+
+<!-- ===================== 20 ESCO ===================== -->
+<section class="slide" data-block="apps" data-title="Try it: your occupation in ESCO">
+<div class="inner">
+  <p class="kicker">Try it <span class="lo">LO1</span> <span class="timer" data-sec="180" data-label="Task"></span></p>
+  <h2>Try It: Your Occupation in ESCO 🔎</h2>
+  <p class="lead">ESCO – the European classification of <b>S</b>kills, <b>C</b>ompetences, Qualifications and <b>O</b>ccupations – is the vocabulary that tools like Skills-OVATE use.</p>
+  <div class="grid2">
+    <div class="stack">
+      <div class="chain" style="flex-direction:column">
+        <div class="lk"><b>1 · Open ESCO</b><span><a href="https://esco.ec.europa.eu/en/classification/occupation_main" target="_blank" rel="noopener">ESCO: occupations ↗</a> (new tab)</span></div>
+        <div class="lk"><b>2 · Search an occupation</b><span>from your vocational field, e.g. <i>mechatronics technician</i> or <i>electrician</i></span></div>
+        <div class="lk hl"><b>3 · Note three essential skills</b><span>and check: are they in the training regulation you know?</span></div>
+      </div>
+    </div>
+    <div class="stack">
+      <label class="f" for="esco-skill">Share: which skill would you add to the curriculum?</label>
+      <textarea id="esco-skill" data-store="esco"></textarea>
+      <div class="quiz" data-survey><p class="q">Did you find a skill the training regulation does not (yet) cover?</p>
+        <div class="opts row"><button class="opt">Yes</button><button class="opt">No</button><button class="opt">Not sure</button></div><p class="fb"></p></div>
+    </div>
+  </div>
+</div>
+<aside class="notes">Take three minutes. This is exactly the comparison that AI-based curriculum tools automate on a large scale. Doing it by hand once shows you how much interpretation it needs.</aside>
+</section>
+
+<!-- ===================== 21 AGENTS ===================== -->
+<section class="slide" data-block="agents" data-title="2.7 Current development: AI agents">
+<div class="inner">
+  <p class="kicker">Section 2.7 <span class="lo">LO2</span></p>
+  <h2>2.7 Current Development: AI Agents 🦾</h2>
+  <div class="grid2" style="grid-template-columns: 1fr 1.1fr">
+    <div class="stack">
+      <div class="grid2" style="gap:.6rem;grid-template-columns:1fr 1fr">
+        <div class="card"><h3>💬 Chatbot</h3><p class="small">one question → one answer</p></div>
+        <div class="card tint"><h3>🦾 Agent</h3><p class="small">one goal → plans steps, uses tools, checks results, tries again <span class="cite">(remember P03)</span></p></div>
+      </div>
+      <svg class="dia" viewBox="0 0 560 300" role="img" aria-label="Agent loop: plan, act with tools, observe, adjust – around a shared memory. Humans set the goal and approve the result.">
+        <defs><marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3e3f40"/></marker></defs>
+        <g><rect class="box focus" x="170" y="20" width="120" height="44" rx="22"/><text class="t1 focus-t" x="230" y="48">PLAN</text></g>
+        <g><rect class="box" x="300" y="128" width="120" height="44" rx="22"/><text class="t1" x="360" y="156">ACT</text></g>
+        <g><rect class="box" x="170" y="236" width="120" height="44" rx="22"/><text class="t1" x="230" y="264">OBSERVE</text></g>
+        <g><rect class="box" x="40" y="128" width="120" height="44" rx="22"/><text class="t1" x="100" y="156">ADJUST</text></g>
+        <path class="flow" d="M292,42 Q360,42 360,124" style="marker-end:url(#arrA)"/>
+        <path class="flow" d="M360,174 Q360,258 294,258" style="marker-end:url(#arrA)"/>
+        <path class="flow" d="M168,258 Q100,258 100,176" style="marker-end:url(#arrA)"/>
+        <path class="flow" d="M100,126 Q100,42 166,42" style="marker-end:url(#arrA)"/>
+        <circle cx="230" cy="150" r="38" fill="#f5ebf0" stroke="#bc7f9f" stroke-width="1.5"/><text class="t1" x="230" y="146" style="font-size:14px">🧠</text><text class="t2" x="230" y="166">memory</text>
+        <rect class="box alt" x="438" y="104" width="114" height="92" rx="8"/><text class="t1" x="495" y="130" style="font-size:14px">🔧 Tools</text><text class="t2" x="495" y="152">web search</text><text class="t2" x="495" y="170">files · code</text>
+        <path class="flow soft" d="M422,150 L436,150"/>
+      </svg>
+      <p class="small muted" style="margin:0">✋ Humans set the goal and approve the result.</p>
+    </div>
+    <div class="stack">
+      <div class="card frag"><h3>🔧 In TVET (illustrative)</h3>
+        <ul class="small"><li><b>Tutor agent</b> – plans an apprentice's revision week from the errors in the tutoring log and schedules matching tasks</li>
+        <li><b>Course-building agent</b> – drafts learning nuggets step by step, e.g. the open-source <a href="https://github.com/LiaScript/teaching-agent" target="_blank" rel="noopener">LiaScript teaching-agent ↗</a>: outline → didactics → agenda → sessions → materials, with approval at every step</li></ul></div>
+      <div class="callout crit frag"><span class="lab">⚠️ The more autonomy, the more human oversight</span>Agents <i>act</i> – a wrong step is repeated quickly and at scale. High-risk AI systems must allow effective <b>human oversight</b> <span class="cite">(EU AI Act, Art. 14; European Union, 2024)</span>.</div>
+      <div class="frag">
+        <div class="callout"><span class="lab">🏠 At home – watch for</span>How does the video describe the step from a single model to a "compound AI system" – and what does the agent add?</div>
+        <figure style="margin-top:.5rem"><div class="video" data-yt="F8NKVhkZZWI" data-title="What are AI agents?" data-meta="IBM Technology · Maya Murad · 12:28" data-badge="🏠 at home"></div></figure>
+      </div>
+    </div>
+  </div>
+</div>
+<aside class="notes">The newest development is AI agents. A chatbot answers one question. An agent receives a goal, plans several steps, uses tools such as web search or files, observes the result and adjusts its plan. In vocational education, agents could plan revision for apprentices or build learning material. The LiaScript teaching-agent, for example, builds a course in phases and asks the author for approval at each phase. Because agents act on their own, a mistake is not one wrong answer – it can be a chain of wrong actions. That is why human oversight matters even more.</aside>
+</section>
+
+<!-- ===================== 22 AGENT STEPPER ===================== -->
+<section class="slide" data-block="agents" data-title="Playground: an agent builds your nugget">
+<div class="inner">
+  <p class="kicker">Playground <span class="lo">LO2</span></p>
+  <h2>Playground: An Agent Builds Your Nugget 🛠️</h2>
+  <p>Goal: <i>"Create a 15-minute LiaScript nugget: apprentices evaluate an AI diagnosis suggestion."</i> Step through the agent's work. At the <span style="color:var(--crit);font-weight:600">✋ checkpoints</span> you decide.</p>
+  <div class="grid2" style="grid-template-columns:1.25fr 1fr">
+    <div>
+      <div class="stepper" id="ag-steps" role="tablist" aria-label="Agent steps"></div>
+      <div class="agent-card" id="ag-card" aria-live="polite"></div>
+      <div class="row-actions"><button class="btn" id="ag-prev" type="button">◀ Back</button><button class="btn primary" id="ag-next" type="button">Next step ▶</button><button class="btn small" id="ag-reset" type="button">Reset</button><span class="score" id="ag-score"></span></div>
+    </div>
+    <div class="frag">
+      <div class="quiz" data-multi><p class="q">Decide: at which steps must you as the author check? (several answers)</p>
+        <div class="opts"><button class="opt" data-ok>Setting the goal and the target group</button><button class="opt" data-ok>Checking the sources the agent found</button><button class="opt">Fixing the syntax error the agent's own test found</button><button class="opt" data-ok>Approving the nugget before it is published</button></div>
+        <div class="row-actions"><button class="btn primary small q-check" type="button">Check</button></div>
+        <p class="fb"></p>
+        <div class="explain" hidden>Three checkpoints: the goal, the sources and the final approval. The syntax error is something an agent can safely fix on its own, because its own test shows whether the fix worked.</div></div>
+    </div>
+  </div>
+</div>
+<aside class="notes">Follow the agent step by step. The red frames mark the human checkpoints – try skipping one and see what happens. Three checkpoints matter: the goal, the sources and the final approval. The syntax error is a good example of what an agent can safely fix on its own, because its own test shows whether the fix worked.</aside>
+</section>
+
+<!-- ===================== 23 BREAK ===================== -->
+<section class="slide" data-block="brk" data-title="Break – 10 minutes">
+<div class="inner" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+  <div style="font-size:4rem">☕</div>
+  <h2>Break – 10 Minutes</h2>
+  <span class="timer big" data-sec="600" data-label=""></span>
+  <p class="lead" style="margin-top:1.2rem">After the break you <b>rate a real AI tool</b> for your vocational field.</p>
+  <div style="max-width:34rem;width:100%;text-align:left"><label class="f" for="brk-think">Think: which application from today would you test first in your field?</label><textarea id="brk-think" data-store="brk"></textarea></div>
+</div>
+<aside class="notes">Ten minutes break. When you come back, have the application you prepared at home ready – we evaluate it with the grid.</aside>
+</section>
+
+<!-- ===================== 24 EVALUATE ===================== -->
+<section class="slide" data-block="eval" data-title="3. Playground: evaluate an AI tool">
+<div class="inner">
+  <p class="kicker">Section 3 · Playground <span class="lo">LO3</span> <span class="timer" data-sec="480" data-label="Rate + compare"></span></p>
+  <h2>3. Playground: Evaluate an AI Tool 🔬</h2>
+  <div class="eval" id="eval">
+    <div>
+      <label class="f" for="ev-tool">Tool you evaluate</label>
+      <input type="text" id="ev-tool" value="AI welding simulator">
+      <div class="row-actions" style="margin:.5rem 0"><span class="small">Rating by:</span><span class="seg" id="ev-who"><button type="button" data-w="you" aria-pressed="true">You</button><button type="button" data-w="nb" aria-pressed="false">Your neighbour</button></span></div>
+      <p class="small muted" style="margin:0 0 .2rem">Rate 1 (poor) – 5 (excellent):</p>
+      <div id="ev-rows"></div>
+    </div>
+    <div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>You</span><span><i class="dot" style="background:var(--s2)"></i>Your neighbour</span><span><i style="background:var(--crit)"></i>weak spot (≤ 2)</span></div>
+      <div class="echart" id="ev-chart"></div>
+      <div class="verdict" id="ev-verdict" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+<aside class="notes">Use the grid for the application you prepared at home. Then switch to "Your neighbour" and enter your neighbour's rating of the same tool. Did you rate the same tool differently? Why? The biggest difference is your discussion starter.</aside>
+</section>
+
+<!-- ===================== 25 SIX SHIFTS ===================== -->
+<section class="slide" data-block="ped" data-title="4. AI in pedagogy: six shifts">
+<div class="inner">
+  <p class="kicker">Section 4 <span class="lo">LO4</span></p>
+  <h2>4. AI in Pedagogy: Six Shifts 🔄</h2>
+  <div class="grid3 frag" id="shifts"></div>
+  <p class="frag" style="margin-top:.8rem"><b>Vote:</b> Which shift matters most for your vocational field? Click a card. <span class="small muted">(Your vote stays in this browser – the class vote runs in the LiaScript classroom.)</span> <span class="small muted">TVET examples are illustrative.</span></p>
+</div>
+<aside class="notes">AI changes not only the tools, but teaching itself. Six shifts are visible in the research. Each card shows what it could mean in a vocational school or a training workshop. Vote for the shift that matters most in your field. We look at the result together and discuss what you would need as a teacher to handle it.</aside>
+</section>
+
+<!-- ===================== 26 HEUTAGOGY ===================== -->
+<section class="slide" data-block="ped" data-title="Playground: AI-augmented heutagogy">
+<div class="inner">
+  <p class="kicker">Playground <span class="lo">LO4</span></p>
+  <h2>Playground: AI-Augmented Heutagogy 🪜</h2>
+  <div class="pah"><div><b>Pedagogy</b>the teacher decides</div><span class="ar">→</span><div><b>Andragogy</b>the learner directs</div><span class="ar">→</span><div><b>Heutagogy</b>the learner determines goals, path and even assessment</div></div>
+  <div class="grid2" style="grid-template-columns:1.2fr 1fr">
+    <div>
+      <p style="margin-bottom:.3rem">Ng &amp; Lai (2025): three AI paradigms ↔ SOLO levels ↔ learner autonomy.</p>
+      <svg class="stair" id="stair" viewBox="0 0 600 270" role="img" aria-label="Staircase of three AI paradigms: AI-informed, AI-supported, AI-empowered, with rising learner autonomy and SOLO level">
+        <defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5f6163"/></marker></defs>
+        <path class="axisl" d="M30,130 L560,18"/><text class="axt" x="40" y="104" transform="rotate(-12 40 104)">learner autonomy · SOLO level ↑</text>
+        <g data-k="1"><rect x="20" y="180" width="180" height="80" rx="6"/><text class="nm" x="110" y="212">AI-informed</text><text class="sl" x="110" y="236">pre-/uni-structural</text></g>
+        <g data-k="2"><rect x="210" y="120" width="180" height="140" rx="6"/><text class="nm" x="300" y="152">AI-supported</text><text class="sl" x="300" y="176">multi-structural,</text><text class="sl" x="300" y="194">relational</text></g>
+        <g data-k="3"><rect x="400" y="60" width="180" height="200" rx="6"/><text class="nm" x="490" y="92">AI-empowered</text><text class="sl" x="490" y="116">extended abstract</text></g>
+      </svg>
+      <div class="ctl" style="margin-top:.5rem"><div class="row"><label for="heu">AI paradigm</label><output id="heu-o"></output></div><input type="range" id="heu" min="1" max="3" step="1" value="1"></div>
+    </div>
+    <div class="stack">
+      <div class="card accent" id="heu-card" aria-live="polite"></div>
+      <figure><div class="video" data-yt="1Ysim8-Gb7Y" data-title="Pedagogy, andragogy and heutagogy" data-meta="Rebecca J. Hogue · 0:55"></div></figure>
+    </div>
+  </div>
+  <p class="small muted" style="margin-top:.6rem">The TVET examples are illustrations; the framework itself comes from higher education. Fits continuing education and master-craftsperson training – needs changes to pedagogy, assessment, staff development and infrastructure.</p>
+</div>
+<aside class="notes">Move the slider from one to three. As the AI becomes more of a partner, the learner needs more autonomy and higher levels of understanding. Discuss: at which level are most apprentices in your field today?</aside>
+</section>
+
+<!-- ===================== 27 MC IDEA CHECK ===================== -->
+<section class="slide" data-block="mc" data-title="5. Micro-credential idea check">
+<div class="inner">
+  <p class="kicker">Section 5 · live <span class="lo">LO5</span></p>
+  <h2>5. Micro-credential Idea Check 💡</h2>
+  <p class="lead">Your final product: a <b>TVET micro-credential</b> with AI-supported LiaScript nuggets.</p>
+  <blockquote class="def">A <b>micro-credential</b> is the record of the learning outcomes that a learner has acquired following a small volume of learning. These learning outcomes have been assessed against transparent and clearly defined standards <span class="cite">(European Commission, 2021; Council of the European Union, 2022)</span>.</blockquote>
+  <div class="grid4 frag" id="mc-q"></div>
+</div>
+<aside class="notes">Now it is your turn. Your micro-credential is the core of the final assessment, and you pitch it on the nineteenth of November. Today we check the idea with eight questions. In session five you will describe it in detail with the EU template.</aside>
+</section>
+
+<!-- ===================== 28 CANVAS ===================== -->
+<section class="slide" data-block="mc" data-title="Playground: your idea canvas">
+<div class="inner">
+  <p class="kicker">Playground <span class="lo">LO5</span> <span class="timer" data-sec="600" data-label="Canvas"></span></p>
+  <h2>Playground: Your Idea Canvas 🖼️</h2>
+  <div class="grid2">
+    <div id="cv-fields"></div>
+    <div>
+      <div class="canvas-out" id="cv-out"></div>
+      <p id="cv-meta" style="margin-top:.5rem"></p>
+      <div class="row-actions"><button class="btn primary small" id="cv-copy" type="button">Copy as text</button><button class="btn small" id="cv-clear" type="button">Start my own (clear)</button><button class="btn small" id="cv-example" type="button">Load example</button><span class="small muted" id="cv-msg" aria-live="polite"></span></div>
+      <p class="small muted" style="margin-top:.5rem">Your canvas is saved in this browser only. Copy it into your AI tools log or notes.</p>
+    </div>
+  </div>
+</div>
+<aside class="notes">Replace the example with your own idea. Copy or screenshot your canvas, then present it to your group in ninety seconds.</aside>
+</section>
+
+<!-- ===================== 29 PEER FEEDBACK ===================== -->
+<section class="slide" data-block="mc" data-title="Peer feedback">
+<div class="inner">
+  <p class="kicker">Groups of three <span class="lo">LO5</span></p>
+  <h2>Peer Feedback 🤝</h2>
+  <div class="chain">
+    <div class="lk hl"><b>🎤 Pitch</b><span>90 seconds per idea</span><div style="margin-top:.4rem"><span class="timer" data-sec="90" data-label=""></span></div></div><span class="ar">→</span>
+    <div class="lk"><b>💬 Feedback</b><span>2 minutes per idea</span><div style="margin-top:.4rem"><span class="timer" data-sec="120" data-label=""></span></div></div><span class="ar">→</span>
+    <div class="lk"><b>🔁 Rotate</b><span>until all three have pitched</span></div>
+  </div>
+  <p>Each idea gets <b>one "What works"</b> and <b>one "What if …?"</b></p>
+  <div class="grid2">
+    <div><label class="f" for="pf-works">✅ What works</label><textarea id="pf-works" data-store="pfw"></textarea></div>
+    <div><label class="f" for="pf-whatif">❓ What if …?</label><textarea id="pf-whatif" data-store="pfi"></textarea></div>
+  </div>
+  <div class="quiz" data-survey style="margin-top:.6rem"><p class="q">How ready is your idea?</p>
+    <div class="opts row"><button class="opt">🌱 Just a seed</button><button class="opt">🌿 Growing</button><button class="opt">🌳 Ready for the EU template</button></div><p class="fb"></p></div>
+</div>
+<aside class="notes">Work in groups of three. Each of you pitches for ninety seconds, then the other two give one thing that works and one "what if" question. Keep the time – the timer is part of the training for your pitch.</aside>
+</section>
+
+<!-- ===================== 30 EXIT TICKET ===================== -->
+<section class="slide" data-block="exit" data-title="Exit ticket">
+<div class="inner">
+  <p class="kicker">One question per objective</p>
+  <h2>Exit Ticket 🎟️ <span class="score small" id="exit-score" style="font-size:1rem;margin-left:.6rem"></span></h2>
+  <div class="grid2" id="exit">
+    <div class="quiz" data-group="exit" data-hint="Think of the inner loop."><p class="q"><span class="lo">LO1</span> A system gives step-by-step hints while an apprentice solves a fault-finding task. It is …</p>
+      <div class="opts"><button class="opt">a predictive analytics system</button><button class="opt" data-ok>an intelligent tutoring system</button><button class="opt">a curriculum alignment tool</button></div><p class="fb"></p></div>
+    <div class="quiz" data-group="exit" data-hint="Remember the reference check in S02."><p class="q"><span class="lo">LO2</span> An agent drafted your nugget and cites five sources. What is your job?</p>
+      <div class="opts"><button class="opt">Nothing – the agent tested its own output</button><button class="opt" data-ok>Check every reference and the content before publishing</button><button class="opt">Only fix the layout</button></div><p class="fb"></p></div>
+    <div class="quiz" data-group="exit" data-hint="A system that flags nobody is already 91.5 % accurate."><p class="q"><span class="lo">LO3</span> An early-warning system is 92 % accurate; 8.5 % of learners drop out. What do you ask first?</p>
+      <div class="opts"><button class="opt" data-ok>How many of the real dropouts does it detect (recall)?</button><button class="opt">Which programming language was used?</button><button class="opt">Nothing – 92 % is excellent</button></div><p class="fb"></p></div>
+    <div class="quiz" data-group="exit" data-hint="Think of slider position 3."><p class="q"><span class="lo">LO4</span> In the <i>AI-empowered</i> paradigm (Ng &amp; Lai, 2025), the learner …</p>
+      <div class="opts"><button class="opt">receives a progress dashboard and is guided strongly by the teacher</button><button class="opt" data-ok>uses AI as a partner for open, complex problems with full autonomy</button><button class="opt">does not use AI at all</button></div><p class="fb"></p></div>
+    <div class="quiz" data-group="exit" data-hint="Look for an observable action verb."><p class="q"><span class="lo">LO5</span> Which learning outcome follows <i>verb + content + context</i>?</p>
+      <div class="opts"><button class="opt">Learners understand AI.</button><button class="opt">Learners will learn about AI diagnosis tools.</button><button class="opt" data-ok>Learners can evaluate an AI diagnosis suggestion against measurement data in the workshop.</button></div><p class="fb"></p></div>
+  </div>
+</div>
+<aside class="notes">One question per learning objective. Answer them alone, then we look at the class results together.</aside>
+</section>
+
+<!-- ===================== 31 NEXT ===================== -->
+<section class="slide" data-block="exit" data-title="Next: session 5">
+<div class="inner">
+  <p class="kicker">Outlook</p>
+  <h2>Next: Session 5 📅</h2>
+  <div class="grid2">
+    <div class="stack">
+      <div class="card tint"><h3>12.11.2026 · 🔵 Self-learning</h3><p>Describe your micro-credential with the <b>EU template</b> and start your learning nuggets.</p><p>✍️ Revise your idea with today's feedback.</p></div>
+      <div class="card"><h3>🏠 Optional videos</h3><ul class="small" style="margin:0"><li><a href="https://www.youtube.com/watch?v=hJP5GqnTrNo" target="_blank" rel="noopener">Sal Khan: How AI could save (not destroy) education – TED, 15 min ↗</a></li><li><a href="https://www.youtube.com/watch?v=F8NKVhkZZWI" target="_blank" rel="noopener">IBM Technology: What are AI agents? – 12 min ↗</a></li><li><a href="https://www.youtube.com/watch?v=Ia3CPhVkUtg" target="_blank" rel="noopener">60 Minutes: Meet Khanmigo – 13 min ↗</a></li></ul></div>
+    </div>
+    <div>
+      <h3>Rate yourself again: where are you now?</h3>
+      <div class="objs rate" data-key="end">
+        <div class="obj" data-lo="LO1" style="grid-template-columns:3.4rem 1fr auto"><span class="lo">LO1</span><span>Six application areas</span><span class="seg"></span></div>
+        <div class="obj" data-lo="LO2" style="grid-template-columns:3.4rem 1fr auto"><span class="lo">LO2</span><span>AI agents &amp; oversight</span><span class="seg"></span></div>
+        <div class="obj" data-lo="LO3" style="grid-template-columns:3.4rem 1fr auto"><span class="lo">LO3</span><span>Evaluating an AI tool</span><span class="seg"></span></div>
+        <div class="obj" data-lo="LO4" style="grid-template-columns:3.4rem 1fr auto"><span class="lo">LO4</span><span>AI in pedagogy</span><span class="seg"></span></div>
+        <div class="obj" data-lo="LO5" style="grid-template-columns:3.4rem 1fr auto"><span class="lo">LO5</span><span>My micro-credential idea</span><span class="seg"></span></div>
+      </div>
+      <h3 style="margin-top:.9rem">Start → now</h3>
+      <div class="legend"><span><i class="dot" style="background:#fff;border:2px solid #86b6ef"></i>start of session</span><span><i class="dot" style="background:var(--s1)"></i>now</span></div>
+      <div class="cmp" id="cmp"></div>
+    </div>
+  </div>
+</div>
+<aside class="notes">Compare your rating with the start of the session. Next week is a self-learning week: you describe your micro-credential with the EU template and start your first learning nuggets.</aside>
+</section>
+
+<!-- ===================== 32 REFERENCES ===================== -->
+<section class="slide" data-block="refs" data-title="References">
+<div class="inner">
+  <h2>References</h2>
+  <div class="refs">
+    <p>Arnau-González, P., Solera-Monforte, S., Wu, Y., &amp; Arevalillo-Herráez, M. (2025). A framework for adapting conversational intelligent tutoring systems to enable collaborative learning. <i>Expert Systems with Applications, 271</i>, 126663. <a href="https://doi.org/10.1016/j.eswa.2025.126663">https://doi.org/10.1016/j.eswa.2025.126663</a></p>
+    <p>Bloom, B. S. (1984). The 2 sigma problem: The search for methods of group instruction as effective as one-to-one tutoring. <i>Educational Researcher, 13</i>(6), 4–16. <a href="https://doi.org/10.3102/0013189X013006004">https://doi.org/10.3102/0013189X013006004</a></p>
+    <p>Cedefop. (n.d.). <i>Skills-OVATE: Skills online vacancy analysis tool for Europe</i>. <a href="https://www.cedefop.europa.eu/en/tools/skills-ovate">https://www.cedefop.europa.eu/en/tools/skills-ovate</a></p>
+    <p>Celik, I., Muukkonen, H., &amp; Siklander, S. (2025). Teacher – artificial intelligence (AI) interaction. <i>Policy Futures in Education, 24</i>(1), 164–188. <a href="https://doi.org/10.1177/14782103251348551">https://doi.org/10.1177/14782103251348551</a></p>
+    <p>Chan, V. S., Haron, H. N. H., Isham, M. I. B. M., &amp; Mohamed, F. B. (2022). VR and AR virtual welding for psychomotor skills: A systematic review. <i>Multimedia Tools and Applications, 81</i>, 12459–12493. <a href="https://doi.org/10.1007/s11042-022-12293-5">https://doi.org/10.1007/s11042-022-12293-5</a></p>
+    <p>Chang, D. H., Lin, M. P.-C., Hajian, S., &amp; Wang, Q. Q. (2023). Educational design principles of using AI chatbot that supports self-regulated learning in education. <i>Sustainability, 15</i>(17), 12921. <a href="https://doi.org/10.3390/su151712921">https://doi.org/10.3390/su151712921</a></p>
+    <p>Council of the European Union. (2022). <i>Council Recommendation of 16 June 2022 on a European approach to micro-credentials for lifelong learning and employability</i> (2022/C 243/02). <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022H0627(02)">EUR-Lex</a></p>
+    <p>du Plooy, E., Casteleijn, D., &amp; Franzsen, D. (2024). Personalized adaptive learning in higher education: A scoping review. <i>Heliyon, 10</i>(21), e39630. <a href="https://doi.org/10.1016/j.heliyon.2024.e39630">https://doi.org/10.1016/j.heliyon.2024.e39630</a></p>
+    <p>Ejjami, R. (2024). AI's impact on vocational training and employability. <i>International Journal for Multidisciplinary Research, 6</i>(4). <a href="https://doi.org/10.36948/ijfmr.2024.v06i04.24967">https://doi.org/10.36948/ijfmr.2024.v06i04.24967</a></p>
+    <p>European Commission. (2021). <i>A European approach to micro-credentials</i> [Factsheet]. Publications Office of the European Union.</p>
+    <p>European Union. (2024). <i>Regulation (EU) 2024/1689 (Artificial Intelligence Act)</i>. <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj">https://eur-lex.europa.eu/eli/reg/2024/1689/oj</a></p>
+    <p>Gonzalez-Nucamendi, A., Noguez, J., Neri, L., Robledo-Rella, V., &amp; García-Castelán, R. M. G. (2023). Predictive analytics study to determine undergraduate students at risk of dropout. <i>Frontiers in Education, 8</i>, 1244686. <a href="https://doi.org/10.3389/feduc.2023.1244686">https://doi.org/10.3389/feduc.2023.1244686</a></p>
+    <p>Kabudi, T., Pappas, I., &amp; Olsen, D. H. (2021). AI-enabled adaptive learning systems: A systematic mapping of the literature. <i>Computers and Education: Artificial Intelligence, 2</i>, 100017. <a href="https://doi.org/10.1016/j.caeai.2021.100017">https://doi.org/10.1016/j.caeai.2021.100017</a></p>
+    <p>Korkmaz, Ö., &amp; Aydın, M. N. (2025). Detection of early school drop out in vocational and technical high schools in Turkey. <i>SAGE Open, 15</i>(3). <a href="https://doi.org/10.1177/21582440251370443">https://doi.org/10.1177/21582440251370443</a></p>
+    <p>Lavrentieva, O. O., Arkhypov, I. O., Kuchma, O. I., &amp; Uchitel, A. D. (2020). Use of simulators together with virtual and augmented reality in the system of welders' vocational training. <i>CEUR Workshop Proceedings, 2547</i>, 201–216. <a href="https://ceur-ws.org/Vol-2547/paper15.pdf">https://ceur-ws.org/Vol-2547/paper15.pdf</a></p>
+    <p>Liao, J., &amp; Zheng, Y. (2025). Integrating artificial intelligence into vocational education: A technical application framework based on the 3E model. ACM. <a href="https://doi.org/10.1145/3745238.3745471">https://doi.org/10.1145/3745238.3745471</a></p>
+    <p>Mendoza, S., Sánchez-Adame, L. M., Urquiza-Yllescas, J. F., González-Beltrán, B. A., &amp; Decouchant, D. (2022). A model to develop chatbots for assisting the teaching and learning process. <i>Sensors, 22</i>(15), 5532. <a href="https://doi.org/10.3390/s22155532">https://doi.org/10.3390/s22155532</a></p>
+    <p>Ng, S. H. S., &amp; Lai, J. W. (2025). AI-augmented heutagogy. <i>Higher Education Research &amp; Development</i>. <a href="https://doi.org/10.1080/07294360.2025.2564977">https://doi.org/10.1080/07294360.2025.2564977</a></p>
+    <p>Ning, Y., Zhang, C., Xu, B., Zhou, Y., &amp; Wijaya, T. T. (2024). Teachers' AI-TPACK. <i>Sustainability, 16</i>(3), 978. <a href="https://doi.org/10.3390/su16030978">https://doi.org/10.3390/su16030978</a></p>
+    <p>Okonkwo, C. W., &amp; Ade-Ibijola, A. (2021). Chatbots applications in education: A systematic review. <i>Computers and Education: Artificial Intelligence, 2</i>, 100033. <a href="https://doi.org/10.1016/j.caeai.2021.100033">https://doi.org/10.1016/j.caeai.2021.100033</a></p>
+    <p>Schmager, S., Pappas, I. O., &amp; Vassilakopoulou, P. (2025). Understanding human-centred AI: A review of its defining elements and a research agenda. <i>Behaviour &amp; Information Technology, 44</i>(15), 3771–3810. <a href="https://doi.org/10.1080/0144929X.2024.2448719">https://doi.org/10.1080/0144929X.2024.2448719</a></p>
+    <p>Strielkowski, W., Grebennikova, V., Lisovskiy, A., Rakhimova, G., &amp; Vasileva, T. (2025). AI-driven adaptive learning for sustainable educational transformation. <i>Sustainable Development, 33</i>, 1921–1947. <a href="https://doi.org/10.1002/sd.3221">https://doi.org/10.1002/sd.3221</a></p>
+    <p>VanLehn, K. (2006). The behavior of tutoring systems. <i>International Journal of Artificial Intelligence in Education, 16</i>(3), 227–265.</p>
+    <p>VanLehn, K. (2011). The relative effectiveness of human tutoring, intelligent tutoring systems, and other tutoring systems. <i>Educational Psychologist, 46</i>(4), 197–221. <a href="https://doi.org/10.1080/00461520.2011.611369">https://doi.org/10.1080/00461520.2011.611369</a></p>
+    <p>Wang, H., Tlili, A., Huang, R., et al. (2023). Examining the applications of intelligent tutoring systems in real educational contexts. <i>Education and Information Technologies, 28</i>(7), 9113–9148. <a href="https://doi.org/10.1007/s10639-022-11555-x">https://doi.org/10.1007/s10639-022-11555-x</a></p>
+    <p>Weizenbaum, J. (1966). ELIZA – A computer program for the study of natural language communication between man and machine. <i>Communications of the ACM, 9</i>(1), 36–45. <a href="https://doi.org/10.1145/365153.365168">https://doi.org/10.1145/365153.365168</a></p>
+    <p>Zhao, Y., &amp; Ko, J. (2024). Orchestrating vocational education classrooms for adaptive instruction and collaborative learning. <i>Cogent Education, 11</i>(1). <a href="https://doi.org/10.1080/2331186X.2024.2351238">https://doi.org/10.1080/2331186X.2024.2351238</a></p>
+    <p><b>Videos:</b> AI-ALOE. <i>Meet Jill Watson</i> (4:31) · Cedefop. <i>Skills-OVATE</i> (1:07) · Hogue, R. J. <i>Pedagogy, andragogy, and heutagogy</i> (0:55) · IBM Technology. <i>What are AI agents?</i> (12:28) · Miller Welders. <i>AugmentedArc</i> (3:13) · 60 Minutes. <i>Meet Khanmigo</i> (13:18) · Seabery. <i>AR welding lab GSI SLV</i> (1:38) · SparkLearn. <i>Is adaptive learning what you think it is?</i> (3:00) · TED. <i>Sal Khan: How AI could save (not destroy) education</i> (15:37) – all on YouTube, linked on the slides.</p>
+    <p><b>Interactive tools:</b> <a href="https://www.masswerk.at/elizabot/eliza.html">ELIZA (1966)</a> · <a href="https://esco.ec.europa.eu/en/classification/occupation_main">ESCO classification</a> · <a href="https://github.com/LiaScript/teaching-agent">LiaScript teaching-agent</a> · <a href="https://mlu-explain.github.io/precision-recall/">MLU-Explain: Precision &amp; Recall</a> · <a href="https://pair.withgoogle.com/explorables/measuring-fairness/">PAIR: Measuring Fairness</a> · <a href="https://pair.withgoogle.com/explorables/hidden-bias/">PAIR: Hidden Bias</a></p>
+  </div>
+  <p class="small muted" style="margin-top:.8rem">Licence: CC BY 4.0 · Dr. Hannes Tegelbeckers, OVGU Magdeburg · Created with AI support (Claude), based on the self-learning unit S04 and the LiaScript slides P04; checked by the author. Videos and external tools are subject to their own licences.</p>
+</div>
+<aside class="notes">All references, videos and interactive tools of this session.</aside>
+</section>
+
+</main>
+
+<div class="notes-panel" id="notes" aria-live="polite"><h4>Speaker notes</h4><div id="notes-txt"></div></div>
+
+<nav class="botbar" aria-label="Slide navigation">
+  <div class="progress" id="prog"></div>
+  <button class="cbtn nav" id="b-prev" type="button" aria-label="Previous (left arrow)">◀</button>
+  <span class="counter" id="cnt"></span>
+  <button class="cbtn nav" id="b-next" type="button" aria-label="Next (right arrow or space)">▶</button>
+  <span class="steps" id="stp" aria-hidden="true"></span>
+  <span class="spacer"></span>
+  <button class="cbtn" id="b-ov" type="button" title="Overview (O)">☰ Overview</button>
+  <button class="cbtn" id="b-notes" type="button" title="Speaker notes (N)" aria-pressed="false">🗒 Notes</button>
+  <button class="cbtn" id="b-fs" type="button" title="Full screen (F)">⛶</button>
+  <button class="cbtn" id="b-scroll" type="button" title="Scroll view (S)">📜</button>
+  <button class="cbtn" id="b-help" type="button" title="Help (?)">?</button>
+</nav>
+
+<div class="overview" id="ov" role="dialog" aria-label="Slide overview"><div class="ov-head"><h2>Overview</h2><button class="cbtn" id="ov-close" type="button">Close (Esc)</button></div><div class="ov-grid" id="ov-grid"></div></div>
+
+<dialog id="help">
+  <h3 style="margin-top:0">Keyboard</h3>
+  <table>
+    <tr><td><kbd>→</kbd> <kbd>Space</kbd> <kbd>PgDn</kbd></td><td>next step / slide</td></tr>
+    <tr><td><kbd>←</kbd> <kbd>PgUp</kbd></td><td>previous</td></tr>
+    <tr><td><kbd>Home</kbd> <kbd>End</kbd></td><td>first / last slide</td></tr>
+    <tr><td><kbd>O</kbd></td><td>overview</td></tr>
+    <tr><td><kbd>N</kbd></td><td>speaker notes</td></tr>
+    <tr><td><kbd>F</kbd></td><td>full screen</td></tr>
+    <tr><td><kbd>S</kbd></td><td>scroll view (all slides on one page)</td></tr>
+    <tr><td><kbd>P</kbd></td><td>print / save as PDF</td></tr>
+  </table>
+  <p class="small">Videos and external explorables load only after you click them (privacy). Your inputs are saved only in this browser.</p>
+  <form method="dialog"><button class="btn primary">Close</button></form>
+</dialog>
+<div id="tip" role="tooltip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+<script>
+(function () {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('p04.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('p04.' + k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+};
+const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const LIA = 'https://liascript.github.io/course/?https://raw.githubusercontent.com/OVGU-VET-TechEd/AI_in_TVET_I_WiSe_2026_2027/main/Presentations/P04_Applications_of_AI_in_TVET.md';
+
+/* ---------------- blocks / time plan ---------------- */
+const BLOCKS = {
+  start: { label: 'Session 4 · 05.11.2026', time: '150 min', lo: [] },
+  q: { label: 'Your questions', time: '0:00 · 15 min', lo: [] },
+  lo: { label: 'Objectives & route', time: '0:15 · 5 min', lo: [] },
+  apps: { label: '1–2.6 Six application areas', time: '0:20 · 40 min', lo: ['LO1', 'LO3'] },
+  agents: { label: '2.7 AI agents', time: '1:00 · 12 min', lo: ['LO2'] },
+  brk: { label: '☕ Break', time: '1:12 · 10 min', lo: [] },
+  eval: { label: '3 Evaluate an AI tool', time: '1:22 · 15 min', lo: ['LO3'] },
+  ped: { label: '4 AI in pedagogy', time: '1:37 · 15 min', lo: ['LO4'] },
+  mc: { label: '5 Micro-credential idea check', time: '1:52 · 33 min', lo: ['LO5'] },
+  exit: { label: 'Exit ticket & outlook', time: '2:25 · 5 min', lo: ['LO1–5'] },
+  refs: { label: 'References', time: '', lo: [] }
+};
+const ROUTE = [
+  ['0:00', 'Your questions from S02/S03', [], 'Classroom poll, Q&A', 15, 'q'],
+  ['0:15', 'Objectives & route', [], 'Self-rating', 5, 'lo'],
+  ['0:20', '1–2.6 Six application areas', ['LO1', 'LO3'], 'Game, videos, adaptive-engine simulator, chatbot test, accuracy trap, ESCO', 40, 'apps'],
+  ['1:00', '2.7 AI agents', ['LO2'], 'Agent step-through', 12, 'agents'],
+  ['1:12', '☕ Break', [], '', 10, 'brk'],
+  ['1:22', '3 Evaluate an AI tool', ['LO3'], 'Evaluation grid, compare in pairs', 15, 'eval'],
+  ['1:37', '4 AI in pedagogy', ['LO4'], 'Vote, heutagogy slider', 15, 'ped'],
+  ['1:52', '5 Micro-credential idea check', ['LO5'], 'Idea canvas, 90-second pitches, peer feedback', 33, 'mc'],
+  ['2:25', 'Exit ticket & outlook', ['all'], 'Quiz, self-rating', 5, 'exit']
+];
+
+/* ---------------- deck engine ---------------- */
+const slides = $$('.slide');
+const N = slides.length;
+let cur = 0, step = 0;
+const frags = i => $$('.frag', slides[i]);
+const firstOf = blk => slides.findIndex(s => s.dataset.block === blk);
+const body = document.body;
+const isScroll = () => body.classList.contains('scroll');
+
+function pauseMedia(slide) {
+  $$('.video iframe', slide).forEach(f => { try { f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*'); } catch (e) { } });
+}
+function chrome() {
+  const s = slides[cur], b = BLOCKS[s.dataset.block] || BLOCKS.start;
+  $('#blk').innerHTML = `<span>${esc(b.label)}</span>${b.time ? `<span class="time">· ${esc(b.time)}</span>` : ''}${b.lo.map(l => `<span class="lo">${esc(l)}</span>`).join('')}`;
+  $('#cnt').textContent = `${cur + 1} / ${N}`;
+  $('#prog').style.width = ((cur + 1) / N * 100) + '%';
+  const f = frags(cur);
+  $('#stp').innerHTML = f.map((_, j) => `<i class="${j < step ? 'on' : ''}"></i>`).join('');
+  const n = $('.notes', s);
+  $('#notes-txt').textContent = n ? n.textContent : '';
+  $('#live').textContent = `Slide ${cur + 1} of ${N}: ${s.dataset.title || ''}`;
+  $('#b-prev').disabled = cur === 0 && step === 0;
+  $('#b-next').disabled = cur === N - 1 && step === f.length;
+}
+function render(scrollToFrag) {
+  slides.forEach((s, i) => { s.classList.toggle('active', i === cur); s.setAttribute('aria-hidden', i === cur ? 'false' : 'true'); });
+  const f = frags(cur);
+  f.forEach((el, j) => el.classList.toggle('on', j < step));
+  if (scrollToFrag && step > 0) f[step - 1].scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
+  chrome();
+  try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) { }
+}
+function go(i, st) {
+  i = Math.max(0, Math.min(N - 1, i));
+  if (isScroll()) { slides[i].scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }); cur = i; chrome(); return; }
+  if (i !== cur) { pauseMedia(slides[cur]); cur = i; const inn = $('.inner', slides[cur]); if (inn) inn.scrollTop = 0; }
+  step = Math.max(0, Math.min(st || 0, frags(cur).length));
+  render(false);
+}
+function next() {
+  if (isScroll()) return;
+  if (step < frags(cur).length) { step++; render(true); }
+  else if (cur < N - 1) go(cur + 1, 0);
+}
+function prev() {
+  if (isScroll()) return;
+  if (step > 0) { step--; render(false); }
+  else if (cur > 0) go(cur - 1, frags(cur - 1).length);
+}
+function fromHash() {
+  const m = /^#(\d+)$/.exec(location.hash);
+  if (m) go(parseInt(m[1], 10) - 1, 0);
+}
+
+/* modes */
+const mq = matchMedia('(max-width: 820px), (max-height: 480px)');
+let forced = store.get('mode', null);
+function applyMode() {
+  const sc = forced === 'scroll' ? true : forced === 'present' ? false : mq.matches;
+  body.classList.toggle('scroll', sc);
+  body.classList.toggle('present', !sc);
+  document.documentElement.classList.toggle('present-root', !sc);
+  $('#b-scroll').setAttribute('aria-pressed', sc ? 'true' : 'false');
+  if (!sc) render(false); else { slides.forEach(s => s.removeAttribute('aria-hidden')); chrome(); }
+}
+if (mq.addEventListener) mq.addEventListener('change', applyMode); else mq.addListener(applyMode);
+function toggleScroll() {
+  const sc = !isScroll();
+  forced = sc ? 'scroll' : 'present';
+  store.set('mode', forced);
+  const keep = cur;
+  applyMode();
+  if (sc) slides[keep].scrollIntoView();
+}
+/* scroll mode: follow the visible slide */
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => {
+    if (!isScroll()) return;
+    es.forEach(e => { if (e.isIntersecting) { cur = slides.indexOf(e.target); step = frags(cur).length; chrome(); } });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  slides.forEach(s => io.observe(s));
+}
+
+/* overview */
+function openOverview() {
+  $('#ov-grid').innerHTML = slides.map((s, i) => `<button type="button" class="ov-item${i === cur ? ' cur' : ''}" data-i="${i}"><b>${i + 1} · ${esc((BLOCKS[s.dataset.block] || {}).label || '')}</b>${esc(s.dataset.title || '')}</button>`).join('');
+  $('#ov').classList.add('open');
+  const c = $('.ov-item.cur'); if (c) c.focus();
+}
+function closeOverview() { $('#ov').classList.remove('open'); }
+$('#ov-grid').addEventListener('click', e => { const b = e.target.closest('.ov-item'); if (b) { closeOverview(); go(+b.dataset.i, 0); } });
+$('#ov-close').addEventListener('click', closeOverview);
+
+function toggleNotes() {
+  const p = $('#notes'); const on = !p.classList.contains('open');
+  p.classList.toggle('open', on); $('#b-notes').setAttribute('aria-pressed', on ? 'true' : 'false');
+}
+function fullscreen() {
+  if (!document.fullscreenElement) { (document.documentElement.requestFullscreen || function () { }).call(document.documentElement); }
+  else if (document.exitFullscreen) document.exitFullscreen();
+}
+
+$('#b-prev').addEventListener('click', prev);
+$('#b-next').addEventListener('click', next);
+$('#b-ov').addEventListener('click', openOverview);
+$('#b-notes').addEventListener('click', toggleNotes);
+$('#b-fs').addEventListener('click', fullscreen);
+$('#b-scroll').addEventListener('click', toggleScroll);
+$('#b-help').addEventListener('click', () => $('#help').showModal());
+window.addEventListener('hashchange', fromHash);
+
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const t = e.target, tag = t.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || t.isContentEditable) { if (e.key === 'Escape') t.blur(); return; }
+  if ($('#help').open) return;
+  if ($('#ov').classList.contains('open')) { if (e.key === 'Escape' || e.key === 'o' || e.key === 'O') { e.preventDefault(); closeOverview(); } return; }
+  if ((e.key === ' ' || e.key === 'Enter') && (tag === 'BUTTON' || tag === 'A' || tag === 'SUMMARY')) return;
+  switch (e.key) {
+    case 'ArrowRight': case 'PageDown': case ' ': e.preventDefault(); next(); break;
+    case 'ArrowLeft': case 'PageUp': e.preventDefault(); prev(); break;
+    case 'Home': e.preventDefault(); go(0, 0); break;
+    case 'End': e.preventDefault(); go(N - 1, 0); break;
+    case 'o': case 'O': e.preventDefault(); openOverview(); break;
+    case 'n': case 'N': e.preventDefault(); toggleNotes(); break;
+    case 'f': case 'F': e.preventDefault(); fullscreen(); break;
+    case 's': case 'S': e.preventDefault(); toggleScroll(); break;
+    case 'p': case 'P': e.preventDefault(); window.print(); break;
+    case '?': e.preventDefault(); $('#help').showModal(); break;
+  }
+});
+/* swipe in presentation mode */
+let tx = null, ty = null;
+$('#deck').addEventListener('touchstart', e => { if (isScroll() || e.target.closest('input,textarea,.chat,.embed,.video')) { tx = null; return; } tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+$('#deck').addEventListener('touchend', e => {
+  if (tx == null) return;
+  const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) { dx < 0 ? next() : prev(); }
+  tx = null;
+}, { passive: true });
+
+/* tooltip */
+const tip = $('#tip');
+document.addEventListener('mouseover', e => { const el = e.target.closest('[data-tip]'); if (!el) { tip.classList.remove('show'); return; } tip.textContent = el.dataset.tip; tip.classList.add('show'); });
+document.addEventListener('mousemove', e => { if (!tip.classList.contains('show')) return; const w = tip.offsetWidth; tip.style.left = Math.min(window.innerWidth - w - 8, e.clientX + 12) + 'px'; tip.style.top = (e.clientY + 16) + 'px'; });
+
+/* ---------------- shared components ---------------- */
+/* hub */
+const HUB = [
+  ['🧭', 'Adaptive', 'learning', 'apps', 7], ['🧑‍🏫', 'Intelligent', 'tutoring', 'apps', 10], ['💬', 'Chatbots &', 'assistants', 'apps', 12],
+  ['🥽', 'VR/AR +', 'simulation', 'apps', 14], ['🚦', 'Predictive', 'analytics', 'apps', 15], ['📊', 'Curriculum', 'alignment', 'apps', 19]];
+function hubSVG(links) {
+  const cx = 260, cy = 215, R = 150, r = 50;
+  let s = `<svg viewBox="0 0 530 430" role="img" aria-label="Six application areas of AI in TVET around learner and teacher: adaptive learning, intelligent tutoring, chatbots, VR/AR, predictive analytics, curriculum alignment – connected by AI agents">`;
+  s += `<circle class="ring" cx="${cx}" cy="${cy}" r="205"/>`;
+  const pts = HUB.map((_, i) => { const a = (-90 + i * 60) * Math.PI / 180; return [cx + R * Math.cos(a), cy + R * Math.sin(a)]; });
+  pts.forEach(p => { s += `<line class="spoke" x1="${cx}" y1="${cy}" x2="${p[0].toFixed(1)}" y2="${p[1].toFixed(1)}"/>`; });
+  HUB.forEach((h, i) => {
+    const [x, y] = pts[i];
+    const inner = `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}"/><text class="emo" x="${x.toFixed(1)}" y="${(y - 10).toFixed(1)}">${h[0]}</text><text x="${x.toFixed(1)}" y="${(y + 12).toFixed(1)}">${h[1]}</text><text x="${x.toFixed(1)}" y="${(y + 28).toFixed(1)}">${h[2]}</text>`;
+    s += links ? `<a class="node" href="#${h[4]}" aria-label="${h[1]} ${h[2]} – go to slide ${h[4]}"><title>${h[1]} ${h[2]}</title>${inner}</a>` : `<g class="node">${inner}</g>`;
+  });
+  s += `<g class="center"><circle cx="${cx}" cy="${cy}" r="62"/><text x="${cx}" y="${cy - 4}">Learner &amp;</text><text x="${cx}" y="${cy + 16}">Teacher</text></g>`;
+  const ag = links ? `<a class="pill" href="#21" aria-label="AI agents – go to slide 21">` : `<g class="pill">`;
+  s += `${ag}<rect x="412" y="200" width="112" height="30" rx="15"/><text x="468" y="220">🦾 AI agents</text>${links ? '</a>' : '</g>'}`;
+  return s + '</svg>';
+}
+$$('[data-hub]').forEach(h => { h.innerHTML = hubSVG(h.dataset.hub === 'links'); });
+
+/* videos (click to load, privacy-friendly) */
+$$('.video').forEach(v => {
+  const id = v.dataset.yt, t = v.dataset.title, meta = v.dataset.meta || '', badge = v.dataset.badge;
+  v.innerHTML = `<div class="v-ph">${badge ? `<span class="v-badge">${esc(badge)}</span>` : ''}<button type="button" class="v-load" aria-label="Load and play video: ${esc(t)}"><span class="v-play">▶</span><span class="v-txt"><b>${esc(t)}</b><span>${esc(meta)}</span></span></button><small>Loads from YouTube (youtube-nocookie.com) – data is transferred to Google. · <a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Open on YouTube ↗</a></small></div>`;
+  $('.v-load', v).addEventListener('click', () => {
+    v.classList.add('loaded');
+    v.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0&autoplay=1&enablejsapi=1" title="${esc(t)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+    v.scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+});
+$$('.embed').forEach(v => {
+  const src = v.dataset.src, t = v.dataset.title, meta = v.dataset.meta || '';
+  v.style.setProperty('--h', (v.dataset.h || 480) + 'px');
+  v.innerHTML = `<div class="v-ph"><button type="button" class="v-load" aria-label="Load interactive: ${esc(t)}"><span class="v-play">⤢</span><span class="v-txt"><b>${esc(t)}</b><span>${esc(meta)}</span></span></button><small>Loads an external page. · <a href="${esc(src)}" target="_blank" rel="noopener">Open in a new tab ↗</a></small></div>`;
+  $('.v-load', v).addEventListener('click', () => {
+    v.innerHTML = `<iframe src="${esc(src)}" title="${esc(t)}" loading="lazy" allowfullscreen></iframe><figcaption style="padding:.3rem .6rem"><a href="${esc(src)}" target="_blank" rel="noopener">Open in a new tab ↗</a></figcaption>`;
+  });
+});
+
+/* timers */
+$$('.timer').forEach(t => {
+  const total = +t.dataset.sec; let left = total, iv = null;
+  const fmt = s => Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  t.innerHTML = `${t.dataset.label ? `<span class="t-lab">${esc(t.dataset.label)}</span>` : ''}<button type="button" class="t-go" aria-label="Start or pause timer"></button><button type="button" class="t-rs" aria-label="Reset timer" title="Reset">↺</button>`;
+  const go = $('.t-go', t);
+  const draw = () => { go.textContent = left === 0 ? '⏰ Time!' : (iv ? '⏸ ' : '⏱ ') + fmt(left); t.classList.toggle('done', left === 0); t.classList.toggle('run', !!iv); };
+  go.addEventListener('click', () => {
+    if (left === 0) left = total;
+    if (iv) { clearInterval(iv); iv = null; }
+    else iv = setInterval(() => { left--; if (left <= 0) { left = 0; clearInterval(iv); iv = null; } draw(); }, 1000);
+    draw();
+  });
+  $('.t-rs', t).addEventListener('click', () => { clearInterval(iv); iv = null; left = total; draw(); });
+  draw();
+});
+
+/* quizzes and polls */
+function exitScore() {
+  const qs = $$('.quiz[data-group="exit"]');
+  const solved = qs.filter(q => q.dataset.solved).length, first = qs.filter(q => q.dataset.solved === 'first').length;
+  $('#exit-score').textContent = solved ? `Solved ${solved} / ${qs.length} · first try ${first}` : '';
+}
+$$('.quiz').forEach(q => {
+  const opts = $$('.opt', q), fb = $('.fb', q), ex = $('.explain', q);
+  const isSurvey = q.hasAttribute('data-survey');
+  const isMulti = q.hasAttribute('data-multi');
+  let wrong = 0;
+  opts.forEach(o => o.setAttribute('aria-pressed', 'false'));
+  if (isMulti) {
+    opts.forEach(o => o.addEventListener('click', () => { o.setAttribute('aria-pressed', o.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); opts.forEach(x => x.classList.remove('right', 'wrong')); fb.textContent = ''; }));
+    $('.q-check', q).addEventListener('click', () => {
+      let ok = true;
+      opts.forEach(o => { const sel = o.getAttribute('aria-pressed') === 'true', want = o.hasAttribute('data-ok'); if (sel !== want) ok = false; o.classList.toggle('right', sel && want); o.classList.toggle('wrong', sel && !want); });
+      fb.className = 'fb ' + (ok ? 'ok' : 'no');
+      fb.textContent = ok ? '✓ Correct.' : '✗ Not yet – check again: one selection is missing or too much.';
+      if (ex && ok) ex.hidden = false;
+    });
+    return;
+  }
+  opts.forEach(o => o.addEventListener('click', () => {
+    if (isSurvey) {
+      opts.forEach(x => x.setAttribute('aria-pressed', x === o ? 'true' : 'false'));
+      fb.className = 'fb';
+      fb.textContent = o.dataset.fb || 'Noted – your answer stays in this browser. The anonymous class poll runs in the LiaScript version.';
+      return;
+    }
+    if (q.dataset.solved) return;
+    if (o.hasAttribute('data-ok')) {
+      o.classList.add('right'); opts.forEach(x => { x.disabled = true; });
+      q.dataset.solved = wrong ? 'later' : 'first';
+      fb.className = 'fb ok'; fb.textContent = '✓ Correct.';
+      if (ex) ex.hidden = false;
+    } else {
+      wrong++; o.classList.add('wrong'); o.disabled = true;
+      fb.className = 'fb no';
+      fb.textContent = '✗ Not quite.' + (q.dataset.hint ? ' Hint: ' + q.dataset.hint : '');
+      if (wrong >= 2) { const r = opts.find(x => x.hasAttribute('data-ok')); r.classList.add('right'); opts.forEach(x => { x.disabled = true; }); q.dataset.solved = 'later'; fb.textContent += ' – solution shown.'; if (ex) ex.hidden = false; }
+    }
+    if (q.dataset.group === 'exit') exitScore();
+  }));
+});
+
+/* free-text fields persisted locally */
+$$('textarea[data-store]').forEach(t => { t.value = store.get('txt.' + t.dataset.store, ''); t.addEventListener('input', () => store.set('txt.' + t.dataset.store, t.value)); });
+
+/* QR code for the LiaScript classroom */
+window.addEventListener('load', () => {
+  const el = $('#qr');
+  if (el && window.QRCode) { try { new QRCode(el, { text: LIA, width: 256, height: 256, colorDark: '#000000', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M }); } catch (e) { el.remove(); } }
+  else if (el) el.remove();
+});
+
+/* ---------------- slide-specific widgets ---------------- */
+/* route */
+(function () {
+  $('#route').innerHTML = ROUTE.map(r => `<div class="r${r[5] === 'brk' ? ' brk' : ''}"><span class="tm">${r[0]}</span><span><b>${esc(r[1])}</b> ${r[2].map(l => `<span class="lo">${esc(l)}</span>`).join(' ')}</span><span class="dur" data-tip="${r[4]} minutes"><span class="trk"><i style="width:${(r[4] / 40 * 100).toFixed(0)}%"></i></span><span>${r[4]} min</span></span><span class="how">${esc(r[3])}</span></div>`).join('') +
+    `<div class="r" style="border-bottom:0"><span class="tm">2:30</span><span class="muted">End · 150 minutes</span><span></span><span></span></div>`;
+})();
+
+/* self-rating */
+const LEVELS = ['none', 'basic', 'solid'];
+function drawCompare() {
+  const a = store.get('rate.start', {}), b = store.get('rate.end', {});
+  const los = ['LO1', 'LO2', 'LO3', 'LO4', 'LO5'];
+  const pos = v => (v / 2 * 100) + '%';
+  $('#cmp').innerHTML = los.map(l => {
+    const va = a[l], vb = b[l];
+    let inner = '';
+    if (va != null && vb != null) { const lo = Math.min(va, vb), hi = Math.max(va, vb); inner += `<span class="lnk" style="left:${pos(lo)};width:${(hi - lo) / 2 * 100}%"></span>`; }
+    if (va != null) inner += `<span class="pt a" style="left:${pos(va)}" data-tip="${l} start: ${LEVELS[va]}"></span>`;
+    if (vb != null) inner += `<span class="pt b" style="left:${pos(vb)}" data-tip="${l} now: ${LEVELS[vb]}"></span>`;
+    return `<div class="cr"><span class="lo">${l}</span><span class="scale">${inner}</span></div>`;
+  }).join('') + `<div class="cr"><span></span><span class="lbls"><span>none</span><span>basic</span><span>solid</span></span></div>`;
+}
+$$('.rate').forEach(box => {
+  const key = 'rate.' + box.dataset.key; const st = store.get(key, {});
+  $$('.obj', box).forEach(row => {
+    const lo = row.dataset.lo, seg = $('.seg', row);
+    seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', 'Self-rating ' + lo);
+    seg.innerHTML = LEVELS.map((l, i) => `<button type="button" data-v="${i}" aria-pressed="${st[lo] === i ? 'true' : 'false'}">${l}</button>`).join('');
+    seg.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      const s = store.get(key, {}); s[lo] = +b.dataset.v; store.set(key, s);
+      $$('button', seg).forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+      drawCompare();
+    });
+  });
+});
+drawCompare();
+
+/* match game */
+(function () {
+  const cols = ['Adaptive learning', 'ITS', 'Chatbot', 'VR/AR', 'Predictive analytics', 'Curriculum alignment'];
+  const rows = [['Hydraulics module offers extra exercises after errors', 0], ['Step-by-step hints during a fault-finding task', 1], ['24/7 answers on workshop safety rules', 2], ['Welding simulator analysing torch angle and speed', 3], ['Early-warning dashboard for dropout risk', 4], ['Matching job advertisements with training regulations', 5]];
+  const t = $('#match');
+  t.innerHTML = `<thead><tr><th scope="col">Example</th>${cols.map(c => `<th scope="col">${c}</th>`).join('')}</tr></thead><tbody>${rows.map((r, i) => `<tr data-ok="${r[1]}"><td>${r[0]}</td>${cols.map((c, j) => `<td><input type="radio" name="m${i}" value="${j}" aria-label="${esc(r[0])}: ${c}"></td>`).join('')}</tr>`).join('')}</tbody>`;
+  const trs = $$('tbody tr', t);
+  const clear = () => { trs.forEach(tr => { tr.classList.remove('ok', 'no'); $$('td', tr).forEach(td => td.classList.remove('sol')); }); $('#m-score').textContent = ''; };
+  t.addEventListener('change', clear);
+  $('#m-check').addEventListener('click', () => {
+    let n = 0;
+    trs.forEach(tr => { const sel = $('input:checked', tr); const ok = sel && +sel.value === +tr.dataset.ok; tr.classList.toggle('ok', !!ok); tr.classList.toggle('no', !ok); if (ok) n++; });
+    $('#m-score').textContent = `${n} / ${rows.length} correct` + (n === rows.length ? ' 🎉' : '');
+  });
+  $('#m-sol').addEventListener('click', () => { clear(); trs.forEach(tr => { $$('td', tr)[+tr.dataset.ok + 1].classList.add('sol'); }); $('#m-score').textContent = 'Solution: green frames'; });
+  $('#m-reset').addEventListener('click', () => { $$('input', t).forEach(i => { i.checked = false; }); clear(); });
+})();
+
+/* adaptive engine simulator */
+(function () {
+  const init = () => ({ skills: [{ n: 'Pressure & force (p = F / A)', m: 62, w: 0 }, { n: 'Valve symbols', m: 35, w: 0 }, { n: 'Reading circuit diagrams', m: 48, w: 0 }], log: [], flags: [], k: 1 });
+  let S = init();
+  const curIdx = () => { let i = 0; S.skills.forEach((s, j) => { if (s.m < S.skills[i].m) i = j; }); return i; };
+  function plan() {
+    const i = curIdx(), s = S.skills[i];
+    if (S.skills.every(x => x.m >= 80)) return { i, done: true };
+    let lvl = s.m < 40 ? 'basic' : s.m < 75 ? 'standard' : 'challenge', sup = 'hints on request';
+    if (s.m < 40) sup = 'step-by-step support';
+    if (s.w === 2) { lvl = 'easier'; sup = 'a hint first, then an easier task'; }
+    if (s.w >= 3) { lvl = 'worked example'; sup = 'stop the task series – show a worked example'; }
+    return { i, lvl, sup };
+  }
+  function draw() {
+    const p = plan();
+    $('#sim-skills').innerHTML = S.skills.map((s, j) => `<div class="skill${j === p.i && !p.done ? ' cur' : ''}"><div class="nm"><span class="sn">${esc(s.n)}${s.w ? ` <span class="muted small">· ❌×${s.w} in a row</span>` : ''}</span><b>${Math.round(s.m)} %</b></div><div class="meter" data-tip="${esc(s.n)}: estimated mastery ${Math.round(s.m)} %, wrong in a row: ${s.w}"><i style="width:${s.m}%"></i></div></div>`).join('');
+    $('#sim-task').innerHTML = p.done
+      ? `<h3>🎉 Module mastered</h3><p>All skills above 80 %. <b>Trainer check:</b> is the apprentice ready for the real hydraulic test bench?</p>`
+      : `<p class="small muted" style="margin:0">Next task chosen by the engine</p><h3 style="margin:.2rem 0">${esc(S.skills[p.i].n)}</h3><p style="margin:.2rem 0"><span class="lvl">${p.lvl}</span> · ${esc(p.sup)}</p><p class="small muted" style="margin:.4rem 0 0">Why? It is the skill with the <b>lowest</b> mastery estimate.</p>`;
+    $('#sim-ok').disabled = $('#sim-no').disabled = !!p.done;
+    $('#sim-log').innerHTML = S.log.slice(-6).reverse().map(l => `<li>${l}</li>`).join('') || '<li class="muted">No answers yet.</li>';
+    $('#sim-flag').innerHTML = S.flags.length ? `<div class="flagbox">🚩 <b>Flags for the trainer:</b> ${S.flags.map(esc).join(' · ')}<br><span class="small">The engine decided to ask a human – a conversation is needed.</span></div>` : '';
+  }
+  function answer(ok) {
+    const p = plan(); if (p.done) return;
+    const s = S.skills[p.i];
+    const before = Math.round(s.m);
+    if (ok) { s.m = s.m + (100 - s.m) * 0.35; s.w = 0; } else { s.m = s.m * 0.75; s.w++; }
+    if (s.w >= 3 && !S.flags.includes(s.n)) S.flags.push(s.n);
+    S.log.push(`Task ${S.k++} · ${esc(s.n)} (${p.lvl}) · ${ok ? '✅' : '❌'} · mastery ${before} → ${Math.round(s.m)} %`);
+    draw();
+  }
+  $('#sim-ok').addEventListener('click', () => answer(true));
+  $('#sim-no').addEventListener('click', () => answer(false));
+  $('#sim-reset').addEventListener('click', () => { S = init(); draw(); });
+  draw();
+})();
+
+/* ITS: order the five safety rules with step-based hints */
+(function () {
+  const RULES = ['Disconnect completely', 'Secure against reconnection', 'Verify that no voltage is present', 'Earth and short-circuit', 'Cover adjacent live parts'];
+  const HINTS = [
+    ['Which rule makes the circuit dead in the first place?', 'Start at the distribution board: switch off or remove the fuse – disconnect completely.'],
+    ['The circuit is dead – how do you make sure nobody switches it on again?', 'Lock the circuit breaker and put up a warning sign: secure against reconnection.'],
+    ['Do you know that the circuit is dead – or do you only believe it?', 'Use a two-pole voltage tester: verify that no voltage is present.'],
+    ['What protects you if voltage returns unexpectedly?', 'Earth and short-circuit – always after you have verified that no voltage is present.'],
+    ['What about other parts nearby that are still live?', 'Cover or fence off adjacent live parts.']];
+  const SHUF = [3, 0, 4, 2, 1];
+  let seq = [], tries = {}, hints = 0;
+  function draw(marks) {
+    $('#ord-seq').innerHTML = RULES.map((_, i) => {
+      const r = seq[i]; const m = marks ? marks[i] : '';
+      return `<div class="slot ${m || ''}"><span class="n">${i + 1}</span>${r != null ? `<button type="button" class="c filled card-btn" data-i="${i}" aria-label="Remove ${esc(RULES[r])} from step ${i + 1}">${esc(RULES[r])}</button>` : `<span class="c muted small">step ${i + 1}</span>`}</div>`;
+    }).join('');
+    $('#ord-pool').innerHTML = SHUF.filter(r => !seq.includes(r)).map(r => `<button type="button" class="card-btn" data-r="${r}">${esc(RULES[r])}</button>`).join('') || '<span class="small muted">All rules placed – press Check.</span>';
+    $('#ord-hints').textContent = hints;
+  }
+  $('#ord-pool').addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (!b) return; seq.push(+b.dataset.r); $('#ord-fb').innerHTML = ''; draw(); });
+  $('#ord-seq').addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (!b) return; seq.splice(+b.dataset.i, 1); $('#ord-fb').innerHTML = ''; draw(); });
+  $('#ord-check').addEventListener('click', () => {
+    const marks = [];
+    let firstWrong = -1;
+    for (let i = 0; i < RULES.length; i++) {
+      if (seq[i] == null) { if (firstWrong < 0) firstWrong = i; break; }
+      if (seq[i] === i) marks[i] = 'ok'; else { marks[i] = 'no'; firstWrong = i; break; }
+    }
+    if (firstWrong < 0) { draw(marks); $('#ord-fb').innerHTML = `<div class="outcome ok">✓ All five steps correct${hints ? ` – with ${hints} hint${hints > 1 ? 's' : ''}` : ' – without hints'}.</div>`; return; }
+    const lvl = tries[firstWrong] = (tries[firstWrong] || 0) + 1;
+    hints++;
+    draw(marks);
+    const h = lvl === 1 ? `💡 <b>Hint 1</b> (step ${firstWrong + 1}): ${esc(HINTS[firstWrong][0])}` : lvl === 2 ? `💡 <b>Hint 2</b> (step ${firstWrong + 1}): ${esc(HINTS[firstWrong][1])}` : `✅ <b>Step ${firstWrong + 1}</b> is: ${esc(RULES[firstWrong])}.`;
+    const missing = seq[firstWrong] == null;
+    const pre = firstWrong === 0 ? (missing ? 'Start with step 1. ' : 'Step 1 is not right yet. ')
+      : (firstWrong === 1 ? 'Step 1 is correct' : `Steps 1–${firstWrong} are correct`) + (missing ? ` – step ${firstWrong + 1} is still missing. ` : `, step ${firstWrong + 1} is not. `);
+    $('#ord-fb').innerHTML = `<div class="hintbox">${pre}${h}</div>`;
+  });
+  $('#ord-sol').addEventListener('click', () => { seq = [0, 1, 2, 3, 4]; draw([ 'ok', 'ok', 'ok', 'ok', 'ok' ]); $('#ord-fb').innerHTML = '<div class="hintbox">✅ Solution: disconnect → secure → verify → earth and short-circuit → cover.</div>'; });
+  $('#ord-reset').addEventListener('click', () => { seq = []; tries = {}; hints = 0; $('#ord-fb').innerHTML = ''; draw(); });
+  draw();
+})();
+
+/* rule-based chatbot */
+(function () {
+  const RULES = [
+    [/eye|goggle|glasses/, 'Wear safety glasses at every machine with chips or sparks, e.g. grinder or lathe.', 'eye, goggle, glasses'],
+    [/glove/, 'No gloves at rotating machines such as drills or lathes – they can be caught. Use gloves for sharp sheet metal.', 'glove'],
+    [/hair/, 'Tie back long hair before you work at rotating machines.', 'hair'],
+    [/fire|extinguisher/, 'Fire extinguisher: next to the exit. Report every fire to the trainer at once.', 'fire, extinguisher'],
+    [/first aid|injur|cut/, 'First-aid kit: at the trainer\'s desk. Report every injury, even small cuts.', 'first aid, injur, cut'],
+    [/weld/, 'Weld only with welding helmet, leather apron and gloves – and with the fume extraction switched on.', 'weld'],
+    [/shoe|boot/, 'Safety shoes are mandatory in the workshop.', 'shoe, boot'],
+    [/\b(hi|hello|hey)\b/, 'Hello! I am SafetyBot. Ask me about workshop safety.', 'hi, hello']];
+  const msgs = $('#bot-msgs');
+  function say(cls, html) { const d = document.createElement('div'); d.className = 'msg ' + cls; d.innerHTML = html; msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight; }
+  function ask(q) {
+    q = q.trim(); if (!q) return;
+    say('me', esc(q));
+    const l = q.toLowerCase(), hit = RULES.find(r => r[0].test(l));
+    setTimeout(() => say('bot', hit ? `${esc(hit[1])}<small>Matched keyword: <b>${esc(hit[2])}</b></small>` : `Sorry, I don't understand. Try one of my keywords: goggles, gloves, hair, fire, first aid, welding, shoes.<small>Matched keyword: <b>none</b></small>`), 250);
+  }
+  say('bot', '🤖 Hi, I am <b>SafetyBot</b> – a rule-based chatbot for the workshop. Ask me a question.');
+  $('#bot-form').addEventListener('submit', e => { e.preventDefault(); const i = $('#bot-in'); ask(i.value); i.value = ''; });
+  const sug = ['Do I need gloves at the drilling machine?', 'Where is the fire extinguisher?', 'My eyes hurt after welding', 'Can I wear mittens at the lathe?'];
+  $('#bot-sug').innerHTML = sug.map(s => `<button type="button">${esc(s)}</button>`).join('');
+  $('#bot-sug').addEventListener('click', e => { const b = e.target.closest('button'); if (b) ask(b.textContent); });
+})();
+
+/* accuracy trap */
+(function () {
+  const Nn = 14495, R = $('#a-rate'), C = $('#a-rec'), P = $('#a-spec');
+  const f = n => n.toLocaleString('en');
+  function draw() {
+    const r = +R.value / 100, rec = +C.value / 100, sp = +P.value / 100;
+    $('#o-rate').textContent = (+R.value).toFixed(1) + ' %'; $('#o-rec').textContent = C.value + ' %'; $('#o-spec').textContent = (+P.value).toFixed(1) + ' %';
+    const D = Math.round(Nn * r), S = Nn - D, TP = Math.round(D * rec), FN = D - TP, TN = Math.round(S * sp), FP = S - TN;
+    const acc = (TP + TN) / Nn, base = S / Nn, prec = TP + FP ? TP / (TP + FP) : null;
+    $('#cm').innerHTML = `<span></span><span class="h">🚩 flagged</span><span class="h">not flagged</span>
+      <span class="rh">drops out<br><span class="muted">${f(D)}</span></span>
+      <div class="cell tp" data-tip="True positives: dropouts the system flags"><b>${f(TP)}</b><span>✅ caught</span></div>
+      <div class="cell fn" data-tip="False negatives: dropouts the system misses"><b>${f(FN)}</b><span>❌ missed</span></div>
+      <span class="rh">stays<br><span class="muted">${f(S)}</span></span>
+      <div class="cell fp" data-tip="False positives: learners who stay but are flagged"><b>${f(FP)}</b><span>⚠️ false alarm</span></div>
+      <div class="cell tn" data-tip="True negatives: learners who stay and are left alone"><b>${f(TN)}</b><span>correctly ignored</span></div>`;
+    const bar = (lab, v, cls, tipTxt) => `<div class="hbar"><span>${lab}</span><span class="track"><span class="bar ${cls}" style="width:${(v * 100).toFixed(1)}%" data-tip="${tipTxt}"></span></span><span class="val">${(v * 100).toFixed(1)} %</span></div>`;
+    $('#acc-bars').innerHTML =
+      `<p class="small" style="margin:0"><b>Accuracy</b> – share of all decisions that are correct</p>` +
+      bar('This system', acc, '', 'Accuracy of the system with the current settings') +
+      bar('"Flag nobody"', base, 'ref', 'A model that flags nobody is right for every learner who stays') +
+      `<div class="axis"><span></span><span class="ticks"><span>0</span><span>50</span><span>100 %</span></span><span></span></div>` +
+      `<p class="small" style="margin:.5rem 0 0"><b>Recall:</b> ${f(TP)} of ${f(D)} dropouts caught (${(rec * 100).toFixed(0)} %) · <b>Precision:</b> ${prec == null ? '–' : (prec * 100).toFixed(0) + ' % of flagged learners are really at risk'} · <b>Teachers check</b> ${f(TP + FP)} flagged learners</p>`;
+    let v;
+    if (TP + FP === 0) v = `🪤 <b>Flags nobody:</b> accuracy ${(base * 100).toFixed(1)} % – and all ${f(D)} learners at risk are missed.`;
+    else if (acc < base - 0.02) v = `⚠️ <b>Accuracy is lower than doing nothing</b> – but ${f(TP)} of ${f(D)} dropouts are caught, at the price of ${f(FP)} false alarms. Worth it? That depends on what a flag triggers.`;
+    else if (acc - base < 0.02) v = `🪤 <b>Trap!</b> High accuracy – but barely better than doing nothing. ${f(FN)} learners at risk are missed.`;
+    else v = '📈 Now the system really adds value over doing nothing.';
+    $('#acc-verdict').innerHTML = v;
+  }
+  [R, C, P].forEach(i => i.addEventListener('input', draw));
+  $$('#acc [data-p]').forEach(b => b.addEventListener('click', () => { const [a, c, d] = b.dataset.p.split(','); R.value = a; C.value = c; P.value = d; draw(); }));
+  draw();
+})();
+
+/* agent step-through */
+(function () {
+  const STEPS = [
+    { t: 'GOAL', does: 'Receives the goal, target group and time frame', tool: '–', role: 'You set the goal – the agent cannot know your learners.', cp: true,
+      ok: 'Goal: 15 minutes, 3rd-year automotive mechatronics apprentices, outcome "evaluate an AI diagnosis suggestion".', skip: 'Without your goal and target group the agent writes a generic nugget for "learners" – too easy for 3rd-year apprentices.' },
+    { t: 'PLAN', does: 'Splits the job: outline → content → quiz → test', tool: 'planning', role: 'The agent works alone.' },
+    { t: 'ACT · research', does: 'Searches the web for sources on vehicle diagnosis', tool: 'web search', role: 'Check every reference – remember the reference check in S02.', cp: true,
+      ok: 'You open every link and DOI: three sources confirmed, two replaced.', skip: 'Illustrative: two of the five sources the agent cites do not exist – your nugget now carries fabricated references.' },
+    { t: 'ACT · write', does: 'Writes slides and a quiz as a LiaScript file', tool: 'file editor', role: 'The agent works alone.' },
+    { t: 'OBSERVE · test', does: 'Renders the file, finds a syntax error, fixes it', tool: 'LiaScript preview', role: 'The agent corrects itself – this is the loop.' },
+    { t: 'ADJUST · hand over', does: 'Asks you for approval', tool: '–', role: 'You check content, didactics and licences – and note the AI use in your AI tools log.', cp: true,
+      ok: 'Approved after your review; AI use documented in the AI tools log.', skip: 'The nugget goes online with an unclear licence, unchecked content and no AI declaration.' }];
+  let k = 0, dec = {};
+  function draw() {
+    $('#ag-steps').innerHTML = STEPS.map((s, i) => `<button type="button" role="tab" class="${s.cp ? 'cp' : ''} ${dec[i] === 'ok' ? 'done-ok' : dec[i] === 'skip' ? 'done-skip' : ''}" ${i === k ? 'aria-current="step" aria-selected="true"' : 'aria-selected="false"'} data-i="${i}">${s.cp ? '✋ ' : ''}${i + 1}</button>`).join('');
+    const s = STEPS[k];
+    let h = `<p class="small muted" style="margin:0">Step ${k + 1} of ${STEPS.length}${s.cp ? ' · <b style="color:var(--crit)">✋ human checkpoint</b>' : ''}</p><h3 style="margin:.15rem 0">${esc(s.t)}</h3><dl><dt>Agent does</dt><dd>${esc(s.does)}</dd><dt>Tool</dt><dd>${esc(s.tool)}</dd><dt>Human role</dt><dd>${esc(s.role)}</dd></dl>`;
+    if (s.cp) {
+      h += dec[k] ? `<div class="outcome ${dec[k] === 'ok' ? 'ok' : 'no'}">${dec[k] === 'ok' ? '✋ ' + esc(s.ok) : '⏭️ ' + esc(s.skip)}</div>` : `<div class="row-actions"><button type="button" class="btn primary small" data-d="ok">✋ I check</button><button type="button" class="btn small" data-d="skip">Skip the check</button></div>`;
+    }
+    $('#ag-card').innerHTML = h;
+    $('#ag-card').classList.toggle('cp', !!s.cp);
+    $('#ag-prev').disabled = k === 0; $('#ag-next').disabled = k === STEPS.length - 1;
+    const cps = STEPS.map((s, i) => s.cp ? i : -1).filter(i => i >= 0), done = cps.filter(i => dec[i]).length;
+    $('#ag-score').textContent = done ? `Checks done: ${cps.filter(i => dec[i] === 'ok').length} / ${cps.length}` : '';
+  }
+  $('#ag-steps').addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) { k = +b.dataset.i; draw(); } });
+  $('#ag-card').addEventListener('click', e => { const b = e.target.closest('[data-d]'); if (b) { dec[k] = b.dataset.d; draw(); } });
+  $('#ag-prev').addEventListener('click', () => { if (k > 0) { k--; draw(); } });
+  $('#ag-next').addEventListener('click', () => { if (k < STEPS.length - 1) { k++; draw(); } });
+  $('#ag-reset').addEventListener('click', () => { k = 0; dec = {}; draw(); });
+  draw();
+})();
+
+/* evaluation grid */
+(function () {
+  const CR = [['Pedagogical value & evidence', 'Pedagogy', 'Which learning outcome does it support? Is there evidence?', 4],
+    ['Active learner role', 'Learner role', 'Active learning or passive consumption?', 4],
+    ['Teacher can adapt / override', 'Teacher role', 'Who decides? Can the teacher adapt or override?', 3],
+    ['Data & privacy (GDPR)', 'Privacy', 'Which data is collected, where is it stored?', 3],
+    ['Fairness & inclusion', 'Fairness', 'Does it work for all learners (language, disability, devices)?', 3],
+    ['Legal frame (AI Act, licence)', 'Legal', 'Risk level under the EU AI Act? Licence?', 4],
+    ['Costs & sustainability', 'Costs', 'Costs, maintenance, energy, provider dependency', 2]];
+  let st = store.get('eval', null) || { tool: 'AI welding simulator', you: CR.map(c => c[3]), nb: null };
+  let who = 'you';
+  const tool = $('#ev-tool'); tool.value = st.tool;
+  function rows() {
+    const vals = who === 'you' ? st.you : (st.nb || st.you.slice());
+    $('#ev-rows').innerHTML = CR.map((c, i) => `<div class="crit-row"><label for="ev${i}">${esc(c[0])}<span class="cq">${esc(c[2])}</span></label><input type="range" id="ev${i}" min="1" max="5" step="1" value="${vals[i]}" data-i="${i}"><output>${vals[i]}</output></div>`).join('');
+  }
+  function chart() {
+    const y = st.you, n = st.nb;
+    $('#ev-chart').innerHTML = CR.map((c, i) => `<div class="erow"><span>${esc(c[1])}</span><span class="etrack"><span class="ebar${y[i] <= 2 ? ' low' : ''}" style="width:${y[i] / 5 * 100}%" data-tip="You: ${c[1]} ${y[i]} / 5"></span>${n ? `<span class="edot" style="left:${n[i] / 5 * 100}%" data-tip="Neighbour: ${c[1]} ${n[i]} / 5"></span>` : ''}</span></div>`).join('') +
+      `<div class="erow" style="font-size:.72rem;color:var(--ink-3)"><span></span><span style="display:flex;justify-content:space-between"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>`;
+    const avg = y.reduce((a, b) => a + b, 0) / y.length, min = Math.min(...y), weak = CR.filter((c, i) => y[i] === min).map(c => c[1]);
+    const verdict = min <= 1 ? '🔴 <b>Stop:</b> at least one criterion is a deal-breaker.' : (avg >= 3.5 ? '🟢 <b>Promising</b> – pilot it with clear human oversight.' : '🟡 <b>Possible</b> – but fix the weak spots first.');
+    let h = `<p style="margin:0 0 .3rem"><b>${esc(st.tool || 'Your tool')}</b> · average ${avg.toFixed(1)} / 5</p><p style="margin:0 0 .3rem">${verdict}</p><p class="small" style="margin:0">Weakest: <i>${weak.join(', ')}</i></p>`;
+    if (n) {
+      let di = 0, dv = -1; y.forEach((v, i) => { const d = Math.abs(v - n[i]); if (d > dv) { dv = d; di = i; } });
+      h += dv > 0 ? `<p class="small" style="margin:.4rem 0 0">💬 <b>Biggest difference:</b> ${CR[di][1]} (you ${y[di]}, neighbour ${n[di]}) – discuss why!</p>` : `<p class="small" style="margin:.4rem 0 0">💬 You and your neighbour agree on every criterion.</p>`;
+    } else h += `<p class="small muted" style="margin:.4rem 0 0">Switch to "Your neighbour" to compare ratings.</p>`;
+    $('#ev-verdict').innerHTML = h;
+  }
+  $('#ev-rows').addEventListener('input', e => {
+    const i = e.target.dataset.i; if (i == null) return;
+    if (who === 'nb' && !st.nb) st.nb = st.you.slice();
+    (who === 'you' ? st.you : st.nb)[+i] = +e.target.value;
+    e.target.nextElementSibling.textContent = e.target.value;
+    store.set('eval', st); chart();
+  });
+  tool.addEventListener('input', () => { st.tool = tool.value; store.set('eval', st); chart(); });
+  $('#ev-who').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    who = b.dataset.w; if (who === 'nb' && !st.nb) { st.nb = st.you.slice(); store.set('eval', st); }
+    $$('#ev-who button').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+    rows(); chart();
+  });
+  rows(); chart();
+})();
+
+/* six shifts */
+(function () {
+  const SH = [['🎯', 'Personalisation', 'individual paths in heterogeneous groups', 'Apprentices with different prior training get different exercise paths in the CNC module.'],
+    ['🧑‍🏫', 'New teacher roles', 'learning designer, coach, critical curator; AI-TPACK (Ning et al., 2024)', 'The trainer checks and curates AI-generated work instructions before they are used.'],
+    ['🔁', 'Feedback & self-regulation', 'goal setting, monitoring, reflection (Chang et al., 2023) – risk of offloading thinking', 'An apprentice sets weekly goals with an AI coach; the trainer discusses the reflection.'],
+    ['📝', 'Assessment', 'AI drafts tasks & formative feedback; summative decisions stay human', 'AI drafts practice exam tasks; the examination board decides on the grade.'],
+    ['🤝', 'Inclusion', 'translation, simple language, assistive features', 'Work instructions in simple language or in the apprentice\'s first language.'],
+    ['🧭', 'Self-determined learning (heutagogy)', 'learners steer goals and even assessment', 'A master-craftsperson candidate plans a learning project with AI as a sparring partner.']];
+  const v = store.get('shift', null);
+  $('#shifts').innerHTML = SH.map((s, i) => `<button type="button" class="shift" data-i="${i}" aria-pressed="${v === i ? 'true' : 'false'}"><span class="icon-big">${s[0]}</span><span class="ttl">${i + 1}. ${esc(s[1])}</span><span class="small">${esc(s[2])}</span><span class="ex">🔧 ${esc(s[3])}</span><span class="vote">✔ Your vote</span></button>`).join('');
+  $('#shifts').addEventListener('click', e => { const b = e.target.closest('.shift'); if (!b) return; store.set('shift', +b.dataset.i); $$('#shifts .shift').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false')); });
+})();
+
+/* heutagogy */
+(function () {
+  const D = { 1: ['AI-informed', 'Provides information and progress data', 'Pre-/uni-structural', 'Low – teachers guide strongly', 'Apprentice gets a progress dashboard for the hydraulics module.'],
+    2: ['AI-supported', 'Adaptive feedback, tailored content', 'Multi-structural, relational', 'Growing', 'AI tutor adapts fault-finding exercises and explains mistakes.'],
+    3: ['AI-empowered', 'Partner for open, complex problems', 'Extended abstract', 'Full autonomy and agency', 'Master-craftsperson candidate uses AI as a sparring partner to design an energy concept for a real client.'] };
+  const sl = $('#heu');
+  function draw() {
+    const k = +sl.value, d = D[k];
+    $('#heu-o').textContent = k + ' · ' + d[0];
+    $$('#stair g[data-k]').forEach(g => g.classList.toggle('on', +g.dataset.k === k));
+    $('#heu-card').innerHTML = `<h3>${d[0]}</h3><p style="margin:.2rem 0"><b>Role of AI:</b> ${d[1]}<br><b>SOLO level:</b> ${d[2]}<br><b>Learner autonomy:</b> ${d[3]}</p><p class="small" style="margin:.3rem 0 0">🔧 <i>TVET example (illustrative):</i> ${d[4]}</p>`;
+  }
+  sl.addEventListener('input', draw);
+  $$('#stair g[data-k]').forEach(g => { g.style.cursor = 'pointer'; g.addEventListener('click', () => { sl.value = g.dataset.k; draw(); }); });
+  draw();
+})();
+
+/* micro-credential questions */
+(function () {
+  const Q = [['🎯', 'Which <b>skill gap</b> in which TVET sector?'], ['👥', 'Who is the <b>target group</b>?'], ['🧭', 'Which <b>UNESCO competency</b> is the anchor?'], ['✅', '2–3 <b>learning outcomes</b> (verb + content + context)'],
+    ['🧩', 'Which <b>3–6 nuggets</b>?'], ['📝', 'How do learners <b>prove</b> the outcome?'], ['🤖', 'Where does <b>AI</b> support learning – and where not?'], ['🏢', 'Why would an <b>institution or employer</b> recognise it?']];
+  $('#mc-q').innerHTML = Q.map((q, i) => `<div class="card"><span class="lo out">${i + 1}</span> <span class="icon-big" style="font-size:1.2rem">${q[0]}</span><p style="margin:.35rem 0 0">${q[1]}</p></div>`).join('');
+})();
+
+/* idea canvas */
+(function () {
+  const F = [['t', 'Title', 'AI-supported fault diagnosis in automotive electrics'], ['g', 'Skill gap', 'Workshops use AI diagnosis tools, but apprentices can\'t judge their suggestions'],
+    ['a', 'Target group', '3rd-year automotive mechatronics apprentices'], ['u', 'UNESCO anchor', 'Students CFT – AI techniques and applications (Apply)'],
+    ['o', 'Key learning outcome', 'Learners can evaluate an AI diagnosis suggestion against measurement data'], ['p', 'Assessment', 'Practical diagnosis task + short reflection']];
+  const ex = () => Object.fromEntries(F.map(f => [f[0], f[2]]));
+  let v = store.get('canvas', null) || ex();
+  $('#cv-fields').innerHTML = F.map(f => `<label class="f" for="cv-${f[0]}">${f[1]}</label><input type="text" id="cv-${f[0]}" data-k="${f[0]}">`).join('');
+  const fill = () => F.forEach(f => { $('#cv-' + f[0]).value = v[f[0]] || ''; });
+  function draw() {
+    const e = k => esc(v[k] || '');
+    $('#cv-out').innerHTML = `<div class="tag">MICRO-CREDENTIAL IDEA</div><h3>${e('t') || '<span class="muted">Your title</span>'}</h3><p>🎯 <b>Gap:</b> ${e('g')}</p><p>👥 <b>For:</b> ${e('a')}</p><p>🧭 <b>Anchor:</b> ${e('u')}</p><p>✅ <b>Outcome:</b> ${e('o')}</p><p>📝 <b>Proof:</b> ${e('p')}</p>`;
+    const ok = F.filter(f => (v[f[0]] || '').trim().length > 5).length;
+    const verb = /\b(can|able to)\s+(explain|evaluate|apply|design|create|analyse|analyze|compare|use|identify|assess|plan|justify|diagnose)/i.test(v.o || '');
+    $('#cv-meta').innerHTML = `Completeness: <span class="boxes">${'🟩'.repeat(ok)}${'⬜'.repeat(6 - ok)}</span> ${verb ? '· outcome uses an action verb 👍' : '· tip: start the outcome with <i>Learners can + action verb</i>'}`;
+  }
+  $('#cv-fields').addEventListener('input', e => { const k = e.target.dataset.k; if (!k) return; v[k] = e.target.value; store.set('canvas', v); draw(); });
+  $('#cv-clear').addEventListener('click', () => { v = Object.fromEntries(F.map(f => [f[0], ''])); store.set('canvas', v); fill(); draw(); $('#cv-t').focus(); });
+  $('#cv-example').addEventListener('click', () => { v = ex(); store.set('canvas', v); fill(); draw(); });
+  $('#cv-copy').addEventListener('click', () => {
+    const txt = 'MICRO-CREDENTIAL IDEA\n' + F.map(f => `${f[1]}: ${v[f[0]] || ''}`).join('\n');
+    const done = () => { $('#cv-msg').textContent = 'Copied ✓'; setTimeout(() => { $('#cv-msg').textContent = ''; }, 2000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, () => { $('#cv-msg').textContent = 'Copy not allowed – please select and copy the text.'; });
+    else $('#cv-msg').textContent = 'Copy not available – please take a screenshot.';
+  });
+  fill(); draw();
+})();
+
+/* ---------------- start ---------------- */
+applyMode();
+const m0 = /^#(\d+)$/.exec(location.hash);
+if (m0) go(parseInt(m0[1], 10) - 1, 0); else go(0, 0);
+})();
+</script>
+</body>
+</html>
