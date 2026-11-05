@@ -18,7 +18,7 @@ import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4
 >
 > **Time needed:** about 3 hours (incl. drafting your micro-credential)
 >
-> **Do the exercise in Moodle by 18.11.2026, 23:59** – see the last chapter: [Open the course in Moodle](https://elearning.ovgu.de/course/view.php?id=21948)
+> **Do the exercise in Moodle by 18.11.2026, 23:59** – see the last chapter: [Open the exercise in Moodle](https://elearning.ovgu.de/mod/scorm/view.php?id=706776)
 
 **After this unit you will be able to …**
 
@@ -248,7 +248,7 @@ flowchart TD
 
 ## 6. Exercise in Moodle for Session 5
 
-**Do the exercise in Moodle by 18.11.2026, 23:59:** [Open the course in Moodle](https://elearning.ovgu.de/course/view.php?id=21948)
+**Do the exercise in Moodle by 18.11.2026, 23:59:** [Open the exercise in Moodle](https://elearning.ovgu.de/mod/scorm/view.php?id=706776)
 
 Enter your results in the fields below and submit each field. Moodle saves your progress. The exercise counts as done when you have completed this unit in Moodle by the deadline – no file upload is needed.
 

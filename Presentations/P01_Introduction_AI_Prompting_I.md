@@ -375,8 +375,8 @@ Rate yourself honestly: **0** = not yet · **1** = Acquire · **2** = Deepen · 
 | 4 AI pedagogy | <script input="range" min="0" max="3" step="1" value="0" output="cft4">@input</script> |
 | 5 AI for professional development | <script input="range" min="0" max="3" step="1" value="0" output="cft5">@input</script> |
 
-<!-- CHECK: competency names against UNESCO (2024b), AI competency framework for teachers, Table 1 -->
 <script modify="false" style="display:block">
+// CHECK: competency names against UNESCO (2024b), AI competency framework for teachers, Table 1
 const v = [@input(`cft1`), @input(`cft2`), @input(`cft3`), @input(`cft4`), @input(`cft5`)].map(Number);
 const dims = ["Human-centred mindset","Ethics of AI","AI foundations & applications","AI pedagogy","AI for prof. development"];
 const comp = [
