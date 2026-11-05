@@ -1,13 +1,15 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.2.0
+version:   1.2.1
 language:  en
 narrator:  UK English Female
 mode:      Textbook
 
 title:     S03 – AI foundations: vocabulary, models, algorithms and workflows (Self-learning unit)
 comment:   AI in TVET I – Self-learning unit for session 3 (29.10.2026): data, weights, models, algorithms, learning paradigms, neural networks, AI workflows and agents; reading of the UNESCO AI Competency Framework for Students.
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # S03 – AI Foundations: Vocabulary, Models, Algorithms and Workflows
@@ -28,13 +30,18 @@ comment:   AI in TVET I – Self-learning unit for session 3 (29.10.2026): data,
 
 ## 1. The Vocabulary Map
 
-``` ascii
-  DATA ──────────► ALGORITHM ──────────► MODEL ──────────► OUTPUT
- (examples,        (learning procedure,  (learned weights,  (prediction,
-  features,         e.g. gradient         structure)         classification,
-  labels)           descent)                                 generated text)
-      │                                      ▲
-      └──────────── TRAINING ────────────────┘        INFERENCE = using the model
+```mermaid @mermaid
+flowchart LR
+  subgraph TR["TRAINING"]
+    D["<b>DATA</b><br>examples, features,<br>labels"]:::sys --> A["<b>ALGORITHM</b><br>learning procedure,<br>e.g. gradient descent"]:::sys
+  end
+  subgraph INF["INFERENCE = using the model"]
+    M["<b>MODEL</b><br>learned weights,<br>structure"]:::sys --> O["<b>OUTPUT</b><br>prediction, classification,<br>generated text"]:::sys
+  end
+  A -- "produces" --> M
+  style TR fill:#fafafa,stroke:#9ca3af
+  style INF fill:#fafafa,stroke:#9ca3af
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 | Term | Meaning | TVET example |
@@ -61,10 +68,14 @@ A model "knows" nothing in the human sense. What it has learned is stored in **w
 
 **Simple example:** predicting whether an apprentice passes a practical exam.
 
-``` ascii
- practice hours ──(w1 = 0.6)──┐
- theory score   ──(w2 = 0.3)──┼──►  Σ  ──► activation ──► "pass" probability
- attendance     ──(w3 = 0.1)──┘
+```mermaid @mermaid
+flowchart LR
+  X1["practice hours"]:::sys -- "w1 = 0.6" --> S(("Σ")):::sys
+  X2["theory score"]:::sys -- "w2 = 0.3" --> S
+  X3["attendance"]:::sys -- "w3 = 0.1" --> S
+  S --> F["activation"]:::sys
+  F --> P["“pass”<br>probability"]:::sys
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 **Worked example:** All inputs are scaled to values between 0 and 1. Apprentice A has practice hours = 0.8, theory score = 0.5, attendance = 1.0.
@@ -174,12 +185,47 @@ A beginner-friendly overview of common ML and deep-learning models (decision tre
 
 Neural networks are loosely inspired by the brain. They consist of **layers** of connected "neurons".
 
-``` ascii
- Input layer      Hidden layers        Output layer
-   (x1) ───┐     (h)───(h)───┐
-   (x2) ───┼───► (h)───(h)───┼───►  (y)  "defect: 0.93"
-   (x3) ───┘     (h)───(h)───┘
-```
+<div style="max-width:660px;margin:0 auto;background:#ffffff;border-radius:8px;">
+<svg viewBox="0 0 650 240" width="100%" role="img" aria-label="Neural network: three inputs, two hidden layers, one output with the result defect 0.93" style="font-family:trebuchet ms, verdana, arial, sans-serif;">
+<defs><marker id="nnArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/></marker></defs>
+<line x1="70" y1="85" x2="220" y2="85" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="70" y1="85" x2="220" y2="145" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="70" y1="85" x2="220" y2="205" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="70" y1="145" x2="220" y2="85" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="70" y1="145" x2="220" y2="145" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="70" y1="145" x2="220" y2="205" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="70" y1="205" x2="220" y2="85" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="70" y1="205" x2="220" y2="145" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="70" y1="205" x2="220" y2="205" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="220" y1="85" x2="340" y2="85" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="220" y1="85" x2="340" y2="145" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="220" y1="85" x2="340" y2="205" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="220" y1="145" x2="340" y2="85" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="220" y1="145" x2="340" y2="145" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="220" y1="145" x2="340" y2="205" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="220" y1="205" x2="340" y2="85" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="220" y1="205" x2="340" y2="145" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="220" y1="205" x2="340" y2="205" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="340" y1="85" x2="470" y2="145" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="340" y1="145" x2="470" y2="145" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="340" y1="205" x2="470" y2="145" stroke="#6b7280" stroke-width="1.2"/>
+<line x1="487" y1="145" x2="518" y2="145" stroke="#6b7280" stroke-width="1.5" marker-end="url(#nnArrow)"/>
+<circle cx="70" cy="85" r="17" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="70" y="85" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">x1</text>
+<circle cx="70" cy="145" r="17" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="70" y="145" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">x2</text>
+<circle cx="70" cy="205" r="17" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="70" y="205" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">x3</text>
+<circle cx="220" cy="85" r="17" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="220" y="85" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">h</text>
+<circle cx="220" cy="145" r="17" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="220" y="145" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">h</text>
+<circle cx="220" cy="205" r="17" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="220" y="205" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">h</text>
+<circle cx="340" cy="85" r="17" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="340" y="85" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">h</text>
+<circle cx="340" cy="145" r="17" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="340" y="145" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">h</text>
+<circle cx="340" cy="205" r="17" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="340" y="205" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">h</text>
+<circle cx="470" cy="145" r="17" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="470" y="145" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">y</text>
+<rect x="524" y="127" width="108" height="36" rx="4" fill="#f7eef2" stroke="#7a003f" stroke-width="1.5"/><text x="578" y="145" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#1f1f1f">defect: 0.93</text>
+<text x="70" y="38" text-anchor="middle" font-size="14" font-weight="bold" fill="#4b5563">Input layer</text>
+<text x="280" y="38" text-anchor="middle" font-size="14" font-weight="bold" fill="#4b5563">Hidden layers</text>
+<text x="470" y="38" text-anchor="middle" font-size="14" font-weight="bold" fill="#4b5563">Output layer</text>
+</svg>
+</div>
 
 1. **Layers:** The input layer takes the data, hidden layers transform it, the output layer delivers the result.
 2. **Activation functions** (e.g. ReLU, sigmoid) make the network *non-linear*, so it can learn complex patterns.
@@ -235,11 +281,17 @@ Why training works at all with millions or billions of weights was long a theore
 
 An AI workflow describes the steps from input to usable output – including the human checks.
 
-``` ascii
- 1 Define goal ─► 2 Collect / select data ─► 3 Choose model or tool ─►
- 4 Generate / predict ─► 5 Human review ─► 6 Use in teaching ─► 7 Evaluate & improve
-                              ▲                                        │
-                              └──────────── feedback loop ◄────────────┘
+```mermaid @mermaid
+flowchart LR
+  W1["<b>1</b> · Define<br>goal"]:::sys --> W2["<b>2</b> · Collect /<br>select data"]:::sys
+  W2 --> W3["<b>3</b> · Choose<br>model or tool"]:::sys
+  W3 --> W4["<b>4</b> · Generate /<br>predict"]:::sys
+  W4 --> W5["<b>5</b> · Human<br>review"]:::human
+  W5 --> W6["<b>6</b> · Use in<br>teaching"]:::sys
+  W6 --> W7["<b>7</b> · Evaluate<br>#amp; improve"]:::sys
+  W7 -- "feedback loop" --> W2
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef human fill:#ffffff,stroke:#d03b3b,stroke-width:3px,color:#1f1f1f
 ```
 
 **Ethical checkpoints in the workflow**

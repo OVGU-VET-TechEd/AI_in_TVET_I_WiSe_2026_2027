@@ -1,7 +1,7 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.0.0
+version:   1.0.1
 language:  en
 narrator:  UK English Female
 mode:      Presentation
@@ -10,6 +10,8 @@ classroom: enable
 title:     P06 – Hands-on LiaScript & Pitch Presentations (Session slides)
 comment:   AI in TVET I – Slides for session 6 (live, 19.11.2026): LiaScript syntax live, GitHub workflow, building nuggets with AI, 10-minute pitch, panel feedback, final submission and UNESCO AI CFT reflection. Interactive: syntax arcade, link builder, pitch planner, peer rating, competency radar.
 tags:      LiaScript, GitHub, OER, Pitch, Micro-credentials, UNESCO, Reflection
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # Hands-on LiaScript & Pitch Day
@@ -49,9 +51,11 @@ Welcome to our final session of AI in TVET one. First a short LiaScript power-up
 
 Markdown + superpowers: quizzes, animations, text-to-speech, videos, code – **without an LMS**. Plain text → easy to version, translate and **generate with AI**.
 
-``` ascii
- your-nugget.md  ──►  GitHub (raw link)  ──►  liascript.github.io/course/?<raw link>
-   (plain text)        (storage, versions)       (interactive course in the browser)
+```mermaid @mermaid
+flowchart LR
+  N["<b>your-nugget.md</b><br>plain text"]:::sys --> G["<b>GitHub</b> – raw link<br>storage, versions"]:::sys
+  G --> L["<b>liascript.github.io/course/?</b><i>raw link</i><br>interactive course in the browser"]:::sys
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 {{1}}

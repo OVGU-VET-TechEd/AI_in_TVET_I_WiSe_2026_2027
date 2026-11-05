@@ -1,13 +1,15 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.1.0
+version:   1.1.1
 language:  en
 narrator:  UK English Female
 mode:      Textbook
 
 title:     S04 – Applications of AI in TVET: tools, agents, AI in pedagogy (Self-learning unit)
 comment:   AI in TVET I – Self-learning unit for session 4 (live, 05.11.2026): adaptive learning, intelligent tutoring, chatbots, VR/AR, predictive analytics, curriculum alignment, AI in pedagogy and the micro-credential idea check.
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # S04 – Applications of AI in TVET
@@ -25,14 +27,17 @@ comment:   AI in TVET I – Self-learning unit for session 4 (live, 05.11.2026):
 
 ## 1. Overview: Where AI Is Used in TVET
 
-``` ascii
-                      ┌──────────────────────┐
-                      │   Learner & Teacher  │
-                      └──────────┬───────────┘
-   ┌───────────────┬─────────────┼──────────────┬────────────────┐
- Adaptive        Intelligent    Chatbots /     VR/AR +        Analytics &
- learning        tutoring       AI assistants  AI simulation  curriculum
- systems         systems                                       alignment
+```mermaid @mermaid
+flowchart TD
+  LT(["Learner and Teacher"]):::human
+  LT --- A["Adaptive<br>learning systems"]:::sys
+  LT --- B["Intelligent<br>tutoring systems"]:::sys
+  LT --- C["Chatbots /<br>AI assistants"]:::sys
+  LT --- D["VR/AR +<br>AI simulation"]:::sys
+  LT --- E["Predictive<br>analytics"]:::sys
+  LT --- F["Curriculum<br>alignment"]:::sys
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef human fill:#ffffff,stroke:#d03b3b,stroke-width:3px,color:#1f1f1f
 ```
 
 | Application | What it does | Example in TVET |

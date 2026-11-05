@@ -1,7 +1,7 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.0.0
+version:   1.0.1
 language:  en
 narrator:  UK English Female
 mode:      Presentation
@@ -10,6 +10,8 @@ classroom: enable
 title:     P01 – Introduction to AI & Prompting I (Session slides)
 comment:   AI in TVET I – Slides for session 1 (live, 15.10.2026): how generative AI works, prompting basics, UNESCO and EU frameworks, AI trends in TVET. Interactive playgrounds: next-token sampler, tokenizer, prompt builder, UNESCO AI CFT self-check.
 tags:      AI, TVET, LLM, Prompting, UNESCO, EU AI Act, LiaScript
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # Introduction to AI & Prompting I
@@ -76,20 +78,15 @@ The **EU AI Act** (Regulation (EU) 2024/1689, Art. 3): an *AI system* is a machi
 {{2}}
 <section>
 
-``` ascii
-+-------------------------------------------------------+
-| Artificial Intelligence  (rules, search, planning ...) |
-|  +-------------------------------------------------+  |
-|  | Machine Learning: learns patterns from data     |  |
-|  |  +-------------------------------------------+  |  |
-|  |  | Deep Learning: many-layered networks      |  |  |
-|  |  |  +-------------------------------------+  |  |  |
-|  |  |  | Generative AI: new text, images ... |  |  |  |
-|  |  |  +-------------------------------------+  |  |  |
-|  |  +-------------------------------------------+  |  |
-|  +-------------------------------------------------+  |
-+-------------------------------------------------------+
-```
+<div style="max-width:640px;margin:0 auto;padding:10px;background:#ffffff;border-radius:8px;color:#1f1f1f;">
+<div style="border:2px solid #7a003f;border-radius:10px;padding:8px 10px 10px 10px;background:#fbf6f8;"><b>Artificial Intelligence</b> – rules, search, planning …
+<div style="border:2px solid #7a003f;border-radius:10px;padding:8px 10px 10px 10px;margin-top:6px;background:#f3e3ea;"><b>Machine Learning</b> – learns patterns from data
+<div style="border:2px solid #7a003f;border-radius:10px;padding:8px 10px 10px 10px;margin-top:6px;background:#e8cbd8;"><b>Deep Learning</b> – many-layered networks
+<div style="border-radius:10px;padding:8px 10px;margin-top:6px;background:#7a003f;color:#ffffff;"><b>Generative AI</b> – new text, images …</div>
+</div>
+</div>
+</div>
+</div>
 
 </section>
 
@@ -287,10 +284,15 @@ Change the blocks to your own vocational field. Then copy the result into a chat
 
 ## Iterate! The CLEAR Path
 
-``` ascii
- Prompt ──► Output ──► Evaluate ──► Refine prompt ──► Better output
-   ▲                                                       │
-   └───────────────────────────────────────────────────────┘
+```mermaid @mermaid
+flowchart LR
+  P["Prompt"]:::human --> O["Output"]:::sys
+  O --> E["Evaluate"]:::human
+  E --> R["Refine prompt"]:::human
+  R --> B["Better output"]:::sys
+  B -- "repeat" --> P
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef human fill:#ffffff,stroke:#d03b3b,stroke-width:3px,color:#1f1f1f
 ```
 
 {{1}}
@@ -400,17 +402,12 @@ Move the sliders. The radar shows your profile, and the list names the UNESCO co
 
 ## EU AI Act: Risk Pyramid
 
-``` ascii
-            /\        UNACCEPTABLE  – prohibited
-           /  \       e.g. emotion recognition of learners
-          /----\      HIGH RISK – strict obligations
-         /      \     e.g. admission, grading, exam proctoring
-        /--------\    LIMITED RISK – transparency
-       /          \   e.g. chatbots must disclose they are AI
-      /------------\  MINIMAL RISK – no specific obligations
-     /              \ e.g. spam filter, spell checker
-    /________________\
-```
+<div style="max-width:640px;margin:0 auto;padding:10px;background:#ffffff;border-radius:8px;text-align:center;">
+<div style="width:46%;margin:0 auto 3px auto;padding:8px 6px;border-radius:10px 10px 4px 4px;background:#d03b3b;color:#ffffff;"><b>UNACCEPTABLE</b> – prohibited<br><small>e.g. emotion recognition of learners</small></div>
+<div style="width:64%;margin:0 auto 3px auto;padding:8px 6px;border-radius:4px;background:#f59e0b;color:#1f1f1f;"><b>HIGH RISK</b> – strict obligations<br><small>e.g. admission, grading, exam proctoring</small></div>
+<div style="width:82%;margin:0 auto 3px auto;padding:8px 6px;border-radius:4px;background:#fde68a;color:#1f1f1f;"><b>LIMITED RISK</b> – transparency<br><small>e.g. chatbots must disclose they are AI</small></div>
+<div style="width:100%;margin:0 auto 3px auto;padding:8px 6px;border-radius:4px;background:#bbf7d0;color:#1f1f1f;"><b>MINIMAL RISK</b> – no specific obligations<br><small>e.g. spam filter, spell checker</small></div>
+</div>
 
 {{1}}
 <section>

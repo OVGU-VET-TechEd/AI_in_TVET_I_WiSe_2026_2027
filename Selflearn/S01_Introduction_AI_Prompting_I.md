@@ -1,13 +1,15 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.1.0
+version:   1.1.1
 language:  en
 narrator:  UK English Female
 mode:      Textbook
 
 title:     S01 – Introduction to AI & Prompting I: how AI works, frameworks & trends (Self-learning unit)
 comment:   AI in TVET I – Self-learning unit for session 1 (live, 15.10.2026): how generative AI works, prompting basics, UNESCO and EU frameworks, AI trends in TVET.
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # S01 – Introduction to AI & Prompting I
@@ -34,22 +36,15 @@ The EU AI Act (Regulation (EU) 2024/1689, Art. 3) defines an *AI system* as a ma
 
 ### AI is a family of approaches
 
-``` ascii
-+-------------------------------------------------------------+
-| Artificial Intelligence                                      |
-|   rule-based systems, search, planning, ...                  |
-|  +-------------------------------------------------------+  |
-|  | Machine Learning: learns patterns from data           |  |
-|  |  +-------------------------------------------------+  |  |
-|  |  | Deep Learning: neural networks with many layers |  |  |
-|  |  |  +-------------------------------------------+  |  |  |
-|  |  |  | Generative AI: creates new text, images,  |  |  |  |
-|  |  |  | audio, code (e.g. LLMs, diffusion models) |  |  |  |
-|  |  |  +-------------------------------------------+  |  |  |
-|  |  +-------------------------------------------------+  |  |
-|  +-------------------------------------------------------+  |
-+-------------------------------------------------------------+
-```
+<div style="max-width:640px;margin:0 auto;padding:10px;background:#ffffff;border-radius:8px;color:#1f1f1f;">
+<div style="border:2px solid #7a003f;border-radius:10px;padding:8px 10px 10px 10px;background:#fbf6f8;"><b>Artificial Intelligence</b> – rule-based systems, search, planning, …
+<div style="border:2px solid #7a003f;border-radius:10px;padding:8px 10px 10px 10px;margin-top:6px;background:#f3e3ea;"><b>Machine Learning</b> – learns patterns from data
+<div style="border:2px solid #7a003f;border-radius:10px;padding:8px 10px 10px 10px;margin-top:6px;background:#e8cbd8;"><b>Deep Learning</b> – neural networks with many layers
+<div style="border-radius:10px;padding:8px 10px;margin-top:6px;background:#7a003f;color:#ffffff;"><b>Generative AI</b> – creates new text, images, audio, code (e.g. LLMs, diffusion models)</div>
+</div>
+</div>
+</div>
+</div>
 
 | Approach | How it works | TVET example |
 | --- | --- | --- |
@@ -82,16 +77,16 @@ A Large Language Model (LLM) such as GPT, Claude or Gemini is trained to **predi
 
 </section>
 
-``` ascii
-Prompt: "A welder must always wear ..."
-
-  next token        probability
-  "protective"      ██████████████  0.62
-  "a"               ████            0.17
-  "gloves"          ███             0.12
-  "safety"          ██              0.07
-  ...
-```
+<div style="max-width:560px;margin:0 auto;padding:10px;background:#ffffff;border-radius:8px;color:#1f1f1f;">
+<p style="margin:0 0 8px 0;">Prompt: <i>“A welder must always wear …”</i> – probability of the next token (scale 0 to 1)</p>
+<div style="display:grid;grid-template-columns:7.5em 1fr 3em;gap:6px 8px;align-items:center;">
+<span>“protective”</span><div title="“protective”: 0.62" style="height:16px;width:62%;background:#7a003f;border-radius:0 4px 4px 0;"></div><span>0.62</span>
+<span>“a”</span><div title="“a”: 0.17" style="height:16px;width:17%;background:#7a003f;border-radius:0 4px 4px 0;"></div><span>0.17</span>
+<span>“gloves”</span><div title="“gloves”: 0.12" style="height:16px;width:12%;background:#7a003f;border-radius:0 4px 4px 0;"></div><span>0.12</span>
+<span>“safety”</span><div title="“safety”: 0.07" style="height:16px;width:7%;background:#7a003f;border-radius:0 4px 4px 0;"></div><span>0.07</span>
+</div>
+<p style="margin:6px 0 0 0;"><small>… plus many other tokens with very small probabilities.</small></p>
+</div>
 
 {{2}}
 <section>
@@ -149,10 +144,15 @@ Difficulty: understanding level (Bloom 2). Language: simple English.
 
 Prompting is a dialogue. Review the first output and refine:
 
-``` ascii
- Prompt ──► Output ──► Evaluate ──► Refine prompt ──► Better output
-   ▲                                                       │
-   └───────────────────────────────────────────────────────┘
+```mermaid @mermaid
+flowchart LR
+  P["Prompt"]:::human --> O["Output"]:::sys
+  O --> E["Evaluate"]:::human
+  E --> R["Refine prompt"]:::human
+  R --> B["Better output"]:::sys
+  B -- "repeat" --> P
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef human fill:#ffffff,stroke:#d03b3b,stroke-width:3px,color:#1f1f1f
 ```
 
 Typical follow-up prompts: *"Make the distractors more plausible."* · *"Add a workplace scenario to each question."* · *"Which of your statements are uncertain? Mark them."*

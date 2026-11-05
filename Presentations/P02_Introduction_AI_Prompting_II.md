@@ -1,7 +1,7 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.0.0
+version:   1.0.1
 language:  en
 narrator:  UK English Female
 mode:      Presentation
@@ -10,6 +10,8 @@ classroom: enable
 title:     P02 – Introduction to AI & Prompting II: tools, limitations, ethics (Session slides)
 comment:   AI in TVET I – Slides for session 2 (self-learning, 22.10.2026): choosing AI tools, prompt patterns, limitations of generative AI, human-centred mindset, bias, EU AI Act, accountability in grading. Interactive: prompt-pattern roulette, reference detective, control/automation map, bias games.
 tags:      AI, TVET, Prompt patterns, Hallucination, Bias, Ethics, EU AI Act, UNESCO
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # Introduction to AI & Prompting II
@@ -25,10 +27,14 @@ Hello and welcome to session two. I am travelling today, so these slides are you
 
 ## Your Route Today 🗺️
 
-``` ascii
- 1 Pick the     2 Prompt      3 Catch the    4 Human in     5 Ethics       6 Case &
-   right tool ─► patterns  ─►  hallucination ─► control   ─►  arcade    ─►  hand-in
-   (10 min)      (20 min)     (25 min)       (20 min)      (45 min)      (40 min)
+```mermaid @mermaid
+flowchart LR
+  S1["<b>1 · Pick the<br>right tool</b><br>10 min"]:::sys --> S2["<b>2 · Prompt<br>patterns</b><br>20 min"]:::sys
+  S2 --> S3["<b>3 · Catch the<br>hallucination</b><br>25 min"]:::sys
+  S3 --> S4["<b>4 · Human in<br>control</b><br>20 min"]:::sys
+  S4 --> S5["<b>5 · Ethics<br>arcade</b><br>45 min"]:::sys
+  S5 --> S6["<b>6 · Case #amp;<br>hand-in</b><br>40 min"]:::sys
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 {{1}}
@@ -265,11 +271,13 @@ You run a fast-growing company and hire people. At some point an algorithm takes
 
 ## 5.1 Algorithmic Bias
 
-``` ascii
- Historical data ──► Model learns ──► Biased ──► Unequal
- with inequalities    the pattern    predictions   opportunities
-       ▲                                              │
-       └──────────── data from the next cohort ◄──────┘
+```mermaid @mermaid
+flowchart LR
+  H["<b>Historical data</b><br>with inequalities"]:::sys --> M["<b>Model learns</b><br>the pattern"]:::sys
+  M --> B["<b>Biased</b><br>predictions"]:::sys
+  B --> U["<b>Unequal</b><br>opportunities"]:::sys
+  U -- "data from the next cohort" --> H
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 {{1}}

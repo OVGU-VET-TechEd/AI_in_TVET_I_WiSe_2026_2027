@@ -1,13 +1,15 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.0.0
+version:   1.0.1
 language:  en
 narrator:  UK English Female
 mode:      Textbook
 
 title:     S06 – Hands-on LiaScript (Self-learning unit)
 comment:   AI in TVET I – Self-learning unit for session 6 (live, 19.11.2026): LiaScript syntax, GitHub workflow, building learning nuggets with AI, preparing the 10-minute pitch and the final submission.
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # S06 – Hands-on LiaScript
@@ -27,9 +29,11 @@ comment:   AI in TVET I – Self-learning unit for session 6 (live, 19.11.2026):
 
 LiaScript is an extension of **Markdown** that turns a plain text file into an interactive course: quizzes, animations, text-to-speech, videos and code – without a learning management system. Because the course is plain text, it is easy to version, translate and **generate with AI**.
 
-``` ascii
- your-nugget.md  ──►  GitHub (raw link)  ──►  liascript.github.io/course/?<raw link>
-   (plain text)        (storage, versions)       (interactive course in the browser)
+```mermaid @mermaid
+flowchart LR
+  N["<b>your-nugget.md</b><br>plain text"]:::sys --> G["<b>GitHub</b> – raw link<br>storage, versions"]:::sys
+  G --> L["<b>liascript.github.io/course/?</b><i>raw link</i><br>interactive course in the browser"]:::sys
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 ## 2. The Basic Syntax

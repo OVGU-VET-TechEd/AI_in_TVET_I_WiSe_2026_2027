@@ -1,7 +1,7 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.0.0
+version:   1.0.1
 language:  en
 narrator:  UK English Female
 mode:      Presentation
@@ -10,6 +10,8 @@ classroom: enable
 title:     P05 – Open education with AI: OER, licensing, micro-credentials (Session slides)
 comment:   AI in TVET I – Slides for session 5 (self-learning, 12.11.2026): Open Educational Resources, Creative Commons licences, AI output and copyright, the European approach to micro-credentials, digital credentials, learning nuggets. Interactive: licence chooser, TASL attribution generator, ECTS calculator, micro-credential card builder.
 tags:      OER, Creative Commons, Copyright, AI, Micro-credentials, Open Badges, TVET
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # Open Education with AI
@@ -25,10 +27,14 @@ Welcome to session five, the last self-learning session. Today you turn your ide
 
 ## Today's Build 🛠️
 
-``` ascii
- OER &      ──►  Pick a     ──►  AI output   ──►  EU micro-   ──►  Nugget   ──►  HAND-IN
- the 5R          licence         & copyright      credential       plan          draft
- (15 min)        (20 min)        (15 min)         (45 min)         (30 min)      (45 min)
+```mermaid @mermaid
+flowchart LR
+  S1["<b>1 · OER #amp;<br>the 5R</b><br>15 min"]:::sys --> S2["<b>2 · Pick a<br>licence</b><br>20 min"]:::sys
+  S2 --> S3["<b>3 · AI output<br>#amp; copyright</b><br>15 min"]:::sys
+  S3 --> S4["<b>4 · EU micro-<br>credential</b><br>45 min"]:::sys
+  S4 --> S5["<b>5 · Nugget<br>plan</b><br>30 min"]:::sys
+  S5 --> S6["<b>6 · HAND-IN<br>draft</b><br>45 min"]:::sys
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 {{1}}
@@ -67,11 +73,13 @@ Publish your version on GitHub → [->[Retain|(Redistribute)|Remix]]
 
 Gillet et al. (2024): **basic OER** (content to consume) vs. **rich OER** (learning phases, learner outputs, learning analytics, **AI support agents or chatbots**).
 
-``` ascii
- Co-creation &  ──►  Teaching &  ──►  Adoption &  ──►  Sharing &  ─┐
- personalisation     learning         impact          discovery    │
-       ▲                                                           │
-       └─────────────────────── OER lifecycle ◄────────────────────┘
+```mermaid @mermaid
+flowchart LR
+  C["<b>Co-creation #amp;</b><br>personalisation"]:::sys --> T["<b>Teaching #amp;</b><br>learning"]:::sys
+  T --> A["<b>Adoption #amp;</b><br>impact"]:::sys
+  A --> S["<b>Sharing #amp;</b><br>discovery"]:::sys
+  S -- "OER lifecycle" --> C
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 {{1}}
@@ -335,13 +343,18 @@ Both are based on **W3C Verifiable Credentials** → this is where your **option
 
 **One nugget = one objective = 5–15 minutes**
 
-``` ascii
- Micro-credential (e.g. 1 ECTS)
- ├── Nugget 1  Acquire:  basic concept              + quiz
- ├── Nugget 2  Acquire:  example from the workplace + quiz
- ├── Nugget 3  Deepen:   apply in a case           + task
- ├── Nugget 4  Deepen:   evaluate AI output        + task
- └── Nugget 5  Create:   own product / transfer    + assessment
+```mermaid @mermaid
+flowchart TD
+  MC["<b>Micro-credential</b><br>e.g. 1 ECTS"]:::mc
+  MC --- N1["<b>Nugget 1</b><br>Acquire:<br>basic concept<br>+ quiz"]:::acq
+  MC --- N2["<b>Nugget 2</b><br>Acquire:<br>example from<br>the workplace<br>+ quiz"]:::acq
+  MC --- N3["<b>Nugget 3</b><br>Deepen:<br>apply in a case<br>+ task"]:::deep
+  MC --- N4["<b>Nugget 4</b><br>Deepen:<br>evaluate AI output<br>+ task"]:::deep
+  MC --- N5["<b>Nugget 5</b><br>Create:<br>own product /<br>transfer<br>+ assessment"]:::create
+  classDef mc fill:#7a003f,stroke:#7a003f,color:#ffffff
+  classDef acq fill:#fbf6f8,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef deep fill:#f0dbe5,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef create fill:#e2bccd,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 {{1}}

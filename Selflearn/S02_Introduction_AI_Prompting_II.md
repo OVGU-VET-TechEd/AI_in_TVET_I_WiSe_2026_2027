@@ -1,13 +1,15 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.2.0
+version:   1.2.1
 language:  en
 narrator:  UK English Female
 mode:      Textbook
 
 title:     S02 – Introduction to AI & Prompting II: tools, limitations, ethics (Self-learning unit)
 comment:   AI in TVET I – Self-learning unit for session 2 (22.10.2026): AI tools and prompt patterns, limitations of generative AI, human-centred mindset and ethics of AI in education.
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # S02 – Introduction to AI & Prompting II
@@ -165,15 +167,7 @@ Deciding *what* to offload is itself a skill: teachers need metacognitive awaren
 
 A systematic review of 108 studies on human-centred learning analytics and AI in education uses Shneiderman's two-dimensional framework: **human control** and **computer automation** are not opposites, and good systems can offer high levels of both (Alfredo et al., 2024).
 
-``` ascii
-          high automation
-                ▲
-   Q3: system   │   Q4: high control
-   decides      │   + high automation
- ───────────────┼───────────────► high human control
-   Q1: show     │   Q2: user
-   information  │   configures
-```
+<div style="max-width:560px;margin:0 auto;padding:10px;background:#ffffff;border-radius:8px;color:#1f1f1f;"><div style="display:flex;gap:6px;align-items:stretch;"><div style="flex:0 0 1.6em;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-weight:bold;">computer automation →</div><div style="flex:1 1 auto;display:flex;flex-direction:column;gap:6px;"><div style="display:flex;gap:6px;"><div style="flex:1 1 0;border:1.5px solid #7a003f;border-radius:8px;background:#f7eef2;padding:14px 10px;text-align:center;">Q3 · <b>system decides</b></div><div style="flex:1 1 0;border:1.5px solid #7a003f;border-radius:8px;background:#f7eef2;padding:14px 10px;text-align:center;border-width:3px;">Q4 · <b>high control<br>+ high automation</b></div></div><div style="display:flex;gap:6px;"><div style="flex:1 1 0;border:1.5px solid #7a003f;border-radius:8px;background:#f7eef2;padding:14px 10px;text-align:center;">Q1 · <b>show information</b></div><div style="flex:1 1 0;border:1.5px solid #7a003f;border-radius:8px;background:#f7eef2;padding:14px 10px;text-align:center;">Q2 · <b>user configures</b></div></div><div style="text-align:center;font-weight:bold;">human control →</div></div></div></div>
 
 The review finds *some* attention to human control in system design, but **limited involvement of end-users – especially students – in the actual design process**. Its recommendation: involve teachers and learners in all design phases and treat safety, reliability and trustworthiness as design principles (Alfredo et al., 2024).
 
@@ -196,11 +190,13 @@ The fields overlap: a biased dropout prediction (5.1) is also a privacy issue (5
 
 ### 5.1 Algorithmic bias
 
-``` ascii
- Historical data ──► Model learns ──► Biased ──► Unequal
- with inequalities    the pattern    predictions   opportunities
-       ▲                                              │
-       └──────────── data from the next cohort ◄──────┘
+```mermaid @mermaid
+flowchart LR
+  H["<b>Historical data</b><br>with inequalities"]:::sys --> M["<b>Model learns</b><br>the pattern"]:::sys
+  M --> B["<b>Biased</b><br>predictions"]:::sys
+  B --> U["<b>Unequal</b><br>opportunities"]:::sys
+  U -- "data from the next cohort" --> H
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 Example: A model trained on past admission data in male-dominated trades may rate female applicants lower.

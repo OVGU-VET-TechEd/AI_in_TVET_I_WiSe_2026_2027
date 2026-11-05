@@ -1,13 +1,15 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.2.0
+version:   1.2.1
 language:  en
 narrator:  UK English Female
 mode:      Textbook
 
 title:     S05 – Open education with AI: OER, licensing, micro-credentials (Self-learning unit)
 comment:   AI in TVET I – Self-learning unit for session 5 (12.11.2026): Open Educational Resources, Creative Commons licensing and AI output, the European approach to micro-credentials, learning nuggets; draft of the own micro-credential.
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # S05 – Open Education with AI: OER, Licensing, Micro-credentials
@@ -57,11 +59,13 @@ Most teaching material is protected by copyright: you may use it in your own cla
 
 Gillet et al. (2024) distinguish **basic OER** (content to be consumed) from **rich OER**, which add a pedagogical structure (learning phases), learner outputs and learning analytics, and **AI support agents or chatbots**. Generative AI can explain terms on demand and generate tailored examples, exercises and formative feedback.
 
-``` ascii
- Co-creation &  ──►  Teaching &  ──►  Adoption &  ──►  Sharing &  ─┐
- personalisation     learning         impact          discovery    │
-       ▲                                                           │
-       └─────────────────────── OER lifecycle ◄────────────────────┘
+```mermaid @mermaid
+flowchart LR
+  C["<b>Co-creation #amp;</b><br>personalisation"]:::sys --> T["<b>Teaching #amp;</b><br>learning"]:::sys
+  T --> A["<b>Adoption #amp;</b><br>impact"]:::sys
+  A --> S["<b>Sharing #amp;</b><br>discovery"]:::sys
+  S -- "OER lifecycle" --> C
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 Despite the well-known concept, OER are still **scarce** in practice. The authors therefore stress the whole lifecycle – including incentives for teachers, links to curricula and participatory design with teachers (Gillet et al., 2024).
@@ -196,13 +200,18 @@ Paper certificates can be forged; digital credentials can be verified, shared an
 
 A **learning nugget** is a short, self-contained unit (about 5–15 minutes) with **one** learning objective. Several nuggets add up to the micro-credential.
 
-``` ascii
- Micro-credential (e.g. 1 ECTS)
- ├── Nugget 1  Acquire:  basic concept              + quiz
- ├── Nugget 2  Acquire:  example from the workplace + quiz
- ├── Nugget 3  Deepen:   apply in a case           + task
- ├── Nugget 4  Deepen:   evaluate AI output        + task
- └── Nugget 5  Create:   own product / transfer    + assessment
+```mermaid @mermaid
+flowchart TD
+  MC["<b>Micro-credential</b><br>e.g. 1 ECTS"]:::mc
+  MC --- N1["<b>Nugget 1</b><br>Acquire:<br>basic concept<br>+ quiz"]:::acq
+  MC --- N2["<b>Nugget 2</b><br>Acquire:<br>example from<br>the workplace<br>+ quiz"]:::acq
+  MC --- N3["<b>Nugget 3</b><br>Deepen:<br>apply in a case<br>+ task"]:::deep
+  MC --- N4["<b>Nugget 4</b><br>Deepen:<br>evaluate AI output<br>+ task"]:::deep
+  MC --- N5["<b>Nugget 5</b><br>Create:<br>own product /<br>transfer<br>+ assessment"]:::create
+  classDef mc fill:#7a003f,stroke:#7a003f,color:#ffffff
+  classDef acq fill:#fbf6f8,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef deep fill:#f0dbe5,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef create fill:#e2bccd,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 **Design principles**
