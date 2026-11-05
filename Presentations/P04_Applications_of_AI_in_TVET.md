@@ -1,7 +1,7 @@
 <!--
 author:    Dr. Hannes Tegelbeckers
 email:     hannes.tegelbeckers@ovgu.de
-version:   1.1.0
+version:   1.1.1
 language:  en
 narrator:  UK English Female
 mode:      Presentation
@@ -10,6 +10,8 @@ classroom: enable
 title:     P04 – Applications of AI in TVET: tools, agents, AI in pedagogy (Session slides)
 comment:   AI in TVET I – Slides for session 4 (live, 05.11.2026, 150 min): five learning objectives, adaptive learning, intelligent tutoring, chatbots, VR/AR, predictive analytics, curriculum alignment, AI agents, AI in pedagogy, micro-credential idea check. Interactive: adaptive-engine simulator, step-by-step hints, rule-based chatbot, accuracy-trap calculator, ESCO task, agent step-through, tool evaluation grid, heutagogy slider, idea canvas, exit ticket. Videos and explorables.
 tags:      AI, TVET, Adaptive learning, ITS, Chatbots, VR, Learning analytics, AI agents, Heutagogy, Micro-credentials
+
+import:    https://raw.githubusercontent.com/LiaTemplates/mermaid_template/0.1.4/README.md
 -->
 
 # Applications of AI in TVET
@@ -100,14 +102,17 @@ Here is our route for the next one hundred and fifty minutes. The first half is 
 
 ## 1. Where AI Is Used in TVET 🏭
 
-``` ascii
-                      ┌──────────────────────┐
-                      │   Learner & Teacher  │
-                      └──────────┬───────────┘
-   ┌───────────────┬─────────────┼──────────────┬────────────────┐
- Adaptive        Intelligent    Chatbots /     VR/AR +        Analytics &
- learning        tutoring       AI assistants  AI simulation  curriculum
- systems         systems                                       alignment
+```mermaid @mermaid
+flowchart TD
+  LT(["Learner and Teacher"]):::human
+  LT --- A["2.1 Adaptive<br>learning systems"]:::sys
+  LT --- B["2.2 Intelligent<br>tutoring systems"]:::sys
+  LT --- C["2.3 Chatbots /<br>AI assistants"]:::sys
+  LT --- D["2.4 VR/AR +<br>AI simulation"]:::sys
+  LT --- E["2.5 Predictive<br>analytics"]:::sys
+  LT --- F["2.6 Curriculum<br>alignment"]:::sys
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef human fill:#ffffff,stroke:#d03b3b,stroke-width:3px,color:#1f1f1f
 ```
 
 {{1}}
@@ -151,17 +156,14 @@ Six applications, six examples. You have one minute.
 
 Learner model + domain model → next step.
 
-``` ascii
- ┌──────────────────┐  answers, errors,  ┌──────────────────────┐
- │     Learner      │ ─── time ────────► │    Learner model     │
- │  works on a task │                    │ "what the learner    │
- └────────▲─────────┘                    │  already knows"      │
-          │                              └──────────┬───────────┘
-          │  next task, hint, pace       ┌──────────▼───────────┐     ┌────────────────────┐
-          └───────────────────────────── │   Adaptation rules   │ ◄── │    Domain model    │
-                                         │  "what comes next?"  │     │ "what there is to  │
-                                         └──────────────────────┘     │  learn, in order"  │
-                                                                      └────────────────────┘
+```mermaid @mermaid
+flowchart LR
+  L["<b>Learner</b><br>works on a task"]:::human -- "answers, errors, time" --> LM["<b>Learner model</b><br>what the learner<br>already knows"]:::sys
+  LM --> R["<b>Adaptation rules</b><br>what comes next?"]:::sys
+  DM["<b>Domain model</b><br>what there is to learn,<br>in order"]:::sys --> R
+  R -- "next task, hint, pace" --> L
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef human fill:#ffffff,stroke:#d03b3b,stroke-width:3px,color:#1f1f1f
 ```
 
 {{1}}
@@ -245,10 +247,21 @@ In vocational classrooms, the teacher orchestrates group work, real work tasks a
 
 An ITS guides the learner **step by step** through a task: it checks every step and gives hints – not only a score at the end.
 
-``` ascii
- OUTER LOOP – which task next?    [ Task 1 ] ─────► [ Task 2 ] ─────► [ Task 3 ]
-                                       │
- INNER LOOP – within one task     step ──► feedback / hint ──► step ──► feedback ──► done
+```mermaid @mermaid
+flowchart TB
+  subgraph OUTER["<b>Outer loop</b> – which task next?"]
+    direction LR
+    T1["Task 1"]:::sys --> T2["Task 2"]:::sys --> T3["Task 3"]:::sys
+  end
+  subgraph INNER["<b>Inner loop</b> – within one task"]
+    direction LR
+    S1["Step"]:::human --> F1["Feedback / hint"]:::sys --> S2["Step"]:::human --> F2["Feedback"]:::sys --> D(["Done"]):::sys
+  end
+  OUTER -. "zoom into one task" .-> INNER
+  style OUTER fill:#fafafa,stroke:#9ca3af
+  style INNER fill:#fafafa,stroke:#9ca3af
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef human fill:#ffffff,stroke:#d03b3b,stroke-width:3px,color:#1f1f1f
 ```
 
 <small>Inner and outer loop (VanLehn, 2006)</small>
@@ -332,10 +345,11 @@ An intelligent tutoring system would store which hints you opened. That is valua
 
 ## 2.3 Chatbots and AI Assistants 💬
 
-``` ascii
- 1966  ELIZA ──────────────► 2016  Jill Watson ──────────► since 2022  LLM chatbots
-       rule-based keyword          AI teaching assistant          generate free answers –
-       matching                    answers forum questions        and can hallucinate
+```mermaid @mermaid
+flowchart LR
+  E["<b>1966 · ELIZA</b><br>rule-based<br>keyword matching"]:::sys --> J["<b>2016 · Jill Watson</b><br>AI teaching assistant<br>answers forum questions"]:::sys
+  J --> G["<b>since 2022 · LLM chatbots</b><br>generate free answers –<br>and can hallucinate"]:::sys
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
 ```
 
 {{1}}
@@ -438,11 +452,14 @@ This is a vendor video, so watch it with a critical eye. Ask yourself what a sim
 
 ## 2.5 Predictive Analytics: How an Early-Warning System Works 🚦
 
-``` ascii
- Data              Model            Risk score         Threshold          Action
- grades,      ──►  learns     ──►   0.0 ... 1.0   ──►  e.g. 0.5     ──►   🚩 flagged learner
- attendance,       from past                           set by humans      → conversation,
- background        cohorts                                                  support offer
+```mermaid @mermaid
+flowchart LR
+  D["<b>Data</b><br>grades, attendance,<br>background"]:::sys --> M["<b>Model</b><br>learns from<br>past cohorts"]:::sys
+  M --> S["<b>Risk score</b><br>0.0 … 1.0"]:::sys
+  S --> T["<b>Threshold</b><br>e.g. 0.5<br>set by humans"]:::human
+  T --> A["<b>Action</b><br>🚩 flagged learner:<br>conversation,<br>support offer"]:::human
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef human fill:#ffffff,stroke:#d03b3b,stroke-width:3px,color:#1f1f1f
 ```
 
 {{1}}
@@ -602,12 +619,15 @@ Take three minutes. This is exactly the comparison that AI-based curriculum tool
 
 **Chatbot:** one question → one answer. **Agent:** one goal → plans steps, uses tools, checks results, tries again (remember P03).
 
-``` ascii
-        ┌──────── PLAN ────────┐
-        │                      ▼
-     ADJUST                   ACT  ──► tools: web search, code, files
-        ▲                      │
-        └────── OBSERVE ◄──────┘        + memory
+```mermaid @mermaid
+flowchart LR
+  G(["<b>Goal</b><br>set by you"]):::human --> P["<b>PLAN</b>"]:::sys
+  P --> A["<b>ACT</b><br>tools: web search,<br>code, files + memory"]:::sys
+  A --> O["<b>OBSERVE</b>"]:::sys
+  O --> J["<b>ADJUST</b>"]:::sys
+  J -- "repeat" --> P
+  classDef sys fill:#f7eef2,stroke:#7a003f,stroke-width:1.5px,color:#1f1f1f
+  classDef human fill:#ffffff,stroke:#d03b3b,stroke-width:3px,color:#1f1f1f
 ```
 
 {{1}}
